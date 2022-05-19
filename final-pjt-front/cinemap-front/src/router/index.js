@@ -2,15 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 
-import ArticleListView from '@/views/ArticleListView.vue'
-import ArticleDetailView from '@/views/ArticleDetailView.vue'
-import ArticleNewView from '@/views/ArticleNewView'
-import ArticleEditView from '@/views/ArticleEditView'
+import ReviewListView from '@/views/review/ReviewListView.vue'
+import ReviewDetailView from '@/views/review/ReviewDetailView.vue'
+import ReviewNewView from '@/views/review/ReviewNewView'
+import ReviewEditView from '@/views/review/ReviewEditView'
 
-import LoginView from '@/views/LoginView.vue'
-import LogoutView from '@/views/LogoutView.vue'
-import SignupView from '@/views/SignupView.vue'
-import ProfileView from '@/views/ProfileView.vue'
+import LoginView from '@/views/accounts/LoginView.vue'
+import LogoutView from '@/views/accounts/LogoutView.vue'
+import SignupView from '@/views/accounts/SignupView.vue'
+import ProfileView from '@/views/accounts/ProfileView.vue'
 import NotFound404 from '../views/NotFound404.vue'
 
 Vue.use(VueRouter)
@@ -53,23 +53,23 @@ const routes = [
   },
   {
     path: '/',  // Home
-    name: 'articles',
-    component: ArticleListView
+    name: 'reviews',
+    component: ReviewListView
   },
   {
-    path: '/articles/new',
-    name: 'articleNew',
-    component: ArticleNewView
+    path: '/reviews/new',
+    name: 'reviewNew',
+    component: ReviewNewView
   },
   {
-    path: '/articles/:articlePk',
-    name: 'article',
-    component: ArticleDetailView
+    path: '/reviews/:reviewPk',
+    name: 'review',
+    component: ReviewDetailView
   },
   {
-    path: '/articles/:articlePk/edit',
-    name: 'articleEdit',
-    component: ArticleEditView
+    path: '/reviews/:reviewPk/edit',
+    name: 'reviewEdit',
+    component: ReviewEditView
   },
   {
     path: '/404',
