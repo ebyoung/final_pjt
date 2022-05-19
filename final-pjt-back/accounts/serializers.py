@@ -9,11 +9,19 @@ class ProfileSerializer(serializers.ModelSerializer):
         class Meta:
             model = Review
             fields = ('watch_day', 'content')
+    
+    class FollowSerializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = get_user_model()
+            fields = ('username', 'profile_image', )
 
     reviews = ReviewListSerializer(read_only=True, many=True)
+    followers = FollowSerializer(read_only=True, many=True)
+    followings = FollowSerializer(read_only=True, many=True)
     follower_count = serializers.IntegerField(source='followers.count', read_only=True)
     following_count = serializers.IntegerField(source='followings.count', read_only=True)
 
     class Meta:
         model = get_user_model()
-        fields = ('profile_image', 'username', 'follower_count', 'following_count', 'reviews', 'introduction')
+        fields = ('profile_image', 'username', 'follower_count', 'following_count', 'followers', 'followings', 'reviews', 'introduction')

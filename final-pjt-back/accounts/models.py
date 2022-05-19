@@ -5,6 +5,7 @@ from imagekit.models import ProcessedImageField
 
 
 class User(AbstractUser):
+    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     introduction = models.TextField(blank=True)
     profile_image = ProcessedImageField(
         blank=True,
