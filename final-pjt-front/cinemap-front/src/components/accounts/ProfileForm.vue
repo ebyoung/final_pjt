@@ -9,15 +9,21 @@
           <v-row>
             <v-col>
               <v-file-input
+                v-model="profileImage"
                 label="프로필 사진"
                 filled
                 prepend-icon="mdi-camera"
               ></v-file-input>
             </v-col>
             <v-col cols="12">
-              <v-text-field
-                label="자기 소개"
-              ></v-text-field>
+              <v-container fluid>
+                <v-textarea
+                  v-model="newIntroduction"
+                  clearable
+                  clear-icon="mdi-close-circle"
+                  label="Text"
+                ></v-textarea>
+              </v-container>
             </v-col>
           </v-row>
         </v-container>
@@ -34,7 +40,7 @@
         <v-btn
           color="blue darken-1"
           text
-          @click="closeDialog"
+          @click="onSubmit"
         >
           Save
         </v-btn>
@@ -44,11 +50,33 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'ProfileForm',
+  data() {
+    return {
+      profileImage: null,
+      newIntroduction: this.introduction,
+    }
+  },
+  props: {
+    username: String,
+    introduction: String,
+  },
   methods: {
+    ...mapActions(['updateProfile']),
     closeDialog() {
       this.$emit('close-dialog')
+    },
+    onSubmit() {
+      const profileData = {
+        username: this.username,
+        profileImage: this.profileImage,
+        introduction: this.newIntroduction,
+      }
+      this.updateProfile(profileData)
+      this.closeDialog()
     },
   }
 }

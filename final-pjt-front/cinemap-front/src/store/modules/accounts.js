@@ -186,5 +186,17 @@ export default {
           commit('SET_PROFILE', res.data)
         })
     },
+
+    updateProfile({ commit, getters }, profileData) {
+      axios({
+        url: drf.accounts.profile(profileData.username) + '/',
+        method: 'post',
+        data: profileData,
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('SET_PROFILE', res.data)
+        })
+    }
   },
 }
