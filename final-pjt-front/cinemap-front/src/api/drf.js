@@ -20,7 +20,7 @@ export default {
     reviews: () => HOST + REVIEWS,
     // /reviews/1/
     review: reviewPk => HOST + REVIEWS + `${reviewPk}/`,
-    likereview: reviewPk => HOST + REVIEWS + `${reviewPk}/` + 'like/',
+    likeReview: reviewPk => HOST + REVIEWS + `${reviewPk}/` + 'like/',
     comments: reviewPk => HOST + REVIEWS + `${reviewPk}/` + COMMENTS,
     comment: (reviewPk, commentPk) =>
       HOST + REVIEWS + `${reviewPk}/` + COMMENTS + `${commentPk}/`,
