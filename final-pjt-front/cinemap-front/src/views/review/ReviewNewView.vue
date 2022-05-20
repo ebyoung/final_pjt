@@ -16,8 +16,8 @@
           pk: null,
           // 영화 이름을 넣어 줄건지?
           movie_title: '',
-          movie_poster: '',
-          vote: '',
+          // movie_poster: '',
+          vote: 0,
           content: '',
         }
       }

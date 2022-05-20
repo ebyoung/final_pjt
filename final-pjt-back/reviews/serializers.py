@@ -24,7 +24,7 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('poster_image', 'user', 'watch_day', 'content')
+        fields = ('poster_image', 'user', 'vote', 'content',)
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -35,3 +35,4 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
+        read_only_fields = ('user', 'review_like_users',)

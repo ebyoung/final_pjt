@@ -7,8 +7,27 @@
     
     <div>
       <!-- movie_poster -->
+
     </div>
       <!-- vote(별점) -->
+      <v-rating
+        v-model="newReview.vote"
+        background-color="grey lighten-2"
+        color="orange"
+        hover
+        large
+      ></v-rating>
+      <!-- <v-rating
+        v-model="vote"
+        background-color="grey lighten-2"
+        color="warning"
+        empty-icon="$mdiStarOutline"
+        full-icon="$mdiStar"
+        half-icon="$mdiStarHalfFull"
+        hover
+        length="5"
+        size="30"
+      ></v-rating> -->
     <div>
       <label for="content">content: </label>
       <textarea v-model="newReview.content" type="text" id="content"></textarea>
@@ -31,8 +50,9 @@ import { mapActions } from 'vuex'
     data() {
       return {
         newReview: {
+          pk: this.review.pk,
           movie_title: this.review.movie_title,
-          movie_poster: this.review.movie_poster,
+          // movie_poster: this.review.movie_poster,
           vote: this.review.vote,
           content: this.review.content,
         }
@@ -56,4 +76,7 @@ import { mapActions } from 'vuex'
   }
 </script>
 
-<style></style>
+<style>
+
+
+</style>

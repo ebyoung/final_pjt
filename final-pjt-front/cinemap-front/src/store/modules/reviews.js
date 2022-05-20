@@ -64,6 +64,7 @@ export default {
       })
         .then(res => commit('SET_REVIEW', res.data))
         .catch(err => {
+          console.log('에러!!!!')
           console.error(err.response)
           if (err.response.status === 404) {
             router.push({ name: 'NotFound404' })
@@ -89,15 +90,23 @@ export default {
       })
         .then(res => {
           commit('SET_REVIEW', res.data)
+          console.log(getters.review)
           router.push({
             name: 'review',
-            params: { reviewPk: getters.review.pk }
+            params: { reviewPk: getters.review.id }
           })
         })
-        .catch(err => console.error(err.response))
+        .catch(err => 
+          console.error(err.response)
+        )
     },
 
-    updateReview({ commit, getters }, { reviewPk, movie_title, content, movie_poster, vote }) {
+
+
+    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote }) {
+
+      // movie_poster 위에 인자로 넘겨주고, 밑에 axios data에도 넣어주기!
+
       /* 게시글 수정
       PUT: review URL (게시글 입력정보, token)
         성공하면
@@ -109,7 +118,7 @@ export default {
       axios({
         url: drf.reviews.review(reviewPk),
         method: 'put',
-        data: { movie_title, content, movie_poster, vote },
+        data: { movie_title, content, vote },
         headers: getters.authHeader,
       })
         .then(res => {

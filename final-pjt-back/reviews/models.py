@@ -11,7 +11,8 @@ class Review(models.Model):
     vote = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    watch_day = models.DateField()
+    # watch_day 고민해보기
+    watch_day = models.DateField(auto_now_add=True)
     review_like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
     movie_poster = ProcessedImageField(
         blank=True,

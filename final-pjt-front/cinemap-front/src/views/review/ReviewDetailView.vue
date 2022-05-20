@@ -55,7 +55,7 @@
     },
     methods: {
       ...mapActions([
-        'fetchreview',
+        'fetchReview',
         'likeReview',
         'deleteReview',
       ])
