@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import store from './store'
-import vuetify from '@/plugins/vuetify' // path to vuetify export
+
+import vuetify from './plugins/vuetify'
 
 // // // Import Bootstrap and BootstrapVue CSS files (order is important)
 // import 'bootstrap/dist/css/bootstrap.css'
@@ -14,7 +16,7 @@ import vuetify from '@/plugins/vuetify' // path to vuetify export
 // // // Optionally install the BootstrapVue icon components plugin
 // Vue.use(IconsPlugin)
 
-// Vue.config.productionTip = false
+Vue.config.productionTip = false
 
 new Vue({
   router,
