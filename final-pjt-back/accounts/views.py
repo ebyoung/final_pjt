@@ -37,14 +37,11 @@ def profile(request, username):
 @api_view(['POST'])
 def follow(request, username):
     user = get_object_or_404(get_user_model(), username=username)
-    followed = False
     if request.user.is_authenticated:
         if user != request.user:
             if user.followers.filter(pk=request.user.pk).exists():
                 user.followers.remove(request.user)
             else:
                 user.followers.add(request.user)
-                followed = True
-        print(user.followers.all())
         serializer = ProfileSerializer(user)
         return Response(serializer.data)
