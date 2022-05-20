@@ -62,12 +62,12 @@ def review_detail_or_update_or_delete(request, review_pk):
 def like_review(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     user = request.user
-    if review.like_users.filter(pk=user.pk).exists():
-        review.like_users.remove(user)
+    if review.review_like_users.filter(pk=user.pk).exists():
+        review.review_like_users.remove(user)
         serializer = ReviewSerializer(review)
         return Response(serializer.data)
     else:
-        review.like_users.add(user)
+        review.review_like_users.add(user)
         serializer = ReviewSerializer(review)
         return Response(serializer.data)
 
@@ -83,8 +83,8 @@ def create_comment(request, review_pk):
 
         # 기존 serializer 가 return 되면, 단일 comment 만 응답으로 받게됨.
         # 사용자가 댓글을 입력하는 사이에 업데이트된 comment 확인 불가 => 업데이트된 전체 목록 return 
-        comments = review.comments.all()
-        serializer = CommentSerializer(comments, many=True)
+        comment_set = review.comment_set.all()
+        serializer = CommentSerializer(comment_set, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

@@ -11,11 +11,13 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
+    user = UserSerializer(read_only=True)
     comment_likes_count = serializers.IntegerField(source='comment_like_users.count', read_only=True)
 
     class Meta:
         model = Comment
         fields = '__all__'
+        read_only_fields = ('comment_like_users', 'review', 're_comment',)
 
 
 class ReviewListSerializer(serializers.ModelSerializer):
@@ -30,7 +32,7 @@ class ReviewListSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
 
     user = UserSerializer(read_only=True)
-    comments = CommentSerializer(many=True, read_only=True)
+    comment_set = CommentSerializer(many=True, read_only=True)
     review_likes_count = serializers.IntegerField(source='review_like_users.count', read_only=True)
     
     class Meta:
