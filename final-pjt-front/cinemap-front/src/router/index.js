@@ -2,10 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 
+import IntroView from '@/views/IntroView.vue'
+
 import ReviewListView from '@/views/review/ReviewListView.vue'
 import ReviewDetailView from '@/views/review/ReviewDetailView.vue'
 import ReviewNewView from '@/views/review/ReviewNewView'
 import ReviewEditView from '@/views/review/ReviewEditView'
+
+import ListView from '@/views/recommendations/ListView'
+import MapView from '@/views/recommendations/MapView'
+import RecomView from '@/views/recommendations/RecomView'
 
 import LoginView from '@/views/accounts/LoginView.vue'
 import LogoutView from '@/views/accounts/LogoutView.vue'
@@ -32,6 +38,11 @@ const routes = [
     * => /404
   */
   {
+    path: '/',  // Home
+    name: 'intro',
+    component: IntroView
+  },
+  {
     path: '/login',
     name: 'login',
     component: LoginView
@@ -52,7 +63,7 @@ const routes = [
     component: ProfileView,
   },
   {
-    path: '/',  // Home
+    path: '/reviews',
     name: 'reviews',
     component: ReviewListView
   },
@@ -70,6 +81,21 @@ const routes = [
     path: '/reviews/:reviewPk/edit',
     name: 'reviewEdit',
     component: ReviewEditView
+  },
+  {
+    path: '/ListView',
+    name: 'list',
+    component: ListView
+  },
+  {
+    path: '/map',
+    name: 'map',
+    component: MapView
+  },
+  {
+    path: '/recommendations/:moviePk',
+    name: 'recommendations',
+    component: RecomView
   },
   {
     path: '/404',
@@ -93,6 +119,11 @@ router.beforeEach((to, from, next) => {
   // 이전 페이지에서 발생한 에러메시지 삭제
   store.commit('SET_AUTH_ERROR', null)
 
+  if (to.name === 'intro') {
+    next()
+    return
+  }
+
   const { isLoggedIn } = store.getters
 
   const noAuthPages = ['login', 'signup']
@@ -107,7 +138,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (!isAuthRequired && isLoggedIn) {
-    next({ name: 'articles' })
+    next({ name: 'map' })
   }
 })
 

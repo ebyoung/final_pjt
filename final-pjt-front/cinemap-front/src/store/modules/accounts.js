@@ -18,6 +18,7 @@ export default {
     isLoggedIn: state => !!state.token,
     currentUser: state => state.currentUser,
     profile: state => state.profile,
+    isFollow: state => state.profile.followers?.some((user) => user.username === state.currentUser.username),
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `Token ${state.token}`})
   },
@@ -26,7 +27,12 @@ export default {
     SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
-    SET_AUTH_ERROR: (state, error) => state.authError = error
+    SET_AUTH_ERROR: (state, error) => state.authError = error,
+    SET_FOLLOW: (state, data) => {
+      state.profile.followers = data.followers
+      state.profile.follower_count = data.follower_count
+      state.profile.following_count = data.following_count
+    },
   },
 
   actions: {
@@ -67,7 +73,7 @@ export default {
           const token = res.data.key
           dispatch('saveToken', token)
           dispatch('fetchCurrentUser')
-          router.push({ name: 'articles' })
+          router.push({ name: 'map' })
         })
         .catch(err => {
           console.error(err.response.data)
@@ -94,10 +100,10 @@ export default {
           const token = res.data.key
           dispatch('saveToken', token)
           dispatch('fetchCurrentUser')
-          router.push({ name: 'articles' })
+          router.push({ name: 'map' })
         })
         .catch(err => {
-          console.error(err.response.data)
+          // console.error(err.response.data)
           commit('SET_AUTH_ERROR', err.response.data)
         })
     },
@@ -120,12 +126,23 @@ export default {
       })
         .then(() => {
           dispatch('removeToken')
-          alert('성공적으로 logout!')
+          alert('성공적으로 로그아웃 되었습니다!')
           router.push({ name: 'login' })
         })
         .error(err => {
           console.error(err.response)
         })
+    },
+
+    follow({ commit, getters }, username) {
+      axios({
+        url: drf.accounts.follow(username),
+        method: 'POST',
+        headers: getters.authHeader,
+      })
+      .then((response) => {
+        commit('SET_FOLLOW', response.data)
+      })
     },
 
     fetchCurrentUser({ commit, getters, dispatch }) {
