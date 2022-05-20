@@ -98,15 +98,15 @@ def comment_update_or_delete(request, review_pk, comment_pk):
             serializer = CommentSerializer(instance=comment, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
-                comments = review.comments.all()
-                serializer = CommentSerializer(comments, many=True)
+                comment_set = review.comment_set.all()
+                serializer = CommentSerializer(comment_set, many=True)
                 return Response(serializer.data)
 
     def delete_comment():
         if request.user == comment.user:
             comment.delete()
-            comments = review.comments.all()
-            serializer = CommentSerializer(comments, many=True)
+            comment_set = review.comment_set.all()
+            serializer = CommentSerializer(comment_set, many=True)
             return Response(serializer.data)
     
     if request.method == 'PUT':
