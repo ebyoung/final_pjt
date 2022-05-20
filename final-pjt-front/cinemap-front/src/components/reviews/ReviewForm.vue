@@ -50,7 +50,6 @@ import { mapActions } from 'vuex'
     data() {
       return {
         newReview: {
-          pk: this.review.pk,
           movie_title: this.review.movie_title,
           // movie_poster: this.review.movie_poster,
           vote: this.review.vote,
@@ -66,7 +65,7 @@ import { mapActions } from 'vuex'
           this.createReview(this.newReview)
         } else if (this.action === 'update') {
           const payload = {
-            reviewPk: this.review.pk,
+            reviewPk: this.review.id,
             ...this.newReview,
           }
           this.updateReview(payload)

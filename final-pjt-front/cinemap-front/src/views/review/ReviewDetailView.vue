@@ -3,6 +3,15 @@
     <!-- user profile_image, username -->
     <!-- {{ review.movie_poster }} -->
     <h1>{{ review.movie_title }}</h1>
+    <span>
+      <v-rating
+        :value="getVote"
+        background-color="grey lighten-2"
+        color="orange"
+        readonly
+        large
+      ></v-rating>
+    </span>
 
     <!-- 평점(vote) -> {{ review.vote }} -->
     <p>
@@ -10,10 +19,14 @@
     </p>
     <!-- review 좋아요 UI -->
     <div>
-      좋아요
-      <button
+      <v-btn
         @click="likeReview(reviewPk)"
-      >{{ likeCount }}</button>
+        class="mx-2" fab dark small color="pink">
+        <v-icon dark>
+          mdi-heart
+        </v-icon>
+      </v-btn>
+      {{ review.review_likes_count }}
     </div>
     
     <!-- review Edit/Delete UI -->
@@ -28,7 +41,7 @@
     <!-- <hr> -->
     <hr />
     <!-- Comment UI -->
-    <comment-list :comments="review.comments"></comment-list>
+    <comment-list :comments="review.comment_set"></comment-list>
 
   </div>
 </template>
@@ -49,10 +62,11 @@
     },
     computed: {
       ...mapGetters(['isAuthor', 'review']),
-      likeCount() {
-        return this.review.like_users?.length
-      }
+      getVote() {
+      return this.review.vote
+      },
     },
+
     methods: {
       ...mapActions([
         'fetchReview',

@@ -22,7 +22,7 @@ export default {
   methods: {
     ...mapActions(['createComment']),
     onSubmit() {
-      this.createComment({ reviewPk: this.review.pk, content: this.content, })
+      this.createComment({ reviewPk: this.review.id, content: this.content, })
       this.content = ''
     }
   }

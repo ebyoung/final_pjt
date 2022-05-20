@@ -25,7 +25,7 @@ export default {
   mutations: {
     SET_REVIEWS: (state, reviews) => state.reviews = reviews,
     SET_REVIEW: (state, review) => state.review = review,
-    SET_REVIEW_COMMENTS: (state, comments) => (state.review.comments = comments),
+    SET_REVIEW_COMMENTS: (state, comments) => (state.review.comment_set = comments),
   },
 
   actions: {
@@ -64,7 +64,6 @@ export default {
       })
         .then(res => commit('SET_REVIEW', res.data))
         .catch(err => {
-          console.log('에러!!!!')
           console.error(err.response)
           if (err.response.status === 404) {
             router.push({ name: 'NotFound404' })
@@ -125,22 +124,13 @@ export default {
           commit('SET_REVIEW', res.data)
           router.push({
             name: 'review',
-            params: { reviewPk: getters.review.pk }
+            params: { reviewPk: getters.review.id }
           })
         })
         .catch(err => console.error(err.response))
     },
 
     deleteReview({ commit, getters }, reviewPk) {
-      /* 게시글 삭제
-      사용자가 확인을 받고
-        DELETE: review URL (token)
-          성공하면
-            state.review 비우기
-            AritcleListView로 이동
-          실패하면
-            에러 메시지 표시
-      */
       
       if (confirm('정말 삭제하시겠습니까?')) {
         axios({
@@ -150,7 +140,10 @@ export default {
         })
           .then(() => {
             commit('SET_REVIEW', {})
-            router.push({ name: 'reviews' })
+            router.push({ 
+              name: 'profile', 
+              params: { username: getters.currentUser.username } 
+            })
           })
           .catch(err => console.error(err.response))
       }
@@ -195,6 +188,7 @@ export default {
         .catch(err => console.error(err.response))
     },
 
+    
     // updateComment({ commit, getters }, { reviewPk, commentPk, content }) {
     //   /* 댓글 수정
     //   PUT: comment URL(댓글 입력 정보, token)

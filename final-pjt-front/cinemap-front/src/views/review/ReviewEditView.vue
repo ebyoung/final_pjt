@@ -14,7 +14,7 @@ import { mapGetters, mapActions } from 'vuex'
     name: 'ReviewEditView',
     components: { ReviewForm },
     computed: {
-      ...mapGetters(['Review', 'isReview',])
+      ...mapGetters(['review', 'isReview',])
     },
     methods: {
       ...mapActions(['fetchReview'])
