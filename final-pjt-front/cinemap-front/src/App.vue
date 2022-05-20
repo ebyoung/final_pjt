@@ -1,4 +1,5 @@
 <template>
+  
   <!-- <div id="app">
     <nav>
       <router-link to="/">Home</router-link> |
@@ -8,11 +9,11 @@
   </div> -->
 
   
-  <div id="app">
+  <v-app id="app">
     <nav-bar></nav-bar>
     <hr />
     <router-view></router-view>
-  </div>
+  </v-app>
 
 </template>
 
