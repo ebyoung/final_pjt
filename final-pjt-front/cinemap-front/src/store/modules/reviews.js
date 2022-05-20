@@ -189,49 +189,21 @@ export default {
     },
 
     
-    // updateComment({ commit, getters }, { reviewPk, commentPk, content }) {
-    //   /* 댓글 수정
-    //   PUT: comment URL(댓글 입력 정보, token)
-    //     성공하면
-    //       응답으로 state.review의 comments 갱신
-    //     실패하면
-    //       에러 메시지 표시
-    //   */
-    //   const comment = { content }
 
-    //   axios({
-    //     url: drf.reviews.comment(reviewPk, commentPk),
-    //     method: 'put',
-    //     data: comment,
-    //     headers: getters.authHeader,
-    //   })
-    //     .then(res => {
-    //       commit('SET_review_COMMENTS', res.data)
-    //     })
-    //     .catch(err => console.error(err.response))
-    // },
-
-    // deleteComment({ commit, getters }, { reviewPk, commentPk }) {
-    //   /* 댓글 삭제
-    //   사용자가 확인을 받고
-    //     DELETE: comment URL (token)
-    //       성공하면
-    //         응답으로 state.review의 comments 갱신
-    //       실패하면
-    //         에러 메시지 표시
-    //   */
-    //     if (confirm('정말 삭제하시겠습니까?')) {
-    //       axios({
-    //         url: drf.reviews.comment(reviewPk, commentPk),
-    //         method: 'delete',
-    //         data: {},
-    //         headers: getters.authHeader,
-    //       })
-    //         .then(res => {
-    //           commit('SET_review_COMMENTS', res.data)
-    //         })
-    //         .catch(err => console.error(err.response))
-    //     }
-    //   },
+    deleteComment({ commit, getters }, { reviewPk, commentPk }) {
+    
+        if (confirm('정말 삭제하시겠습니까?')) {
+          axios({
+            url: drf.reviews.comment(reviewPk, commentPk),
+            method: 'delete',
+            // data: {},
+            headers: getters.authHeader,
+          })
+            .then(res => {
+              commit('SET_REVIEW_COMMENTS', res.data)
+            })
+            .catch(err => console.error(err.response))
+        }
+      },
   },
 }
