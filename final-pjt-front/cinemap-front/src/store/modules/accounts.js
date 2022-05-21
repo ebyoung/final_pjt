@@ -192,11 +192,14 @@ export default {
         url: drf.accounts.profile(profileData.username) + '/',
         method: 'post',
         data: profileData,
-        headers: getters.authHeader,
+        headers: {
+          ...getters.authHeader,
+          'Content-Type': 'multipart/form-data',
+        }
       })
         .then(res => {
           commit('SET_PROFILE', res.data)
         })
-    }
+    },
   },
 }

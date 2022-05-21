@@ -119,7 +119,7 @@
             @close-dialog="dialog=false"/>
         </v-dialog>
       </v-card>
-      <MovieCalendar width="100%"/>
+      <MovieCalendar/>
     </v-row>
   </div>
 </template>
