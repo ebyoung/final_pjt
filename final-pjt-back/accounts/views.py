@@ -18,6 +18,7 @@ def profile(request, username):
     
     def update_profile():
         if request.user == user:
+            image = request.FILES.get('profileImage')
             serializer = ProfileSerializer(user, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts',
     'reviews',
+    'movies',
     # 3rd party apps
     'django_extensions',
     'imagekit',
