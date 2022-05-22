@@ -1,26 +1,33 @@
 <template>
-  <figure @click="getReview(date)" class="snip1200">
-    <img src="https://image.tmdb.org/t/p/w500//8dzKn3RtPWUJRG9ymSpi423eMNV.jpg" alt="sq-sample27" />
-    <figcaption>
-      <p>리뷰 내용 아이고오 정말로 재미가있다 아하하 하하 아이고오 정말로 재미가있다 아하하 하하 아이고오 정말로 재미가있다 아하하 하하</p>
-      <div class="heading">
-        <h2>영화 제목</h2>
-      </div>
-    </figcaption>
-  </figure>
+  <div>
+    <figure v-if="isReview" @click="getReview(date)" class="snip1200">
+      <img src="https://image.tmdb.org/t/p/w500//8dzKn3RtPWUJRG9ymSpi423eMNV.jpg" alt="sq-sample27" />
+      <figcaption>
+        <p>내용</p>
+        <div class="heading">
+          <h2>영화 제목</h2>
+        </div>
+      </figcaption>
+    </figure>
+    <div v-else>
+      <router-link :to="{ name: 'reviewNew' }">리뷰 작성하기</router-link>
+      <h1>{{ date }}</h1>
+    </div>
+  </div>
 </template>
 
 <script>
-import mapActions from 'vuex'
+// import mapActions from 'vuex'
 
 export default {
   name: 'DayReview',
   props: {
-    date: Number,
+    date: String,
     idx: Number,
+    isReview: Boolean,
   },
   methods: {
-    ...mapActions['getReview'],
+    // ...mapActions[''],
   }
 }
 </script>

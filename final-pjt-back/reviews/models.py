@@ -14,15 +14,7 @@ class Review(models.Model):
     # watch_day 고민해보기
     watch_day = models.DateField(auto_now_add=True)
     review_like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_reviews')
-    movie_poster = ProcessedImageField(
-        blank=True,
-        upload_to='poster_images/',
-        format='JPEG',
-        # processors=[Crop(1080, 1920)], # 포스터 사이즈 맞춰서
-        # options={
-        #     'quality': 90,
-        # }
-    )
+    movie_poster = models.TextField()
 
 
 class Comment(models.Model):

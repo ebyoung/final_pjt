@@ -19,6 +19,7 @@
           // movie_poster: '',
           vote: 0,
           content: '',
+          // watchDay: this.$route.params,
         }
       }
     },

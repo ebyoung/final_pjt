@@ -28,7 +28,7 @@
               v-for="(date, idx) in viewDates" :key="idx"
             >
               <p>{{ date }}</p>
-              <DayReview :date="date" :idx="idx" class="m-5"/>
+              <DayReview :isReview="false" :date="`${viewYear}-${viewMonth+1}-${date}`" :idx="idx" class="m-5"/>
             </v-card>
           </div>
       </div>

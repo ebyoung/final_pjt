@@ -183,6 +183,7 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
+          res.data.profile_image = drf.accounts.Image(res.data.profile_image)
           commit('SET_PROFILE', res.data)
         })
     },
@@ -200,6 +201,10 @@ export default {
         .then(res => {
           commit('SET_PROFILE', res.data)
         })
+    },
+
+    getReview({ commit, getters }, watchDay) {
+      console.log(commit, getters, watchDay)
     },
   },
 }

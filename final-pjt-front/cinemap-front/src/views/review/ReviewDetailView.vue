@@ -6,7 +6,7 @@
       <v-col>
         <v-img
           height="800" width="400"
-          src=""
+          :src="review.movie_poster"
         ></v-img>
       </v-col>
 

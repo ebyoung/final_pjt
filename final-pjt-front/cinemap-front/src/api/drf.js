@@ -3,6 +3,7 @@ const HOST = 'http://localhost:8000/'
 const ACCOUNTS = 'accounts/'
 const REVIEWS = 'reviews/'
 const COMMENTS = 'comments/'
+const MOVIES = 'movies/'
 
 export default {
   accounts: {
@@ -14,6 +15,7 @@ export default {
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     // username으로 프로필 제공
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
+    Image: (ImageUrl) => HOST + ImageUrl.substr(1),
   },
   
   reviews: {
@@ -24,6 +26,10 @@ export default {
     likeReview: reviewPk => HOST + REVIEWS + `${reviewPk}/` + 'like/',
     comments: reviewPk => HOST + REVIEWS + `${reviewPk}/` + COMMENTS,
     comment: (reviewPk, commentPk) =>
-      HOST + REVIEWS + `${reviewPk}/` + COMMENTS + `${commentPk}/`,
+    HOST + REVIEWS + `${reviewPk}/` + COMMENTS + `${commentPk}/`,
+  },
+  movies: {
+    movies: () => HOST + MOVIES,
+    // poster: (ImageUrl) => HOST + ImageUrl,
   },
 }

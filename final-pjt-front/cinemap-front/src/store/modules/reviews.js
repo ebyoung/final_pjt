@@ -10,6 +10,7 @@ export default {
   state: {
     reviews: [],
     review: {},
+    movies: [],
   },
 
   getters: {
@@ -20,12 +21,14 @@ export default {
       return state.review.user?.username === getters.currentUser.username
     },
     isReview: state => !_.isEmpty(state.review),
+    movies: state => state.movies,
   },
 
   mutations: {
     SET_REVIEWS: (state, reviews) => state.reviews = reviews,
     SET_REVIEW: (state, review) => state.review = review,
     SET_REVIEW_COMMENTS: (state, comments) => (state.review.comment_set = comments),
+    SET_MOVIES: (state, movies) => state.movies = movies,
   },
 
   actions: {
@@ -102,7 +105,7 @@ export default {
 
 
 
-    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote }) {
+    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote, poster_path }) {
 
       // movie_poster 위에 인자로 넘겨주고, 밑에 axios data에도 넣어주기!
 
@@ -117,7 +120,7 @@ export default {
       axios({
         url: drf.reviews.review(reviewPk),
         method: 'put',
-        data: { movie_title, content, vote },
+        data: { movie_title, content, vote, poster_path },
         headers: getters.authHeader,
       })
         .then(res => {
@@ -205,5 +208,16 @@ export default {
             .catch(err => console.error(err.response))
         }
       },
+    
+    fetchMovies({ commit, getters }) {
+      axios({
+        url: drf.movies.movies(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        commit('SET_MOVIES', res.data)
+      })
+    }
   },
 }

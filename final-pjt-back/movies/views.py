@@ -1,7 +1,17 @@
 from django.shortcuts import render
 from .models import Movie
+from .serializers import MovieTitleListSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
+@api_view(['GET'])
+def movies(request):
+    movies = Movie.objects.order_by('title')
+    serializer = MovieTitleListSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
 def get_data(request):
     import csv
     f = open('movie_data.csv', 'r', encoding='euc-kr')
