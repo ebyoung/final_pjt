@@ -5,10 +5,11 @@
       {{ comment.user.username }}
     </router-link>: 
     <span>{{ comment.content }}</span>
-    <span v-if="currentUser.username === comment.user.username">
-      <button @click="deleteComment(payload)">Delete</button>
+    <span v-if="currentUser.username === comment.user.username" class="ms-3">
+      <v-btn @click="deleteComment(payload)" elevation="2">Delete</v-btn>
+      <!-- <button @click="deleteComment(payload)">Delete</button> -->
     </span>
-
+    <br>
   </li>
 </template>
 
@@ -36,8 +37,8 @@ export default {
 </script>
 
 <style>
-.comment-list-item {
+/* .comment-list-item {
   border: 1px solid green;
 
-}
+} */
 </style>

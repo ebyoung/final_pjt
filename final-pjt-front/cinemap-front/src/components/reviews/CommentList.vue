@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style>
-.comment-list {
+/* .comment-list {
   border: 1px solid blue;
-}
+} */
 </style>

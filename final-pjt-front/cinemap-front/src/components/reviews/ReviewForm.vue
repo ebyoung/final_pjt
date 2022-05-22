@@ -13,7 +13,7 @@
       <v-rating
         v-model="newReview.vote"
         background-color="grey lighten-2"
-        color="orange"
+        color="amber"
         hover
         large
       ></v-rating>
