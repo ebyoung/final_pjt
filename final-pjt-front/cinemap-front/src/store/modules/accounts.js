@@ -12,7 +12,7 @@ export default {
     currentUser: {},
     profile: {},
     authError: null,
-    watchDay: '',
+    
   },
   // 모든 state는 getters 를 통해서 접근하겠다.
   getters: {
@@ -22,7 +22,7 @@ export default {
     isFollow: state => state.profile.followers?.some((user) => user.username === state.currentUser.username),
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
-    watchDay: state => state.watchDay,
+    
   },
 
   mutations: {
@@ -35,7 +35,7 @@ export default {
       state.profile.follower_count = data.follower_count
       state.profile.following_count = data.following_count
     },
-    SET_WATCH_DAY: (state, watchDay) => state.watchDay = watchDay
+    
   },
 
   actions: {
@@ -210,10 +210,6 @@ export default {
       console.log(commit, getters, watchDay)
     },
 
-    setWatchDay({ commit }, watchDay) {
-      commit('SET_WATCH_DAY', watchDay)
-
-      router.push({ name: 'reviewNew' })
-    },
+    
   },
 }

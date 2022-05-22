@@ -11,6 +11,7 @@ export default {
     reviews: [],
     review: {},
     movies: [],
+    watchDay: '',
   },
 
   getters: {
@@ -22,6 +23,7 @@ export default {
     },
     isReview: state => !_.isEmpty(state.review),
     movies: state => state.movies,
+    watchDay: state => state.watchDay,
   },
 
   mutations: {
@@ -29,6 +31,7 @@ export default {
     SET_REVIEW: (state, review) => state.review = review,
     SET_REVIEW_COMMENTS: (state, comments) => (state.review.comment_set = comments),
     SET_MOVIES: (state, movies) => state.movies = movies,
+    SET_WATCH_DAY: (state, watchDay) => state.watchDay = watchDay
   },
 
   actions: {
@@ -103,9 +106,15 @@ export default {
         )
     },
 
+    setWatchDay({ commit }, watchDay) {
+      commit('SET_WATCH_DAY', watchDay)
+
+      router.push({ name: 'reviewNew' })
+    },
 
 
-    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote, movie_poster, watchDay }) {
+
+    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote, movie_poster, watch_day }) {
 
       // movie_poster 위에 인자로 넘겨주고, 밑에 axios data에도 넣어주기!
 
@@ -120,7 +129,7 @@ export default {
       axios({
         url: drf.reviews.review(reviewPk),
         method: 'put',
-        data: { movie_title, content, vote, movie_poster, watchDay },
+        data: { movie_title, content, vote, movie_poster, watch_day },
         headers: getters.authHeader,
       })
         .then(res => {

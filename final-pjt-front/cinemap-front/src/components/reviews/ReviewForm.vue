@@ -26,17 +26,6 @@
         hover
         large
       ></v-rating>
-      <!-- <v-rating
-        v-model="vote"
-        background-color="grey lighten-2"
-        color="warning"
-        empty-icon="$mdiStarOutline"
-        full-icon="$mdiStar"
-        half-icon="$mdiStarHalfFull"
-        hover
-        length="5"
-        size="30"
-      ></v-rating> -->
     <div>
       <label for="content">content: </label>
       <textarea v-model="newReview.content" type="text" id="content"></textarea>
@@ -92,7 +81,7 @@ import { mapActions, mapGetters } from 'vuex'
             reviewPk: this.review.id,
             ...this.newReview,
             movie_poster: this.moviePoster,
-            watchDay: this.review.watchDay,
+            watch_day: this.review.watch_day,
           }
           this.updateReview(payload)
         }
