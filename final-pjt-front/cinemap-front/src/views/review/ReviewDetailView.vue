@@ -63,7 +63,7 @@
           <br>
           <!-- review Edit/Delete UI -->
           <div v-if="isAuthor" class="d-flex justify-end my-2" >
-            <font-awesome-icon icon="fa-thin fa-abacus" />
+            <v-icon left color="blue" size="50">fa-twitter</v-icon>
             <v-btn @click="deleteReview(reviewPk)" x-small>Delete</v-btn>
           </div>
         </v-card-text>
