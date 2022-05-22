@@ -10,24 +10,22 @@
       </figcaption>
     </figure>
     <div v-else>
-      <router-link :to="{ name: 'reviewNew' }">리뷰 작성하기</router-link>
-      <h1>{{ date }}</h1>
+      <v-btn @click="setWatchDay(date)">리뷰 작성하기</v-btn>
     </div>
   </div>
 </template>
 
 <script>
-// import mapActions from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DayReview',
   props: {
     date: String,
     idx: Number,
-    isReview: Boolean,
   },
   methods: {
-    // ...mapActions[''],
+    ...mapActions(['setWatchDay', ]),
   }
 }
 </script>

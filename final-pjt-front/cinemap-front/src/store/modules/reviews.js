@@ -83,7 +83,7 @@ export default {
         실패하면
           에러 메시지 표시
       */
-      
+      console.log(review)
       axios({
         url: drf.reviews.reviews(),
         method: 'post',
@@ -105,7 +105,7 @@ export default {
 
 
 
-    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote, movie_poster }) {
+    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote, movie_poster, watchDay }) {
 
       // movie_poster 위에 인자로 넘겨주고, 밑에 axios data에도 넣어주기!
 
@@ -120,7 +120,7 @@ export default {
       axios({
         url: drf.reviews.review(reviewPk),
         method: 'put',
-        data: { movie_title, content, vote, movie_poster },
+        data: { movie_title, content, vote, movie_poster, watchDay },
         headers: getters.authHeader,
       })
         .then(res => {

@@ -28,7 +28,7 @@
               v-for="(date, idx) in viewDates" :key="idx"
             >
               <p>{{ date }}</p>
-              <DayReview :isReview="false" :date="`${viewYear}-${viewMonth+1}-${date}`" :idx="idx" class="m-5"/>
+              <DayReview :date="`${viewYear}-${viewMonth+1}-${date}`" :idx="idx" class="m-5"/>
             </v-card>
           </div>
       </div>
@@ -87,37 +87,6 @@ export default {
       // // 이번 달의 구간 확인
       // const firstDateIndex = dates.indexOf(1)
       // const lastDateIndex = dates.lastIndexOf(TLDate)
-
-      // // 날짜가 표시될 공간을 가져와 이미 날짜가 적혀있다면 삭제
-      // const datesElement = document.querySelector('.dates')
-      // Array.from(datesElement.childNodes).map(div => {
-      //   div.remove()
-      // })
-      // // Dates 정리
-      // dates.forEach((date, i) => {
-      //   const dateElement = document.createElement('div')
-      //   dateElement.innerText = date
-      //   dateElement.value = date
-      //   dateElement.style.width = 'calc(100% / 7)'
-      //   dateElement.style.aspectRatio = '500/741'
-      //   dateElement.style.border = '1px solid black'
-      //   dateElement.style.textAlign = 'left'
-
-      //   dateElement.addEventListener('click', (event) => console.log(event.target.value))
-
-      //   if (i % 7 === 0) {
-      //     dateElement.style.color = 'red'
-      //   } else if (i % 7 === 6) {
-      //     dateElement.style.color = 'blue'
-      //   }
-
-      //   if (i >= firstDateIndex && i <= lastDateIndex) {
-      //     dateElement.style.fontWeight = 'bold'
-      //     dateElement.style.fontSize = '20px'
-      //   }
-
-      //   datesElement.append(dateElement)
-      // })
 
     },
     prevMonth() {

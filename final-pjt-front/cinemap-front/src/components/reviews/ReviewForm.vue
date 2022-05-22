@@ -68,7 +68,7 @@ import { mapActions, mapGetters } from 'vuex'
     },
 
     computed: {
-      ...mapGetters(['movies']),
+      ...mapGetters(['movies', 'watchDay']),
       moviesTitle() {
         return this.movies.map(movie => movie.title)
       },
@@ -85,12 +85,14 @@ import { mapActions, mapGetters } from 'vuex'
           this.createReview({
             ...this.newReview,
             movie_poster: this.moviePoster,
+            watch_day: this.watchDay
             })
         } else if (this.action === 'update') {
           const payload = {
             reviewPk: this.review.id,
             ...this.newReview,
             movie_poster: this.moviePoster,
+            watchDay: this.review.watchDay,
           }
           this.updateReview(payload)
         }
