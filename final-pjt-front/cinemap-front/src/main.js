@@ -16,6 +16,8 @@ import vuetify from './plugins/vuetify'
 // // // Optionally install the BootstrapVue icon components plugin
 // Vue.use(IconsPlugin)
 
+
+
 Vue.config.productionTip = false
 
 new Vue({

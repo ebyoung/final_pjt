@@ -5,23 +5,37 @@
       <!-- {{ review.movie_poster }} -->
       <v-col>
         <v-img
-          height="800" width="400"
+          height="741" width="500"
           :src="review.movie_poster"
         ></v-img>
       </v-col>
 
-      <v-col class="my-auto">
-        <v-card-title>
-          <span>{{ review.movie_title }}</span>
+      <v-col class="my-auto mx-2">
+        <v-card-title class="d-flex justify-space-between">
           <span>
-            <v-btn
-              @click="likeReview(reviewPk)"
-              class="mx-2" fab dark small color="pink">
-              <v-icon dark>
-                mdi-heart
-              </v-icon>
+            <span>{{ review.movie_title }}</span>
+            <span>
+              <v-btn
+                @click="likeReview(reviewPk)"
+                class="mx-2" fab dark x-small color="pink">
+                <v-icon dark>
+                  mdi-heart
+                </v-icon>
+              </v-btn>
+              <span>{{ review.review_likes_count }}</span>
+            </span>
+          </span>
+          <span v-if="isAuthor">
+            <router-link :to="{ name: 'reviewEdit', params: { reviewPk } }">
+              <v-btn
+                color="primary"
+                fab
+                x-small
+                dark
+              >
+                <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            <span>{{ review.review_likes_count }}</span>
+            </router-link>
           </span>
         </v-card-title>
 
@@ -48,12 +62,9 @@
           </div>
           <br>
           <!-- review Edit/Delete UI -->
-          <div v-if="isAuthor">
-            <router-link :to="{ name: 'reviewEdit', params: { reviewPk } }">
-              <button>Edit</button>
-            </router-link>
-            |
-            <button @click="deleteReview(reviewPk)">Delete</button>
+          <div v-if="isAuthor" class="d-flex justify-end my-2" >
+            <font-awesome-icon icon="fa-thin fa-abacus" />
+            <v-btn @click="deleteReview(reviewPk)" x-small>Delete</v-btn>
           </div>
         </v-card-text>
 
@@ -69,44 +80,6 @@
 
     </v-row>
     
-
-    
-
-
-    <!-- <h1>{{ review.movie_title }}</h1>
-    <span>
-      <v-rating
-        :value="getVote"
-        background-color="grey lighten-2"
-        color="orange"
-        readonly
-        size="30"
-      ></v-rating>
-    </span> -->
-
-    <!-- <p>
-      {{ review.content }}
-    </p> -->
-
-    <!-- <div>
-      <v-btn
-        @click="likeReview(reviewPk)"
-        class="mx-2" fab dark small color="pink">
-        <v-icon dark>
-          mdi-heart
-        </v-icon>
-      </v-btn>
-      {{ review.review_likes_count }}
-    </div> -->
-    
-    
-    <!-- <div v-if="isAuthor">
-      <router-link :to="{ name: 'reviewEdit', params: { reviewPk } }">
-        <button>Edit</button>
-      </router-link>
-      |
-      <button @click="deleteReview(reviewPk)">Delete</button>
-    </div> -->
 
 
   </v-card>

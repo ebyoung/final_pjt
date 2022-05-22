@@ -105,7 +105,7 @@ export default {
 
 
 
-    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote, poster_path }) {
+    updateReview({ commit, getters }, { reviewPk, movie_title, content, vote, movie_poster }) {
 
       // movie_poster 위에 인자로 넘겨주고, 밑에 axios data에도 넣어주기!
 
@@ -120,7 +120,7 @@ export default {
       axios({
         url: drf.reviews.review(reviewPk),
         method: 'put',
-        data: { movie_title, content, vote, poster_path },
+        data: { movie_title, content, vote, movie_poster },
         headers: getters.authHeader,
       })
         .then(res => {

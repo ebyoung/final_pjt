@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit" class="comment-form">
     <label for="comment">comment: </label>
     <input type="text" id="comment" v-model="content" required>
-    <v-btn
+    <v-btn @click="onSubmit"
       elevation="2"
     >게시</v-btn>
     <!-- <button>게시</button> -->
