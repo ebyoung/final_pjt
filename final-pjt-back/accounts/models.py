@@ -8,8 +8,8 @@ class User(AbstractUser):
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     introduction = models.TextField(blank=True)
     profile_image = ProcessedImageField(
-        blank=True,
         upload_to='profile_images/',
+        default='profile_images/17ccba6c1b84f8bd6.jpeg',
         # format='JPEG',
         # processors=[Resize(1080, 1920)],
         # options={
