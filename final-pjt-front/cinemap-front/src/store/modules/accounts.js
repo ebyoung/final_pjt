@@ -124,20 +124,21 @@ export default {
         실패하면
           에러 메시지 표시
       */
-      axios({
-        url: drf.accounts.logout(),
-        method: 'post',
-        // data: {},
-        headers: getters.authHeader,
-      })
-        .then(() => {
-          dispatch('removeToken')
-          alert('성공적으로 로그아웃 되었습니다!')
-          router.push({ name: 'login' })
+      if (confirm('정말로 로그아웃 하시겠습니까?')) {
+        axios({
+          url: drf.accounts.logout(),
+          method: 'post',
+          headers: getters.authHeader,
         })
-        .error(err => {
-          console.error(err.response)
-        })
+          .then(() => {
+            dispatch('removeToken')
+            alert('성공적으로 로그아웃 되었습니다!')
+            router.push({ name: 'login' })
+          })
+          .error(err => {
+            console.error(err.response)
+          })
+      }
     },
 
     follow({ commit, getters }, username) {

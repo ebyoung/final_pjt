@@ -93,8 +93,8 @@ const routes = [
     component: MapView
   },
   {
-    path: '/recommendations/:moviePk',
-    name: 'recommendations',
+    path: '/recommendations/:movieId',
+    name: 'recomView',
     component: RecomView
   },
   {

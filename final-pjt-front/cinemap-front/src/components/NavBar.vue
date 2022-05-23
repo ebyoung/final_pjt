@@ -47,7 +47,7 @@
                     <v-btn icon @click="moveProfile(username)">profile</v-btn>
                   </v-list-item-title>
                   <v-list-item-title v-else-if="i === 1">
-                    <v-btn icon @click="moveLogout">Logout</v-btn>
+                    <v-btn icon @click="logout">Logout</v-btn>
                     <!-- <v-btn>
                       <router-link class="text-decoration-none" :to="{ name: 'logout' }">Logout</router-link>
                     </v-btn> -->
@@ -122,14 +122,11 @@
       // }
     },
     methods: {
-    ...mapActions(['fetchProfile', 'setProfileImagePath',]),
+    ...mapActions(['logout', 'fetchProfile', 'setProfileImagePath',]),
     
     moveProfile(username) {
       this.fetchProfile({ username })
       router.push({ name:'profile', params: { username } })
-    },
-    moveLogout() {
-      router.push({ name:'logout' })
     },
   },
   }

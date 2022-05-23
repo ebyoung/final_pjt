@@ -23,10 +23,12 @@ class CommentSerializer(serializers.ModelSerializer):
 class ReviewListSerializer(serializers.ModelSerializer):
 
     user = UserSerializer(read_only=True)
+    review_likes_count = serializers.IntegerField(source='review_like_users.count', read_only=True)
+    review_comments_count = serializers.IntegerField(source='comment_set.count', read_only=True)
 
     class Meta:
         model = Review
-        fields = ('poster_image', 'user', 'vote', 'content',)
+        fields = ('pk', 'movie_title', 'user', 'vote', 'content', 'review_likes_count', 'review_comments_count', 'watch_day', 'movie_poster', )
 
 
 class ReviewSerializer(serializers.ModelSerializer):

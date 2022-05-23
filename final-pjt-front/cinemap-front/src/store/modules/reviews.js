@@ -9,14 +9,15 @@ export default {
   // namespaced: true,
   state: {
     reviews: [],
+    sortedReviews: [],
     review: {},
-    movies: [],
     watchDay: '',
   },
 
   getters: {
     // reviews를 인기(좋아요 or 댓글 수) 순대로 정렬해서 저장해야함. 
     reviews: state => state.reviews,
+    sortedReviews: state => state.sortedReviews,
     review: state => state.review,
     isAuthor: (state, getters) => {
       return state.review.user?.username === getters.currentUser.username
@@ -25,16 +26,18 @@ export default {
     isLike: (state, getters) => {
       return state.review.review_like_users?.includes(getters.currentUser.pk)
     },
-    movies: state => state.movies,
+
     watchDay: state => state.watchDay,
   },
 
   mutations: {
-    SET_REVIEWS: (state, reviews) => state.reviews = reviews,
+    SET_REVIEWS: (state, reviews) => state.reviews = reviews.sort((a, b) => b.review_likes_count - a.review_likes_count),
     SET_REVIEW: (state, review) => state.review = review,
     SET_REVIEW_COMMENTS: (state, comments) => (state.review.comment_set = comments),
-    SET_MOVIES: (state, movies) => state.movies = movies,
-    SET_WATCH_DAY: (state, watchDay) => state.watchDay = watchDay
+    SET_WATCH_DAY: (state, watchDay) => state.watchDay = watchDay,
+    SORT_REVIEWS_BY_LIKES: (state) => state.sortedReviews = state.reviews.sort((a, b) => b.review_likes_count - a.review_likes_count),
+    SORT_REVIEWS_BY_COMMENTS: (state) => state.sortedReviews = state.reviews.sort((a, b) => b.review_comments_count - a.review_comments_count),
+    SORT_REVIEWS_BY_DATE: (state) => state.sortedReviews = state.reviews.sort((a, b) => a.watch_day > b.watch_day ? -1 : 1),
   },
 
   actions: {
@@ -71,7 +74,9 @@ export default {
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => commit('SET_REVIEW', res.data))
+        .then(res => {
+          commit('SET_REVIEW', res.data)
+        })
         .catch(err => {
           console.error(err.response)
           if (err.response.status === 404) {
@@ -220,16 +225,15 @@ export default {
             .catch(err => console.error(err.response))
         }
       },
-    
-    fetchMovies({ commit, getters }) {
-      axios({
-        url: drf.movies.movies(),
-        method: 'get',
-        headers: getters.authHeader,
-      })
-      .then(res => {
-        commit('SET_MOVIES', res.data)
-      })
-    }
+
+    sortReviewsByLikes({ commit }) {
+      commit('SORT_REVIEWS_BY_LIKES')
+    },
+    sortReviewsByComments({ commit }) {
+      commit('SORT_REVIEWS_BY_COMMENTS')
+    },
+    sortReviewsByDate({ commit }) {
+      commit('SORT_REVIEWS_BY_DATE')
+    },
   },
 }

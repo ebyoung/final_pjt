@@ -3,44 +3,59 @@
     <h1>둘러보기</h1>
     
     <!-- 인기 순대로 정렬 해야함!! -> store의 getters에서 -->
+    <v-btn :disabled='sortedByLikes' @click="getSortedByLikes">좋아요순</v-btn>
+    <v-btn :disabled='sortedByComments' @click="getSortedByComments">댓글순</v-btn>
+    <v-btn :disabled='sortedByDate' @click="getSortedByDate">최신순</v-btn>
 
-
-    <ul>
-      <li v-for="review in reviews" :key="review.pk">
+    <v-row>
+      <v-col v-for="review in reviews" :key="review.pk"
+      cols="2">
         <!-- 작성자 -> 프로필 이동 링크 -->
         <!-- ReviewItem.vue로 넘겨줘서 카드 형태로 만들지...? -->
-        <router-link 
-          :to="{ name: 'profile', params: { username: review.user.username } }">
-          <!-- 작성자 프로필 사진 추가!!!! -->
-          <!-- <img src= "review.user.profile_image" alt=""> -->
-          {{ review.user.username }} : 
-        </router-link>
-        
-        <!-- 글 이동 링크 (영화 포스터)) -->
-        <router-link 
-          :to="{ name: 'review', params: {reviewPk: review.pk} }">
-          {{ review.movie_poster }}
-        </router-link>
-
-        <!-- 댓글 개수/좋아요 개수 -->
-        =>
-        ({{ review.comment_count }}) | +{{ review.like_count }}
-
-      </li>
-    </ul>
+        <ReviewItem :review="review"/>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex'
+  import ReviewItem from '@/components/reviews/ReviewItem'
 
   export default {
     name: 'ReviewList',
+    data: () => ({
+      sortedByLikes: true,
+      sortedByComments: false,
+      sortedByDate: false,
+    }),
+    components: {
+      ReviewItem,
+    },
+
     computed: {
-      ...mapGetters(['reviews'])
+      ...mapGetters(['reviews', ]),
     },
     methods: {
-      ...mapActions(['fetchReviews'])
+      ...mapActions(['fetchReviews', 'sortReviewsByLikes', 'sortReviewsByComments', 'sortReviewsByDate', ]),
+      getSortedByLikes() {
+        this.sortReviewsByLikes()
+        this.sortedByLikes = true
+        this.sortedByComments= false
+        this.sortedByDate= false
+      },
+      getSortedByComments() {
+        this.sortReviewsByComments()
+        this.sortedByLikes = false
+        this.sortedByComments= true
+        this.sortedByDate= false
+      },
+      getSortedByDate() {
+        this.sortReviewsByDate()
+        this.sortedByLikes = false
+        this.sortedByComments= false
+        this.sortedByDate= true
+      },
     },
     created() {
       this.fetchReviews()
@@ -48,4 +63,5 @@
   }
 </script>
 
-<style></style>
+<style>
+</style>
