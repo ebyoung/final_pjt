@@ -17,37 +17,39 @@
 
         <v-spacer></v-spacer>
   
-        <v-menu v-if="isLoggedIn"
-          left
-          bottom
-        >
+        <v-menu v-if="isLoggedIn" >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
               v-bind="attrs"
               v-on="on"
             >
-              <v-avatar color="grey" size="47">
+              <v-avatar color="grey" size="47" class="me-4">
                 <img :src="profileImage" alt=""></v-avatar>
             </v-btn>
           </template>
-          <v-list>
+          <v-list width="150px" height="160px" color="purple lighten-5">
             <v-subheader><v-avatar color="grey" size="40">
                 <img :src="profileImage" alt=""></v-avatar>
-                <span class="ms-1"> Hi! {{ username }}</span>
+                <span class="ms-2"> Hi😊 
+                  <span class="font-weight-bold">{{ username }}</span>
+                </span>
             </v-subheader>
-            <v-list-item-group v-model="selectedItem" color="primary">
-              <v-list-item v-for="(item, i) in items" :key="i">
-                <v-list-item-icon>
-                  <v-icon v-text="item.icon"></v-icon>
-                  <!-- <v-btn icon @click="moveProfile(username)">profile</v-btn> -->
-                </v-list-item-icon>
+            <v-list-item-group  color="purple">
+              <v-list-item v-for="(item, i) in items" :key="i" dense >
+                <!-- <v-list-item-icon>
+                  <v-icon v-text="item.icon" class="me-5"></v-icon>
+                  <v-btn icon @click="moveProfile(username)">profile</v-btn> -->
+                <!-- </v-list-item-icon> -->
                 <v-list-item-content>
-                  <v-list-item-title v-if="i === 0">
-                    <v-btn icon @click="moveProfile(username)">profile</v-btn>
+                  <v-list-item-title v-if="i === 0" class="text-center">
+                    <button @click="moveProfile(username)" class="text-button font-weight-bold">
+                      <!-- <v-icon class="me-2">mdi-account</v-icon> -->
+                      profile
+                      </button>
                   </v-list-item-title>
-                  <v-list-item-title v-else-if="i === 1">
-                    <v-btn icon @click="logout">Logout</v-btn>
+                  <v-list-item-title v-else-if="i === 1" class="text-center">
+                    <button @click="logout" class="text-button font-weight-bold">Logout</button>
                     <!-- <v-btn>
                       <router-link class="text-decoration-none" :to="{ name: 'logout' }">Logout</router-link>
                     </v-btn> -->
@@ -101,7 +103,7 @@
     name: 'NavBar',
 
     data: () => ({
-      selectedItem: 0,
+      
       items: [
         { text: 'profile', icon: 'mdi-account'},
         { text: 'logout', icon: 'mdi-account' },
