@@ -218,7 +218,7 @@ export default {
         headers: getters.authHeader,
       })
       .then(res => {
-        res.data.profile_image = drf.accounts.profileImage(res.data.profile_image)
+        res.data.profile_image = drf.accounts.profileImage(res.data?.profile_image)
         commit('SET_PROFILEIMAGEPATH', res.data.profile_image)
       })
     },
