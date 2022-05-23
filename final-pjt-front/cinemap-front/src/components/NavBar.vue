@@ -114,12 +114,11 @@
         return this.currentUser.username ? this.currentUser.username : 'guest'
       },
       profileImage() {
-        this.setProfileImagePath(this.currentUser.username)
         return this.getProfileImage
       },
     },
     methods: {
-    ...mapActions(['logout', 'fetchProfile', 'setProfileImagePath',]),
+    ...mapActions(['logout', 'fetchProfile', ]),
     
     moveProfile(username) {
       this.fetchProfile({ username })
