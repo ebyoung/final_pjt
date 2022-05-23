@@ -201,6 +201,7 @@ export default {
         }
       })
         .then(res => {
+          res.data.profile_image = drf.accounts.profileImage(res.data.profile_image)
           commit('SET_PROFILE', res.data)
         })
     },
