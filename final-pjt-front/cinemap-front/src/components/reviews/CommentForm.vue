@@ -2,12 +2,15 @@
   <form @submit.prevent="onSubmit" class="comment-form">
     <div class="d-flex">
       <span class="d-flex me-2">
-        <!-- currentUser profile로! -->
-        {{ currentUser.username }}:
+        <span>
+          <v-avatar color="grey" size="47">
+            <img :src="getProfileImage" alt=""></v-avatar>
+        </span>
       </span>
-      <v-text-field placeholder="댓글을 입력하세요!" v-model="content" required outlined filled clearable dense></v-text-field>
+      <v-text-field placeholder="댓글을 입력하세요!"
+        v-model="content" required outlined filled clearable dense rounded></v-text-field>
       <v-btn @click="onSubmit"
-        elevation="2" small class="ms-2" 
+        elevation="2" small class="ms-2" depressed
       >게시</v-btn>
     </div>
     
@@ -18,6 +21,8 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
+
+
 export default {
   name: 'CommentForm',
   data() {
@@ -26,15 +31,21 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['review', 'currentUser']),
+    ...mapGetters(['review', 'currentUser', 'getProfileImage',]),
+
   },
+
   methods: {
-    ...mapActions(['createComment']),
+    ...mapActions(['createComment', 'setProfileImagePath',]),
     onSubmit() {
       this.createComment({ reviewPk: this.review.id, content: this.content, })
       this.content = ''
     }
-  }
+  },
+
+  created() {
+    this.setProfileImagePath(this.currentUser.username)
+  },
 }
 </script>
 

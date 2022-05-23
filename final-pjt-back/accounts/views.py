@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer, ProfileImageSerializer
 
 User = get_user_model()
 
@@ -48,4 +48,11 @@ def follow(request, username):
             else:
                 user.followers.add(request.user)
         serializer = ProfileSerializer(user)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def profile_path(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    if request.user.is_authenticated:
+        serializer = ProfileImageSerializer(user)
         return Response(serializer.data)

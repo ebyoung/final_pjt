@@ -12,6 +12,7 @@ export default {
     currentUser: {},
     profile: {},
     authError: null,
+    profileImagePath: '',
   },
   // 모든 state는 getters 를 통해서 접근하겠다.
   getters: {
@@ -21,19 +22,22 @@ export default {
     isFollow: state => state.profile.followers?.some((user) => user.username === state.currentUser.username),
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
-    profileImageUrl: state => state.profile.profile_image
+    profileImageUrl: state => state.profile.profile_image,
+    getProfileImage: state => state.profileImagePath
   },
 
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
+    SET_PROFILEIMAGEPATH: (state, profile_image_path) => state.profileImagePath = profile_image_path, 
     SET_AUTH_ERROR: (state, error) => state.authError = error,
     SET_FOLLOW: (state, data) => {
       state.profile.followers = data.followers
       state.profile.follower_count = data.follower_count
       state.profile.following_count = data.following_count
     },
+
     
   },
 
@@ -173,7 +177,7 @@ export default {
       }
     },
 
-    fetchProfile({ commit, getters }, { username }) {
+    fetchProfile({ commit, getters }, { username } ) {
       /*
       GET: profile URL로 요청보내기
         성공하면
@@ -185,6 +189,7 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
+          console.log('ddd')
           res.data.profile_image = drf.accounts.profileImage(res.data.profile_image)
           commit('SET_PROFILE', res.data)
         })
@@ -206,10 +211,17 @@ export default {
         })
     },
 
-    getReview({ commit, getters }, watchDay) {
-      console.log(commit, getters, watchDay)
-    },
 
-    
-  },
-}
+    setProfileImagePath({commit, getters}, username) {
+      axios({
+        url: drf.accounts.getProfileImagePath(username),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        res.data.profile_image = drf.accounts.profileImage(res.data.profile_image)
+        commit('SET_PROFILEIMAGEPATH', res.data.profile_image)
+      })
+    },
+    }
+  }

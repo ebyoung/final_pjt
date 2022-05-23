@@ -2,6 +2,7 @@
   <nav>
     <ul>
       <li>
+        <!-- 돋보기 아이콘 -->
         <router-link :to="{ name: 'reviews' }">둘러보기</router-link>
       </li>
 
@@ -12,13 +13,13 @@
         <router-link :to="{ name: 'signup' }">Signup</router-link>
       </li>
 
-      <li v-if="isLoggedIn">
+      <!-- <li v-if="isLoggedIn">
         <router-link :to="{ name: 'reviewNew' }">New</router-link>
-      </li>
+      </li> -->
       <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'profile', params: { username } }">
-          {{ currentUser.username }}'s page
-        </router-link>
+        <v-btn @click="moveProfile(username)">
+          {{ currentUser.username }}'s home
+        </v-btn>
       </li>
       <li v-if="isLoggedIn">
         <router-link :to="{ name: 'logout' }">Logout</router-link>
@@ -28,7 +29,8 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import router from '@/router'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     name: 'NavBar',
@@ -38,6 +40,14 @@
         return this.currentUser.username ? this.currentUser.username : 'guest'
       },
     },
+    methods: {
+    ...mapActions(['fetchProfile',]),
+    
+    moveProfile(username) {
+      this.fetchProfile({ username })
+      router.push({ name:'profile', params: { username } })
+    },
+  },
   }
 </script>
 

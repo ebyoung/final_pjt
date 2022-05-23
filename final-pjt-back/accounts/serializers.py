@@ -2,6 +2,13 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from reviews.models import Review
 
+class ProfileImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('profile_image', )
+
+
+
 class ProfileSerializer(serializers.ModelSerializer):
 
     class ReviewListSerializer(serializers.ModelSerializer):
