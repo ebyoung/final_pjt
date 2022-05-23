@@ -12,65 +12,71 @@
 
       <v-col class="my-auto mx-2">
         <v-card-title class="d-flex justify-space-between">
-          <span>
-            <span>{{ review.movie_title }}</span>
-            <span>
-              <v-btn
-                @click="likeReview(reviewPk)"
-                class="mx-2" fab dark x-small color="pink">
-                <v-icon dark>
-                  mdi-heart
-                </v-icon>
-              </v-btn>
-              <span>{{ review.review_likes_count }}</span>
+          <span> 
+            <h2 class="d-inline">{{ review.movie_title }}</h2>
+            <span class="mx-2">
+              
+              <v-badge color="deep-purple npm" :content="likeCounts" :value="likeCounts" overlap>
+                <button @click="likeReview(reviewPk)" >
+                  <font-awesome-icon v-if="isLike" icon="fa-solid fa-heart" color="red" size="xl"/>
+                  <font-awesome-icon v-else icon="fa-solid fa-heart" color="grey" size="xl"/>
+                </button>
+              </v-badge>
+              
+              <!-- <span class="ms-1">+{{ review.review_likes_count }}</span> -->
             </span>
           </span>
           <span v-if="isAuthor">
             <router-link :to="{ name: 'reviewEdit', params: { reviewPk } }">
-              <v-btn
-                color="primary"
-                fab
-                x-small
-                dark
-              >
-                <v-icon>mdi-pencil</v-icon>
-            </v-btn>
+              <button>
+                <font-awesome-icon icon="fa-solid fa-pen-to-square" />      
+              </button>
             </router-link>
           </span>
         </v-card-title>
-
+        
         <v-card-text>
           <v-row
             align="center"
-            class="mx-0"
+            class="mx-0 mt-1"
           >
             <v-rating
               :value="getVote"
               background-color="grey lighten-2"
               color="amber"
               readonly
-              size="20"
+              size="30"
             ></v-rating>
           </v-row>
 
           <!-- <div class="my-4 text-subtitle-1">
             $ • Italian, Cafe
           </div> -->
-          <br>          
-          <div>
+          <br>
+          <br>
+          <v-sheet color="grey lighten-4"
+            class = "py-3 px-4"
+            rounded
+            elevation="1"
+            min-height="300"
+            width="500">
             {{ review.content }}
-          </div>
+          </v-sheet>
           <br>
           <!-- review Edit/Delete UI -->
           <div v-if="isAuthor" class="d-flex justify-end my-2" >
-            <v-icon left color="blue" size="50">fa-twitter</v-icon>
-            <v-btn @click="deleteReview(reviewPk)" x-small>Delete</v-btn>
+            <button @click="deleteReview(reviewPk)" small>
+              <font-awesome-icon icon="fa-regular fa-trash-can" size="lg"/>
+            </button>
           </div>
         </v-card-text>
 
         <v-divider class="mx-4"></v-divider>
 
-        <v-card-title>Comments</v-card-title>
+        <v-card-title>
+          <font-awesome-icon icon="fa-solid fa-comment-dots"/>
+          <span class="ms-2">Comments</span>
+          </v-card-title>
 
         <v-card-text>
           <comment-list :comments="review.comment_set"></comment-list>
@@ -100,10 +106,13 @@
       }
     },
     computed: {
-      ...mapGetters(['isAuthor', 'review']),
+      ...mapGetters(['isAuthor', 'isLike', 'review']),
       getVote() {
       return this.review.vote
       },
+      likeCounts() {
+        return this.review.review_likes_count
+      }
     },
 
     methods: {

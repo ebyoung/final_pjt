@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('profile_image', 'username', )
+        fields = ('profile_image', 'username',)
 
 
 class CommentSerializer(serializers.ModelSerializer):

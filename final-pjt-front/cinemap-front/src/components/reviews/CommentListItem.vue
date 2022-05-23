@@ -1,16 +1,21 @@
 <template>
-  <li class="comment-list-item">
-    <!-- {{ comment.user.profile_image }} -->
-    <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
-      {{ comment.user.username }}
-    </router-link>: 
-    <span>{{ comment.content }}</span>
+  <!-- https://vuetifyjs.com/en/components/lists/#three-line -->
+  <v-list-item class="ps-0">
+    <!-- <v-list-item-avatar>
+      <v-img :src="item.avatar"></v-img>
+    </v-list-item-avatar> -->
+    <router-link class="text-decoration-none" :to="{ name: 'profile', params: { username: comment.user.username } }">
+      <!-- {{ comment.user.profile_image }} --> 
+      {{ comment.user.username }} :
+    </router-link>
+    <v-list-item-content class="ms-1 py-0"><v-list-item-title v-text="comment.content"></v-list-item-title></v-list-item-content>
     <span v-if="currentUser.username === comment.user.username" class="ms-3">
-      <v-btn @click="deleteComment(payload)" elevation="2">Delete</v-btn>
-      <!-- <button @click="deleteComment(payload)">Delete</button> -->
+      <button @click="deleteComment(payload)" elevation="2">
+        <font-awesome-icon icon="fa-regular fa-trash-can"/>
+      </button>
     </span>
     <br>
-  </li>
+  </v-list-item>
 </template>
 
 <script>
@@ -37,8 +42,5 @@ export default {
 </script>
 
 <style>
-/* .comment-list-item {
-  border: 1px solid green;
 
-} */
 </style>

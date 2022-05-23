@@ -1,10 +1,16 @@
 <template>
   <form @submit.prevent="onSubmit" class="comment-form">
-    <label for="comment">comment: </label>
-    <input type="text" id="comment" v-model="content" required>
-    <v-btn @click="onSubmit"
-      elevation="2"
-    >게시</v-btn>
+    <div class="d-flex">
+      <span class="d-flex me-2">
+        <!-- currentUser profile로! -->
+        {{ currentUser.username }}:
+      </span>
+      <v-text-field placeholder="댓글을 입력하세요!" v-model="content" required outlined filled clearable dense></v-text-field>
+      <v-btn @click="onSubmit"
+        elevation="2" small class="ms-2" 
+      >게시</v-btn>
+    </div>
+    
     <!-- <button>게시</button> -->
   </form>
 </template>
@@ -20,7 +26,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['review']),
+    ...mapGetters(['review', 'currentUser']),
   },
   methods: {
     ...mapActions(['createComment']),
@@ -33,9 +39,9 @@ export default {
 </script>
 
 <style>
-.comment-form {
+/* .comment-form {
   border: 1px solid black;
-  margin: 1rem;
-  padding: 1rem;
-}
+  /* margin: 1rem; */
+  /* padding: 0.5rem; */
+/* } */
 </style>

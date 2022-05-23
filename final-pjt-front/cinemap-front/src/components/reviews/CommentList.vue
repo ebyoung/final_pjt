@@ -2,13 +2,14 @@
   <div class="comment-list">
     
     <comment-form></comment-form>
-    <ul>
+    <v-list>
+      <!-- https://vuetifyjs.com/en/components/lists/#three-line -->
       <comment-list-item 
         v-for="comment in comments" 
         :comment="comment" 
         :key="comment.id">
       </comment-list-item>        
-    </ul>
+    </v-list>
 
   </div>
 </template>

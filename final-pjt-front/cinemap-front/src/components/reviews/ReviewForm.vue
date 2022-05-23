@@ -27,6 +27,10 @@
         large
       ></v-rating>
     <div>
+      <!-- <v-textarea
+            outlined
+            label="Outlined textarea"
+          ></v-textarea> -->
       <label for="content">content: </label>
       <textarea v-model="newReview.content" type="text" id="content"></textarea>
     </div>

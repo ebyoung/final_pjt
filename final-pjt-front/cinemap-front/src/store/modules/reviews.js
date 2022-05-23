@@ -22,6 +22,9 @@ export default {
       return state.review.user?.username === getters.currentUser.username
     },
     isReview: state => !_.isEmpty(state.review),
+    isLike: (state, getters) => {
+      return state.review.review_like_users.includes(getters.currentUser.pk)
+    },
     movies: state => state.movies,
     watchDay: state => state.watchDay,
   },
