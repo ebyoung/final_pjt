@@ -222,5 +222,5 @@ export default {
         commit('SET_PROFILEIMAGEPATH', res.data.profile_image)
       })
     },
-    }
   }
+}

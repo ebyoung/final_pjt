@@ -58,7 +58,7 @@
                       color="primary"
                     >
                     <img
-                      :src="profileImageUrl"
+                      :src="HOST + follower.profile_image"
                     ></v-avatar>
                     <v-btn @click="moveProfile(follower.username)">
                       {{ follower.username }}
@@ -98,7 +98,7 @@
                       color="primary"
                     >
                     <img
-                      :src="profileImageUrl"
+                      :src="HOST + following.profile_image"
                     ></v-avatar>
                     <!-- dialog 창 꺼지게 -->
                     <v-btn @click="moveProfile(following.username)">
@@ -142,6 +142,7 @@ export default {
       dialog: false,
       dialog_follower: false,
       dialog_following: false,
+      HOST: 'http://localhost:8000',
     }),
   computed: {
     ...mapGetters(['profile', 'isFollow', 'currentUser', 'profileImageUrl']),
