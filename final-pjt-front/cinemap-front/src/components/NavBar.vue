@@ -117,9 +117,6 @@
         this.setProfileImagePath(this.currentUser.username)
         return this.getProfileImage
       },
-      // isProfile(item) {
-      //   return item.text === 'profile'
-      // }
     },
     methods: {
     ...mapActions(['logout', 'fetchProfile', 'setProfileImagePath',]),
