@@ -189,7 +189,6 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
-          console.log('ddd')
           res.data.profile_image = drf.accounts.profileImage(res.data.profile_image)
           commit('SET_PROFILE', res.data)
         })

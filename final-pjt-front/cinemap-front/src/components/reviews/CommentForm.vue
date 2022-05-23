@@ -4,7 +4,7 @@
       <span class="d-flex me-2">
         <span>
           <v-avatar color="grey" size="47">
-            <img :src="getProfileImage" alt=""></v-avatar>
+            <img :src="profileImage" alt=""></v-avatar>
         </span>
       </span>
       <v-text-field placeholder="댓글을 입력하세요!"
@@ -32,7 +32,10 @@ export default {
   },
   computed: {
     ...mapGetters(['review', 'currentUser', 'getProfileImage',]),
-
+    profileImage() {
+      this.setProfileImagePath(this.currentUser.username)
+      return this.getProfileImage
+    },
   },
 
   methods: {
@@ -41,10 +44,6 @@ export default {
       this.createComment({ reviewPk: this.review.id, content: this.content, })
       this.content = ''
     }
-  },
-
-  created() {
-    this.setProfileImagePath(this.currentUser.username)
   },
 }
 </script>
