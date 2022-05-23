@@ -53,7 +53,9 @@
               v-for="(date, idx) in nextDates" :key="idx"
             >
               <p>{{ date }}</p>
-              <DayReview :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth+2}`: viewMonth+2 }-${date<10 ? `0${date}`:date}`" :idx="idx" class="m-5"/>
+              <DayReview
+              :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth+2}`: viewMonth+2 }-${date<10 ? `0${date}`:date}`"
+              :idx="idx" class="m-5"/>
             </v-card>
           </div>
       </div>

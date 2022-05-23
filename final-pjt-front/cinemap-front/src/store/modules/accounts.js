@@ -12,7 +12,6 @@ export default {
     currentUser: {},
     profile: {},
     authError: null,
-    
   },
   // 모든 state는 getters 를 통해서 접근하겠다.
   getters: {
@@ -22,7 +21,7 @@ export default {
     isFollow: state => state.profile.followers?.some((user) => user.username === state.currentUser.username),
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
-    
+    profileImageUrl: state => state.profile.profile_image
   },
 
   mutations: {
@@ -186,7 +185,7 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
-          res.data.profile_image = drf.accounts.Image(res.data.profile_image)
+          res.data.profile_image = drf.accounts.profileImage(res.data.profile_image)
           commit('SET_PROFILE', res.data)
         })
     },

@@ -2,7 +2,7 @@
   <div class="container">
     <v-row justify="center">
       <figure class="snip1376">
-        <img :src="profile.profile_image" alt="profileImage" />
+        <img :src="profileImageUrl" alt="profileImage" />
         <figcaption>
           <h2>{{ profile.username }}</h2>
           <pre>{{ profile.introduction }}</pre>
@@ -58,7 +58,7 @@
                       color="primary"
                     >
                     <img
-                      :src="'http://localhost:8000' + follower.profile_image"
+                      :src="profileImageUrl"
                     ></v-avatar>
                     <v-btn @click="moveProfile(follower.username)">
                       {{ follower.username }}
@@ -98,7 +98,7 @@
                       color="primary"
                     >
                     <img
-                      :src="'http://localhost:8000' + following.profile_image"
+                      :src="profileImageUrl"
                     ></v-avatar>
                     <!-- dialog 창 꺼지게 -->
                     <v-btn @click="moveProfile(following.username)">
@@ -144,7 +144,7 @@ export default {
       dialog_following: false,
     }),
   computed: {
-    ...mapGetters(['profile', 'isFollow', 'currentUser']),
+    ...mapGetters(['profile', 'isFollow', 'currentUser', 'profileImageUrl']),
     isCurrentUserProfile() {
       return this.currentUser.username === this.profile.username
     },
