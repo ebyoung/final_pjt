@@ -168,7 +168,10 @@ export default {
           method: 'get',
           headers: getters.authHeader,
         })
-          .then(res => commit('SET_CURRENT_USER', res.data))
+          .then(res => {
+            commit('SET_CURRENT_USER', res.data)
+            dispatch('setProfileImagePath', res.data.username)
+          })
           .catch(err => {
             if (err.response.status === 401) {
               dispatch('removeToken')
