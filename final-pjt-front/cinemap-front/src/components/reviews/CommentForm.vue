@@ -33,13 +33,12 @@ export default {
   computed: {
     ...mapGetters(['review', 'currentUser', 'getProfileImage',]),
     profileImage() {
-      this.setProfileImagePath(this.currentUser.username)
       return this.getProfileImage
     },
   },
 
   methods: {
-    ...mapActions(['createComment', 'setProfileImagePath',]),
+    ...mapActions(['createComment', ]),
     onSubmit() {
       this.createComment({ reviewPk: this.review.id, content: this.content, })
       this.content = ''
