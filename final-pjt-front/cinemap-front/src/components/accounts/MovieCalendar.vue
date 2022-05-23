@@ -24,11 +24,36 @@
               outlined
               tile
               width="calc(100% / 7)"
-              class="poster"
-              v-for="(date, idx) in viewDates" :key="idx"
+              height="167.5px"
+              class="prevDates"
+              v-for="(date, idx) in prevDates" :key="idx*10+10"
             >
               <p>{{ date }}</p>
-              <DayReview :date="`${viewYear}-${viewMonth+1}-${date}`" :idx="idx" class="m-5"/>
+              <DayReview :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth}`: viewMonth }-${date<10 ? `0${date}`:date}`" :idx="idx" class="m-5"/>
+            </v-card>
+            <v-card
+              elevation="3"
+              outlined
+              tile
+              width="calc(100% / 7)"
+              height="167.5px"
+              class="thisDates"
+              v-for="(date, idx) in thisDates" :key="idx*100+100"
+            >
+              <p>{{ date }}</p>
+              <DayReview :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth+1}`: viewMonth+1 }-${date<10 ? `0${date}`:date}`" :idx="idx" class="m-5"/>
+            </v-card>
+            <v-card
+              elevation="3"
+              outlined
+              tile
+              width="calc(100% / 7)"
+              height="167.5px"
+              class="nextDates"
+              v-for="(date, idx) in nextDates" :key="idx"
+            >
+              <p>{{ date }}</p>
+              <DayReview :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth+2}`: viewMonth+2 }-${date<10 ? `0${date}`:date}`" :idx="idx" class="m-5"/>
             </v-card>
           </div>
       </div>
@@ -48,7 +73,9 @@ export default {
     return {
       viewYear: date.getFullYear(),
       viewMonth: date.getMonth(),
-      viewDates: [],
+      prevDates: [],
+      thisDates: [],
+      nextDates: [],
     }
   },
   methods: {
@@ -81,8 +108,10 @@ export default {
       }
 
       // Dates 합치기
-      const dates = prevDates.concat(thisDates, nextDates)
-      this.viewDates = dates
+      // const dates = prevDates.concat(thisDates, nextDates)
+      this.prevDates = prevDates
+      this.thisDates = thisDates
+      this.nextDates = nextDates
 
       // // 이번 달의 구간 확인
       // const firstDateIndex = dates.indexOf(1)
@@ -109,7 +138,7 @@ export default {
       this.viewMonth = new Date().getMonth()
       this.viewYear = new Date().getFullYear()
       this.renderCalendar()
-    }
+    },
   },
   created() {
     this.renderCalendar()
@@ -124,16 +153,9 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-  
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
 
 .calendar {
-  width: 1000px;
+  width: 800px;
   margin: 50px;
 }
 
@@ -171,23 +193,19 @@ body {
 
 .days {
   display: flex;
-  margin: 25px 0 10px;
+  margin: 25px 0 0;
 }
 
 .day {
   width: calc(100% / 7);
-  aspect-ratio: 1.618/1;
+  aspect-ratio: 2.5/1;
   text-align: center;
-  padding-top: 3%;
+  padding-top: 1.5%;
 }
 
 .dates {
   display: flex;
   flex-flow: row wrap;
-}
-
-.poster {
-  aspect-ratio: 500/741;
 }
 
 p {
@@ -196,7 +214,12 @@ p {
   background: white;
   text-align: center;
   font-weight: bolder;
-  border-radius: 50%;
   z-index: 2;
+}
+
+.prevDates > p,
+.nextDates > p {
+  color: gray;
+  font-weight: normal;
 }
 </style>

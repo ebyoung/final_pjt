@@ -18,10 +18,13 @@ def profile(request, username):
     
     def update_profile():
         if request.user == user:
-            image = request.data['profileImage']
+            image = request.data.get('profileImage')
             serializer = ProfileSerializer(user, data=request.data)
             if serializer.is_valid(raise_exception=True):
-                serializer.save(profile_image=image)
+                if image:
+                    serializer.save(profile_image=image)
+                else:
+                    serializer.save()
                 return Response(serializer.data)
         else:
             data = {

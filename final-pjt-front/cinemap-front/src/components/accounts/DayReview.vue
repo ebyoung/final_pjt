@@ -1,22 +1,19 @@
 <template>
   <div>
-    <figure v-if="isReview" @click="getReview(date)" class="snip1200">
-      <img src="https://image.tmdb.org/t/p/w500//8dzKn3RtPWUJRG9ymSpi423eMNV.jpg" alt="sq-sample27" />
+    <figure v-if="getReview" class="snip1395">
+      <img :src="getReview.movie_poster" alt="moviePoster" />
       <figcaption>
-        <p>내용</p>
-        <div class="heading">
-          <h2>영화 제목</h2>
-        </div>
+        <h2>{{ getReview.movie_title }}</h2>
+        <pre>{{ '★'.repeat(getReview.vote) + '☆'.repeat(5 - getReview.vote) }}</pre>
       </figcaption>
+      <router-link :to="{ name: 'review', params: { reviewPk: getReview.pk } }"></router-link>
     </figure>
-    <div v-else>
-      <v-btn @click="setWatchDay(date)">리뷰 작성하기</v-btn>
-    </div>
+    <img v-else @click="setWatchDay(date)" src="https://mblogthumb-phinf.pstatic.net/20160602_77/lllyourinlll_1464878597694YQsWS_PNG/a233fb2e4ad22000.png?type=w2" alt="">
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'DayReview',
@@ -24,110 +21,133 @@ export default {
     date: String,
     idx: Number,
   },
+  computed: {
+    ...mapGetters(['profile', ]),
+    getReview() {
+      const thisDayReview = this.profile.reviews?.filter(review => this.date === review.watch_day)
+      if (thisDayReview) {
+        return thisDayReview[0]
+      } else {
+        return false
+      }
+    },
+  },
   methods: {
     ...mapActions(['setWatchDay', ]),
-  }
+  },
 }
 </script>
 
 <style scoped>
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
-figure.snip1200 {
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Julius+Sans+One);
+img {
+  width: 112.281px;
+  height: 167.292px;
+  padding: 0;
+  cursor: pointer;
+}
+.snip1395 {
   font-family: 'Raleway', Arial, sans-serif;
   position: relative;
   overflow: hidden;
   width: 100%;
-  background: #000000;
   color: #ffffff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-  font-size: 12px;
-  cursor: pointer;
+  text-align: left;
+  background-color: #ffffff;
+  line-height: 1em;
+  transform: translateZ(0);
 }
-figure.snip1200 * {
+.snip1395 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-transition: all 0.45s ease-in-out;
-  transition: all 0.45s ease-in-out;
+  -webkit-transition: all 0.35s ease-out;
+  transition: all 0.35s ease-out;
 }
-figure.snip1200 img {
+.snip1395 img {
   max-width: 100%;
-  position: relative;
-  opacity: 0.8;
+  vertical-align: top;
+  -webkit-transition: all 0.8s ease-out;
+  transition: all 0.8s ease-out;
 }
-figure.snip1200 figcaption {
+.snip1395:before {
+  background: #000000;
   position: absolute;
-  top: 45%;
-  left: 7%;
-  right: 7%;
-  bottom: 45%;
-  border: 1px solid white;
-  border-width: 1px 1px 0;
+  content: '';
+  -webkit-transition: all 0.35s ease-out;
+  transition: all 0.35s ease-out;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 100%;
+  box-shadow: 0 0 40px white;
+}
+.snip1395 figcaption {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+.snip1395 h2,
+.snip1395 pre {
+  font-size: 16px;
+  margin: 0;
+  width: 100%;
+  opacity: 0;
+  padding: 20px;
+}
+.snip1395 h2 {
+  font-family: 'Julius Sans One', Arial, sans-serif;
   word-break: keep-all;
 }
-figure.snip1200 .heading {
-  overflow: hidden;
-  -webkit-transform: translateY(50%);
-  transform: translateY(50%);
+.snip1395 pre {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  padding-left: 22px;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  text-align: right;
 }
-figure.snip1200 h2 {
-  display: table;
-  margin: 0 auto;
-  padding: 0 10px;
-  position: relative;
-  text-align: center;
-  width: auto;
-  text-transform: uppercase;
-  font-weight:  600;
-}
-figure.snip1200 h2:before,
-figure.snip1200 h2:after {
+.snip1395 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   position: absolute;
-  display: block;
-  width: 1000%;
-  height: 1px;
-  content: '';
-  background: white;
-  top: 50%;
+  z-index: 2;
 }
-figure.snip1200 h2:before {
-  left: -1000%;
+.snip1395:hover img,
+.snip1395.hover img {
+  opacity: 0.2;
 }
-figure.snip1200 h2:after {
-  right: -1000%;
+.snip1395:hover:before,
+.snip1395.hover:before {
+  left: 0;
+  box-shadow: 0 0 0px white;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
 }
-figure.snip1200 p {
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  position: absolute;
-  width: 100%;
-  height: 80%;
-  padding: 0 10px;
-  margin: 0;
-  opacity: 0;
-  line-height: 1.6em;
-  font-size: 1em;
-  text-align: 'left';
-  overflow: hidden;
+.snip1395:hover figcaption h2,
+.snip1395.hover figcaption h2,
+.snip1395:hover figcaption pre,
+.snip1395.hover figcaption pre {
+  -webkit-transition-delay: 0.25s;
+  transition-delay: 0.25s;
 }
-figure.snip1200:hover img,
-figure.snip1200.hover img {
-  opacity: 0.25;
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+.snip1395:hover figcaption h2,
+.snip1395.hover figcaption h2 {
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+  opacity: 0.5;
 }
-figure.snip1200:hover figcaption,
-figure.snip1200.hover figcaption {
-  top: 7%;
-  bottom: 7%;
+.snip1395:hover figcaption pre,
+.snip1395.hover figcaption pre {
+  opacity: 0.7;
 }
-figure.snip1200:hover p,
-figure.snip1200.hover p {
-  opacity: 1;
-  -webkit-transition-delay: 0.35s;
-  transition-delay: 0.35s;
-}
+
 </style>

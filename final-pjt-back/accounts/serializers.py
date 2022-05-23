@@ -8,7 +8,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         class Meta:
             model = Review
-            fields = ('watch_day', 'content')
+            fields = ('pk', 'watch_day', 'vote', 'movie_title', 'movie_poster')
     
     class FollowSerializer(serializers.ModelSerializer):
 

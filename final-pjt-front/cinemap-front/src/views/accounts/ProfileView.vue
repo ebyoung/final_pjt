@@ -10,9 +10,11 @@
             <v-btn
               v-if="!isCurrentUserProfile"
               @click="follow(profile.username)"
-              color="primary"
               text
-              >{{ isFollow ? '언팔로우' : '팔로우' }}</v-btn>
+              >
+              <font-awesome-icon v-if="isFollow" icon="fa-solid fa-user-check" />
+              <font-awesome-icon v-else icon="fa-solid fa-user-plus" />
+            </v-btn>
             <v-dialog
               v-else
               v-model="dialog"
@@ -21,20 +23,20 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  color="primary"
                   text
                   v-bind="attrs"
                   v-on="on"
-                >프로필 수정
+                >
+                <font-awesome-icon icon="fa-solid fa-user-pen"/>
                 </v-btn>
               </template>
               <ProfileForm
                 v-if="dialog"
                 :username="this.profile.username"
                 :introduction="this.profile.introduction"
-                @close-dialog="dialog=false"/>
+                @close-dialog="updateProfileImage"/>
             </v-dialog>
-
+            <br>
             <v-dialog
               v-model="dialog_follower"
               scrollable
@@ -56,9 +58,11 @@
                       color="primary"
                     >
                     <img
-                      :src="follower.profile_image"
+                      :src="'http://localhost:8000' + follower.profile_image"
                     ></v-avatar>
-                    <sapn class="mx-2">{{ follower.username }}</sapn>
+                    <v-btn @click="moveProfile(follower.username)">
+                      {{ follower.username }}
+                    </v-btn>
                   </div>
                 </v-card-text>
                 <v-divider></v-divider>
@@ -94,9 +98,12 @@
                       color="primary"
                     >
                     <img
-                      :src="following.profile_image"
+                      :src="'http://localhost:8000' + following.profile_image"
                     ></v-avatar>
-                    <sapn class="mx-2">{{ following.username }}</sapn>
+                    <!-- dialog 창 꺼지게 -->
+                    <v-btn @click="moveProfile(following.username)">
+                      {{ following.username }}
+                    </v-btn>
                   </div>
                 </v-card-text>
                 <v-divider></v-divider>
@@ -114,10 +121,6 @@
           </div>
         </figcaption>
       </figure>
-
-
-
-
       <MovieCalendar/>
     </v-row>
   </div>
@@ -127,6 +130,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import MovieCalendar from '@/components/accounts/MovieCalendar'
 import ProfileForm from '@/components/accounts/ProfileForm'
+import router from '@/router'
 
 
 export default {
@@ -146,16 +150,26 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['fetchProfile', 'fetchCurrentUser', 'follow'])
+    ...mapActions(['fetchProfile', 'fetchCurrentUser', 'follow']),
+    updateProfileImage() {
+      this.dialog = false
+      this.fetchProfile({ username: this.$route.params.username })
+    },
+    moveProfile(username) {
+      this.dialog_follower = false
+      this.dialog_following = false
+      this.fetchProfile({ username })
+      router.push({ name:'profile', params: { username } })
+    },
   },
   created() {
     const payload = { username: this.$route.params.username }
     this.fetchProfile(payload)
   },
-  updated() {
-    const payload = { username: this.$route.params.username }
-    this.fetchProfile(payload)
-  },
+  // updated() {
+  //   const payload = { username: this.$route.params.username }
+  //   this.fetchProfile(payload)
+  // },
 }
 </script>
 
@@ -168,9 +182,8 @@ export default {
   position: relative;
   overflow: hidden;
   margin: 10px;
-  min-width: 230px;
-  max-width: 315px;
-  width: 100%;
+  margin-top: 127px;
+  width: 250px;
   color: #141414;
   text-align: left;
   line-height: 1.4em;
@@ -181,11 +194,14 @@ export default {
   box-sizing: border-box;
 }
 .snip1376 img {
-  max-width: 100%;
+  width: 100%;
+  height: 200px;
   vertical-align: top;
+  object-fit: cover;
 }
 .snip1376 figcaption {
   width: 100%;
+  height: 300px;
   background-color: #ffffff;
   padding: 15px 25px 65px;
   position: relative;
