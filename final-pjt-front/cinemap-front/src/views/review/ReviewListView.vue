@@ -1,20 +1,38 @@
 <template>
   <div>
-    <h1>둘러보기</h1>
+    <br>
+    <div class="d-flex justify-center">
+      <v-chip x-large color="purple lighten-4" class="my-edit text-h4 font-weight-bold mt-5 my-5 px-5 text-center purple--text">😃 Reviews </v-chip>
+    </div>
+    <!-- v-menu 쓸 수 있음! -->
+    <br>
+  
+    <v-card class="my-card mx-auto mb-4 pt-4" width="1600" elevation="15" shaped >
+      <div class="d-flex justify-end me-5">
+        <v-btn-toggle rounded color="deep-purple accent-3" group class="me-5">
+          <v-btn text v-if='sortedByLikes' color="purple" @click="getSortedByLikes">좋아요 수</v-btn>
+          <v-btn text v-else :disabled='sortedByLikes' @click="getSortedByLikes">좋아요 수</v-btn>
+          <v-btn text v-if='sortedByComments' color="purple" @click="getSortedByComments">댓글 수</v-btn>
+          <v-btn text v-else :disabled='sortedByComments' @click="getSortedByComments">댓글 수</v-btn>
+          <v-btn text v-if='sortedByDate' color="purple" @click="getSortedByDate">new </v-btn>
+          <v-btn text v-else :disabled='sortedByDate' @click="getSortedByDate">new </v-btn>
+        </v-btn-toggle>
+      </div>
+      <v-divider inset></v-divider>
+      <br>
+      <v-container fluid>
+        <v-row dense class="ms-5">
+          <v-col cols="3" v-for="review in reviews" :key="review.pk"
+          >
+            <ReviewItem :review="review"/>
+            <br>
+          </v-col>
+            
+        </v-row>
+      </v-container>
+    </v-card>
 
-    <v-btn :disabled='sortedByLikes' @click="getSortedByLikes">좋아요순</v-btn>
-    <v-btn :disabled='sortedByComments' @click="getSortedByComments">댓글순</v-btn>
-    <v-btn :disabled='sortedByDate' @click="getSortedByDate">최신순</v-btn>
 
-    <v-row>
-      <v-col v-for="review in reviews" :key="review.pk"
-      cols="2">
-        <!-- 작성자 -> 프로필 이동 링크 -->
-        <!-- ReviewItem.vue로 넘겨줘서 카드 형태로 만들지...? -->
-    <!-- https://vuetifyjs.com/en/components/images/#grid -->
-        <ReviewItem :review="review"/>
-      </v-col>
-    </v-row>
   </div>
 </template>
 
@@ -63,5 +81,9 @@
   }
 </script>
 
-<style>
+<style scoped>
+
+.my-card {
+  background-color: #f3e5f5af
+}
 </style>

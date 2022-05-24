@@ -2,20 +2,25 @@
   <div>
     <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" min-height="800" elevation="14" shaped>
       <v-row>
-        <v-col class="my-poster">
-          <v-img v-if="newReview.movie_title" class=" mt-3 mx-auto"
+        <v-col v-if="newReview.movie_title" class="my-poster">
+          <v-img  class=" mt-3 mx-auto"
             height="741" width="500" :src="moviePoster">
           </v-img>
         </v-col>
+        <v-col v-else class="d-flex align-center justify-center">
+          <div><span class="purple--text text-button">
+            영화를 검색해주세요!</span></div>
+        </v-col>
+
         <v-divider vertical inset></v-divider>
 
         <v-col>
           <v-row class="mt-3">
             <v-card-title class="pb-0 mx-5">
-              <!-- <h2 class="d-inline">{{ review.movie_title }}</h2> -->
-                <v-autocomplete placeholder="영화를 선택해주세요!" label="영화를 선택해주세요!"
+              <!-- <h2 class="d-inline">{{ review.movie_title }}</h2> -->  
+              <v-autocomplete placeholder="영화를 검색해주세요!" label="영화를 검색해주세요!"
                   chips deletable-chips rounded solo full-width outlined filled color="purple" 
-                  v-model="newReview.movie_title" background-color="purple lighten-5"
+                  v-model="newReview.movie_title" background-color="purple lighten-5" menu-props="rounded"
                   :items="moviesTitle" 
                 ></v-autocomplete>
 
@@ -39,7 +44,7 @@
                 ></v-textarea>
               </v-container>
               <div class="d-flex justify-end">
-                <v-btn @click="onSubmit" text color="purple" rounded>{{ action }}</v-btn>
+                <v-btn @click="onSubmit" text color="purple" >{{ action }}</v-btn>
               </div>
             </v-card-text>
           </v-row>
@@ -109,9 +114,18 @@ import { mapActions, mapGetters } from 'vuex'
   }
 </script>
 
-<style>
+<style scoped>
+#list-19 {
+  background-color: rgba(241, 211, 241, 0.935) !important;
+}
+
 /* .my-poster {
   height:  800px;
+} */
+
+/* .v-menu__content {
+  border-radius: 20px;
+
 } */
 
 </style>
