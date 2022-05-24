@@ -21,7 +21,7 @@
 
         <v-btn text rounded @click="goBack" color="purple" class="me-3">BACK</v-btn>
         
-        <v-menu v-if="isLoggedIn" >
+        <v-menu v-if="isLoggedIn" offset-y >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
@@ -33,18 +33,17 @@
             </v-btn>
           </template>
           <v-list width="150px" height="160px" color="purple lighten-5">
-            <v-subheader><v-avatar color="grey" size="40">
-                <img :src="profileImage" alt=""></v-avatar>
-                <span class="ms-2"> Hi😊 
-                  <span class="font-weight-bold">{{ username }}</span>
-                </span>
+            <v-subheader class="">
+              <!-- <v-avatar color="grey" size="40">
+                <img :src="profileImage" alt="">
+              </v-avatar> -->
+              <v-list-item-title class="text-center"> Hi😊
+                <span class="font-weight-bold purple--text"> {{ username }}</span>
+              
+              </v-list-item-title>
             </v-subheader>
             <v-list-item-group  color="purple">
               <v-list-item v-for="(item, i) in items" :key="i" dense >
-                <!-- <v-list-item-icon>
-                  <v-icon v-text="item.icon" class="me-5"></v-icon>
-                  <v-btn icon @click="moveProfile(username)">profile</v-btn> -->
-                <!-- </v-list-item-icon> -->
                 <v-list-item-content>
                   <v-list-item-title v-if="i === 0" class="text-center">
                     <button @click="moveProfile(username)" class="text-button font-weight-bold">
@@ -54,14 +53,10 @@
                   </v-list-item-title>
                   <v-list-item-title v-else-if="i === 1" class="text-center">
                     <button @click="logout" class="text-button font-weight-bold">Logout</button>
-                    <!-- <v-btn>
-                      <router-link class="text-decoration-none" :to="{ name: 'logout' }">Logout</router-link>
-                    </v-btn> -->
 
                   </v-list-item-title>
                 </v-list-item-content>
-                <!-- <v-list-item-title v-if="isLoggedIn"><v-btn icon ><router-link class="text-decoration-none" :to="{ name: 'logout' }">Logout
-                  </router-link></v-btn></v-list-item-title> -->
+
               </v-list-item>
             </v-list-item-group>
 
@@ -69,33 +64,6 @@
           
         </v-menu>
       </v-app-bar>
-
-
-
-        <!-- 돋보기 아이콘
-        <router-link :to="{ name: 'reviews' }"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="3x"/></router-link>
-      </li> -->
-
-      <!-- <li v-if="!isLoggedIn">
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </li>
-      <li v-if="!isLoggedIn">
-        <router-link :to="{ name: 'signup' }">Signup</router-link>
-      </li> -->
-
-      <!-- <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'reviewNew' }">New</router-link>
-      </li> -->
-
-      <!-- <li v-if="isLoggedIn">
-        <v-btn @click="moveProfile(username)">
-          {{ currentUser.username }}'s home
-        </v-btn>
-      </li>
-      <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'logout' }">Logout</router-link>
-      </li>
-    </ul> -->
   </nav>
 </template>
 
