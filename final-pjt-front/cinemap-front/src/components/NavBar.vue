@@ -18,7 +18,9 @@
         </v-btn>
 
         <v-spacer></v-spacer>
-        <v-btn @click="goBack">BACK</v-btn>
+
+        <v-btn text rounded @click="goBack" color="purple" class="me-3">BACK</v-btn>
+        
         <v-menu v-if="isLoggedIn" >
           <template v-slot:activator="{ on, attrs }">
             <v-btn

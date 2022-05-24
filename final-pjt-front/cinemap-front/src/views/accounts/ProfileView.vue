@@ -154,7 +154,8 @@ export default {
     ...mapActions(['fetchProfile', 'fetchCurrentUser', 'follow']),
     updateProfileImage() {
       this.dialog = false
-      this.fetchProfile({ username: this.$route.params.username })
+      // this.fetchProfile({ username: this.$route.params.username })
+      this.$router.go()
     },
     moveProfile(username) {
       this.dialog_follower = false
