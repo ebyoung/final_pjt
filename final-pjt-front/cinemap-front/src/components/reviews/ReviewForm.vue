@@ -1,67 +1,53 @@
 <template>
   <div>
-    <form @submit.prevent="onSubmit">
-      <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" min-height="800" elevation="14">
-        <v-row>
-          <v-col class="my-poster">
-            <v-img v-if="newReview.movie_title" class="mx-auto" 
-              height="741" width="500" :src="moviePoster">
-            </v-img>
-          </v-col>
-          <v-divider vertical inset></v-divider>
+    <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" min-height="800" elevation="14" shaped>
+      <v-row>
+        <v-col class="my-poster">
+          <v-img v-if="newReview.movie_title" class=" mt-3 mx-auto"
+            height="741" width="500" :src="moviePoster">
+          </v-img>
+        </v-col>
+        <v-divider vertical inset></v-divider>
 
-          <v-col class="my-auto mx-2">
-            <v-card-title class="d-flex justify-space-between">
+        <v-col>
+          <v-row class="mt-3">
+            <v-card-title class="pb-0 mx-5">
               <!-- <h2 class="d-inline">{{ review.movie_title }}</h2> -->
-              <div>
-                <!-- input 길이 늘리기!!!! -->
-                <v-autocomplete
-                  chips deletable-chips filled rounded solo
-                  v-model="newReview.movie_title"
-                  :items="moviesTitle"
+                <v-autocomplete placeholder="영화를 선택해주세요!" label="영화를 선택해주세요!"
+                  chips deletable-chips rounded solo full-width outlined filled color="purple" 
+                  v-model="newReview.movie_title" background-color="purple lighten-5"
+                  :items="moviesTitle" 
                 ></v-autocomplete>
-              </div>
-              <br>
-              <v-rating
+
+            </v-card-title>
+            <v-card-text class="mx-3">
+              <v-rating class="mx-4"
                 v-model="newReview.vote"
                 background-color="grey"
                 color="amber"
                 hover
-                large
+                medium
               ></v-rating>
-            </v-card-title>
 
-          </v-col>
-        </v-row>
-
-
-      </v-card>
-
-    </form>
-
-
-    <form @submit.prevent="onSubmit">
-
-        <!-- <label for="movie-title">movie title: </label> -->
-        <!-- <input v-model="newReview.movie_title" type="text" id="movie-title" /> -->
-      
-        <!-- vote(별점) -->
-      <div>
-        <!-- <v-textarea
-              outlined
-              label="Outlined textarea"
-            ></v-textarea> -->
-        <label for="content">review: </label>
-        <textarea v-model="newReview.content" type="text" id="content"></textarea>
-      </div>
-      <div>
-        <button>{{ action }}</button>
-      </div>
-    </form>
-
+              <v-container fluid class="mt-5">
+                <v-textarea
+                  clearable filled shaped
+                  height="480" color="purple"
+                  clear-icon="mdi-close-circle"
+                  placeholder="영화 리뷰를 작성해주세요😎"
+                  v-model="newReview.content" background-color="deep-purple lighten-4"
+                ></v-textarea>
+              </v-container>
+              <div class="d-flex justify-end">
+                <v-btn @click="onSubmit" text color="purple" rounded>{{ action }}</v-btn>
+              </div>
+            </v-card-text>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-card>
   </div>
 </template>
-
 
 
 

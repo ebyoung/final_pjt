@@ -10,7 +10,7 @@
       <v-text-field placeholder="댓글을 입력하세요!" color="purple lighten-2"
         v-model="content" required outlined filled clearable dense rounded></v-text-field>
       <v-btn text @click="onSubmit"
-        rounded class="ms-2" depressed
+        rounded class="ms-2" depressed color="deep-purple"
       >게시</v-btn>
     </div>
     

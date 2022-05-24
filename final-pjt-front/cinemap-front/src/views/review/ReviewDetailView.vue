@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" elevation="14">
+    <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" elevation="14" shaped>
       <v-row class="ms-1">
         <v-chip class="ms-2 my-3" @click="moveToProfile(getUsername)" color="purple lighten-5" text-color="purple">
-          <v-avatar color="grey" size="60">
+          <v-avatar color="purple" size="60">
           <img :src="getProfileImage" alt=""></v-avatar>
           <span class="ms-2 font-weight-bold text-button">
             {{ getUsername }}</span>
@@ -38,7 +38,7 @@
             <span v-if="isAuthor">
               <router-link :to="{ name: 'reviewEdit', params: { reviewPk } }">
                 <v-btn icon color="deep-purple">
-                  <font-awesome-icon icon="fa-solid fa-pen-to-square" />      
+                  <font-awesome-icon icon="fa-solid fa-pen-to-square" size="lg"/>      
                 </v-btn>
               </router-link>
             </span>
@@ -62,13 +62,13 @@
             <br>
             <br>
             <div class="">
-              <v-sheet color="grey lighten-4"
+              <v-sheet color="deep-purple lighten-4"
                 class = "py-3 px-4"
-                rounded
+                shaped
                 elevation="1"
                 min-height="300"
                 width="530">
-                {{ review.content }}
+                <p>{{ review.content }}</p>
               </v-sheet>
             </div>
             <br>

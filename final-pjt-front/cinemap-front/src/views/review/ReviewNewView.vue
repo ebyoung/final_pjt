@@ -1,7 +1,9 @@
 <template>
   <div>
     <br>
-    <p class="text-overline font-weight-bold ms-3 mt-5 text-center">새로운 review😃</p>
+    <div class="d-flex justify-center">
+      <v-chip x-large color="purple lighten-4" class="my-new text-h4 font-weight-bold mt-5 my-5 px-5 text-center purple--text">😃 New Review </v-chip>
+    </div>
     <review-form :review="review" action="create"></review-form>
   </div>
 </template>
@@ -27,4 +29,9 @@
   }
 </script>
 
-<style></style>
+<style>
+/* .my-new {
+  margin-left: 23rem;
+} */
+
+</style>
