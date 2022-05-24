@@ -1,6 +1,6 @@
 <template>
-  <nav>
-    <v-app-bar class="my-navbar" color="transparent" rounded>
+  <nav class="my-navbar">
+    <v-app-bar color="transparent" rounded>
         <v-app-bar-nav-icon><font-awesome-icon icon="fa-solid fa-clapperboard" color="purple" size="2x" /></v-app-bar-nav-icon>
         <!--  -->
   
@@ -109,7 +109,9 @@
 nav {
   z-index: 1;
 }
+
 /* .my-navbar {
-  background-color: #e1bee7a5;
+  position: sticky;
+  top: 4px;
 } */
 </style>

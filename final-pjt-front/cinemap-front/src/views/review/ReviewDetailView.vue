@@ -140,7 +140,7 @@
 
       moveToProfile(username) {
         router.push({ name:'profile', params: { username } })
-    },
+      },
     },
     created() {
       
