@@ -8,9 +8,12 @@
       </figcaption>
       <router-link :to="{ name: 'review', params: { reviewPk: getReview.pk } }"></router-link>
     </figure>
-    <img v-else class='white' @click="setWatchDay(date)" src="https://mblogthumb-phinf.pstatic.net/20160602_77/lllyourinlll_1464878597694YQsWS_PNG/a233fb2e4ad22000.png?type=w2" alt="">
-    <div class="middle">
-      <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" color="grey"/>
+    <div v-else @click="setWatchDay(date)">
+      <img class='white' src="https://mblogthumb-phinf.pstatic.net/20160602_77/lllyourinlll_1464878597694YQsWS_PNG/a233fb2e4ad22000.png?type=w2" alt="">
+      <div class="middle">
+        <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" color="grey"/>
+      </div>
+
     </div>
   </div>
 </template>
@@ -64,6 +67,7 @@ img {
   transition: .5s ease;
   opacity: 0;
   position: absolute;
+  cursor: pointer;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
