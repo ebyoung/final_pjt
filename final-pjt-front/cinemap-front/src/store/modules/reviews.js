@@ -37,7 +37,7 @@ export default {
     SET_WATCH_DAY: (state, watchDay) => state.watchDay = watchDay,
     SORT_REVIEWS_BY_LIKES: (state) => state.sortedReviews = state.reviews.sort((a, b) => b.review_likes_count - a.review_likes_count),
     SORT_REVIEWS_BY_COMMENTS: (state) => state.sortedReviews = state.reviews.sort((a, b) => b.review_comments_count - a.review_comments_count),
-    SORT_REVIEWS_BY_DATE: (state) => state.sortedReviews = state.reviews.sort((a, b) => a.watch_day > b.watch_day ? -1 : 1),
+    SORT_REVIEWS_BY_DATE: (state) => state.sortedReviews = state.reviews.sort((a, b) => a.updated_at > b.updated_at ? -1 : 1),
   },
 
   actions: {
