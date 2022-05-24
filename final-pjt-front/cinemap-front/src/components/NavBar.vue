@@ -18,7 +18,7 @@
         </v-btn>
 
         <v-spacer></v-spacer>
-  
+        <v-btn @click="goBack">BACK</v-btn>
         <v-menu v-if="isLoggedIn" >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -127,6 +127,9 @@
     moveProfile(username) {
       this.fetchProfile({ username })
       router.push({ name:'profile', params: { username } })
+    },
+    goBack(){
+      this.$router.go(-1)
     },
   },
   }
