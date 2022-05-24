@@ -7,3 +7,4 @@ class Movie(models.Model):
     overview = models.TextField()
     poster_path = models.CharField(max_length=100)
     video_key = models.CharField(max_length=100)
+    recommendations = models.ManyToManyField('self')
