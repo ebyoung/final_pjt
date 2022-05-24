@@ -1,5 +1,5 @@
 <template>
-  <iframe :src="videoKey" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  <iframe :src="videoKey + '&start=10'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 </template>
 
 <script>
