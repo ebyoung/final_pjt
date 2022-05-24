@@ -79,6 +79,7 @@ export default {
           const token = res.data.key
           dispatch('saveToken', token)
           dispatch('fetchCurrentUser')
+          dispatch('getUserRecommendations')
           router.push({ name: 'map' })
         })
         .catch(err => {

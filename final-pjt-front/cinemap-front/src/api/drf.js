@@ -31,6 +31,7 @@ export default {
   },
   movies: {
     movies: () => HOST + MOVIES,
-    // poster: (ImageUrl) => HOST + ImageUrl,
+    recommendations: () => HOST + MOVIES + 'recommendations/',
+    // poster: (posterUrl) => HOST + posterUrl,
   },
 }
