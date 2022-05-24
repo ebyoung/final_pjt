@@ -7,10 +7,10 @@
             <img :src="profileImage" alt=""></v-avatar>
         </span>
       </span>
-      <v-text-field placeholder="댓글을 입력하세요!"
+      <v-text-field placeholder="댓글을 입력하세요!" color="purple lighten-2"
         v-model="content" required outlined filled clearable dense rounded></v-text-field>
-      <v-btn @click="onSubmit"
-        elevation="2" small class="ms-2" depressed
+      <v-btn text @click="onSubmit"
+        rounded class="ms-2" depressed
       >게시</v-btn>
     </div>
     

@@ -35,4 +35,12 @@
   }
 </script>
 
-<style></style>
+<style>
+#app {
+  background-color: #b093e573;
+  /* padding: 15px 25px 65px; */
+
+}
+
+
+</style>

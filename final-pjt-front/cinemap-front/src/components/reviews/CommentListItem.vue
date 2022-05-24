@@ -1,22 +1,21 @@
 <template>
   <!-- https://vuetifyjs.com/en/components/lists/#three-line -->
-  <v-list-item class="ps-0">
-      <div class="">
-        <button @click="moveToProfile(comment.user.username)">
-          <v-list-item-avatar color="grey" size="30" class="ms-1 me-1">
-            <img :src="commentUserProfileImage" alt=""></v-list-item-avatar>
-          <span class="font-weight-bold">{{ comment.user.username  }}</span>
-        </button></div>
-    <!-- <v-list-item-avatar>
-      :alt="`${chat.title} avatar`"
-      <v-img :src="item.avatar"></v-img>
-    </v-list-item-avatar> -->
-    <v-list-item-content class="ms-5 py-0"><v-list-item-title v-text="comment.content"></v-list-item-title></v-list-item-content>
-    <span v-if="currentUser.username === comment.user.username" class="ms-3">
-      <button @click="deleteComment(payload)" elevation="2">
-        <font-awesome-icon icon="fa-regular fa-trash-can"/>
-      </button>
+  <v-list-item class="px-0 d-flex" dense>
+    <v-btn text rounded @click="moveToProfile(comment.user.username)" class="py-3" small color="blacknp"
+      outlined>
+      <v-list-item-avatar color="grey" size="27" class="ms-0 me-1">
+        <img :src="commentUserProfileImage" alt=""></v-list-item-avatar>
+      <span class="font-weight-bold">{{ comment.user.username  }}</span>
+    </v-btn>
+    <v-list-item-content class="mx-5 py-0 black--text">
+      {{ comment.content }}
+    </v-list-item-content>
+    <span v-if="currentUser.username === comment.user.username" class="ms-5">
+      <v-btn icon color="grey" @click="deleteComment(payload)">
+        <font-awesome-icon small icon="fa-regular fa-trash-can"/>
+      </v-btn>
     </span>
+
     <br>
   </v-list-item>
 </template>

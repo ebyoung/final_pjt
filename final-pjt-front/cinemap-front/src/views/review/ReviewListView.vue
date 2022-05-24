@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1>둘러보기</h1>
-    
-    <!-- 인기 순대로 정렬 해야함!! -> store의 getters에서 -->
+
     <v-btn :disabled='sortedByLikes' @click="getSortedByLikes">좋아요순</v-btn>
     <v-btn :disabled='sortedByComments' @click="getSortedByComments">댓글순</v-btn>
     <v-btn :disabled='sortedByDate' @click="getSortedByDate">최신순</v-btn>
@@ -12,6 +11,7 @@
       cols="2">
         <!-- 작성자 -> 프로필 이동 링크 -->
         <!-- ReviewItem.vue로 넘겨줘서 카드 형태로 만들지...? -->
+    <!-- https://vuetifyjs.com/en/components/images/#grid -->
         <ReviewItem :review="review"/>
       </v-col>
     </v-row>

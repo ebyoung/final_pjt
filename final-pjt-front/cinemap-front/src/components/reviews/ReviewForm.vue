@@ -1,44 +1,69 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <div>
-      <v-autocomplete
-        chips
-        deletable-chips
-        filled
-        rounded
-        solo
-        v-model="newReview.movie_title"
-        :items="moviesTitle"
-      ></v-autocomplete>
-      <!-- <label for="movie-title">movie title: </label> -->
-      <!-- <input v-model="newReview.movie_title" type="text" id="movie-title" /> -->
-    </div>
-    
-    <div>
-      <!-- movie_poster -->
-      <v-img v-if="newReview.movie_title" :src="moviePoster" max-width="300px"></v-img>
-    </div>
-      <!-- vote(별점) -->
-      <v-rating
-        v-model="newReview.vote"
-        background-color="grey lighten-2"
-        color="orange"
-        hover
-        large
-      ></v-rating>
-    <div>
-      <!-- <v-textarea
-            outlined
-            label="Outlined textarea"
-          ></v-textarea> -->
-      <label for="content">content: </label>
-      <textarea v-model="newReview.content" type="text" id="content"></textarea>
-    </div>
-    <div>
-      <button>{{ action }}</button>
-    </div>
-  </form>
+  <div>
+    <form @submit.prevent="onSubmit">
+      <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" min-height="800" elevation="14">
+        <v-row>
+          <v-col class="my-poster">
+            <v-img v-if="newReview.movie_title" class="mx-auto" 
+              height="741" width="500" :src="moviePoster">
+            </v-img>
+          </v-col>
+          <v-divider vertical inset></v-divider>
+
+          <v-col class="my-auto mx-2">
+            <v-card-title class="d-flex justify-space-between">
+              <!-- <h2 class="d-inline">{{ review.movie_title }}</h2> -->
+              <div>
+                <!-- input 길이 늘리기!!!! -->
+                <v-autocomplete
+                  chips deletable-chips filled rounded solo
+                  v-model="newReview.movie_title"
+                  :items="moviesTitle"
+                ></v-autocomplete>
+              </div>
+              <br>
+              <v-rating
+                v-model="newReview.vote"
+                background-color="grey"
+                color="amber"
+                hover
+                large
+              ></v-rating>
+            </v-card-title>
+
+          </v-col>
+        </v-row>
+
+
+      </v-card>
+
+    </form>
+
+
+    <form @submit.prevent="onSubmit">
+
+        <!-- <label for="movie-title">movie title: </label> -->
+        <!-- <input v-model="newReview.movie_title" type="text" id="movie-title" /> -->
+      
+        <!-- vote(별점) -->
+      <div>
+        <!-- <v-textarea
+              outlined
+              label="Outlined textarea"
+            ></v-textarea> -->
+        <label for="content">review: </label>
+        <textarea v-model="newReview.content" type="text" id="content"></textarea>
+      </div>
+      <div>
+        <button>{{ action }}</button>
+      </div>
+    </form>
+
+  </div>
 </template>
+
+
+
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
@@ -99,6 +124,8 @@ import { mapActions, mapGetters } from 'vuex'
 </script>
 
 <style>
-
+/* .my-poster {
+  height:  800px;
+} */
 
 </style>

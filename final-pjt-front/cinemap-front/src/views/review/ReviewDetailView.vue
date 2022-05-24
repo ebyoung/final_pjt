@@ -1,25 +1,23 @@
 <template>
   <div>
-    <v-card class="mx-auto my-12" max-width="1200">
-      <div class="d-flex ms-2 my-3">
-        <v-avatar color="grey" size="60">
-        <img :src="getProfileImage" alt=""></v-avatar>
-        <h1 class="ms-2"><button @click="moveToProfile(getUsername)">
-            {{ getUsername }}
-          </button></h1>
-      </div>
-      
-          
-        <!-- user profile_image, username -->
-      <!-- 
-      <br> --> 
+    <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" elevation="14">
+      <v-row class="ms-1">
+        <v-chip class="ms-2 my-3" @click="moveToProfile(getUsername)" color="purple lighten-5" text-color="purple">
+          <v-avatar color="grey" size="60">
+          <img :src="getProfileImage" alt=""></v-avatar>
+          <span class="ms-2 font-weight-bold text-button">
+            {{ getUsername }}</span>
+        </v-chip>
+      </v-row>
+      <v-divider class="mt-2 mb-3"></v-divider>
       <v-row>
         <v-col>
-          <v-img
+          <v-img class="mx-auto"
             height="741" width="500"
-            :src="review.movie_poster"
+            :src="review.movie_poster" 
           ></v-img>
         </v-col>
+        <v-divider vertical inset></v-divider>
 
         <v-col class="my-auto mx-2">
           <v-card-title class="d-flex justify-space-between">
@@ -39,9 +37,9 @@
             </span>
             <span v-if="isAuthor">
               <router-link :to="{ name: 'reviewEdit', params: { reviewPk } }">
-                <button>
+                <v-btn icon color="deep-purple">
                   <font-awesome-icon icon="fa-solid fa-pen-to-square" />      
-                </button>
+                </v-btn>
               </router-link>
             </span>
           </v-card-title>
@@ -60,25 +58,25 @@
               ></v-rating>
             </v-row>
 
-            <!-- <div class="my-4 text-subtitle-1">
-              $ • Italian, Cafe
-            </div> -->
+          
             <br>
             <br>
-            <v-sheet color="grey lighten-4"
-              class = "py-3 px-4"
-              rounded
-              elevation="1"
-              min-height="300"
-              width="500">
-              {{ review.content }}
-            </v-sheet>
+            <div class="">
+              <v-sheet color="grey lighten-4"
+                class = "py-3 px-4"
+                rounded
+                elevation="1"
+                min-height="300"
+                width="530">
+                {{ review.content }}
+              </v-sheet>
+            </div>
             <br>
             <!-- review Edit/Delete UI -->
             <div v-if="isAuthor" class="d-flex justify-end my-2" >
-              <button @click="deleteReview(reviewPk)" small>
+              <v-btn icon @click="deleteReview(reviewPk)" small color="deep-purple">
                 <font-awesome-icon icon="fa-regular fa-trash-can" size="lg"/>
-              </button>
+              </v-btn>
             </div>
           </v-card-text>
 
@@ -152,4 +150,7 @@
   }
 </script>
 
-<style></style>
+<style>
+
+
+</style>

@@ -1,10 +1,12 @@
 <template>
   <nav>
-    <v-app-bar color="deep-purple accent-1" dark rounded>
-        <v-app-bar-nav-icon><font-awesome-icon icon="fa-solid fa-clapperboard" size="2x" /></v-app-bar-nav-icon>
+    <v-app-bar class="my-navbar" color="transparent" rounded>
+        <v-app-bar-nav-icon><font-awesome-icon icon="fa-solid fa-clapperboard" color="purple" size="2x" /></v-app-bar-nav-icon>
         <!--  -->
   
-        <v-toolbar-title>Cinemap</v-toolbar-title>
+        <v-toolbar-title>
+          <span class="text-lg-button purple--text font-weight-bold">Cinemap</span>
+          </v-toolbar-title>
 
         <!-- <v-btn icon>
           <v-icon>mdi-heart</v-icon>
@@ -12,7 +14,7 @@
   
         <v-btn icon class="ms-2">
           <!-- 돋보기 아이콘 <font-awesome-icon icon="fa-solid fa-magnifying-glass" size="3x"/>-->
-          <router-link :to="{ name: 'reviews' }"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="2x" color="white"/></router-link>
+          <router-link :to="{ name: 'reviews' }"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="2x" color="purple"/></router-link>
         </v-btn>
 
         <v-spacer></v-spacer>
@@ -134,4 +136,7 @@
 nav {
   z-index: 1;
 }
+/* .my-navbar {
+  background-color: #e1bee7a5;
+} */
 </style>

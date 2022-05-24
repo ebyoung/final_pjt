@@ -2,7 +2,7 @@
   <div class="container">
     <v-row justify="center">
       <figure class="snip1376">
-        <img :src="profileImageUrl" alt="profileImage" />
+        <v-img :src="profileImageUrl" alt="profileImage" />
         <figcaption>
           <h2>{{ profile.username }}</h2>
           <pre>{{ profile.introduction }}</pre>

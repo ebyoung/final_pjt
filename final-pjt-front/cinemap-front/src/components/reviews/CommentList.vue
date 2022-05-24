@@ -1,17 +1,19 @@
 <template>
-  <div class="comment-list">
+  <v-list rounded color="purple lighten-5">
     
     <comment-form></comment-form>
-    <v-list>
+    <v-list-item-group rounded class="d-flex">
       <!-- https://vuetifyjs.com/en/components/lists/#three-line -->
-      <comment-list-item 
-        v-for="comment in comments" 
-        :comment="comment" 
-        :key="comment.id">
-      </comment-list-item>        
-    </v-list>
+      <div>
+        <comment-list-item 
+          v-for="comment in comments" 
+          :comment="comment" 
+          :key="comment.id">
+        </comment-list-item>        
+      </div>
+    </v-list-item-group>
 
-  </div>
+  </v-list>
 </template>
 
 <script>
@@ -29,6 +31,6 @@ export default {
 
 <style>
 /* .comment-list {
-  border: 1px solid blue;
+  background-color: #b093e573;
 } */
 </style>

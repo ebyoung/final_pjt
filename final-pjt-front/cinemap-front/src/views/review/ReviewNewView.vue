@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>New Review</h1>
+    <br>
+    <p class="text-overline font-weight-bold ms-3 mt-5 text-center">새로운 review😃</p>
     <review-form :review="review" action="create"></review-form>
   </div>
 </template>
