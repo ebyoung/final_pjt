@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='day-review'>
     <figure v-if="getReview" class="snip1395">
       <img :src="getReview.movie_poster" alt="moviePoster" />
       <figcaption>
@@ -8,7 +8,10 @@
       </figcaption>
       <router-link :to="{ name: 'review', params: { reviewPk: getReview.pk } }"></router-link>
     </figure>
-    <img v-else @click="setWatchDay(date)" src="https://mblogthumb-phinf.pstatic.net/20160602_77/lllyourinlll_1464878597694YQsWS_PNG/a233fb2e4ad22000.png?type=w2" alt="">
+    <img v-else class='white' @click="setWatchDay(date)" src="https://mblogthumb-phinf.pstatic.net/20160602_77/lllyourinlll_1464878597694YQsWS_PNG/a233fb2e4ad22000.png?type=w2" alt="">
+    <div class="middle">
+      <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" color="grey"/>
+    </div>
   </div>
 </template>
 
@@ -47,6 +50,35 @@ img {
   padding: 0;
   cursor: pointer;
 }
+
+.white {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.day-review:hover .white {
+  opacity: 0.3;
+}
+
+.day-review:hover .middle {
+  opacity: 1;
+}
+
 .snip1395 {
   font-family: 'Raleway', Arial, sans-serif;
   position: relative;
