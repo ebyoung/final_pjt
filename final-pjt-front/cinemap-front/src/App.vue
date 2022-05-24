@@ -37,7 +37,8 @@
 
 <style>
 #app {
-  background-color: #b093e573;
+  background: linear-gradient(#b093e573, rgb(252, 134, 252));
+  background: linear-gradient(70deg, blue, pink);
   /* padding: 15px 25px 65px; */
 
 }

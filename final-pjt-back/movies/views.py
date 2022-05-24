@@ -26,13 +26,13 @@ def get_data(request):
 
     # db에 영화 데이터를 저장
     for line in data_csv:
-        idx, movie_id, title, overview, poster_path, video_key = line
-        Movie.objects.create(movie_id=int(movie_id), title=title, overview=overview, poster_path=poster_path, video_key=video_key)
+        idx, movie_id, title, poster_path, video_key = line
+        Movie.objects.create(movie_id=int(movie_id), title=title, poster_path=poster_path, video_key=video_key)
 
-    # 중복 데이터 제거
+    # 중복 데이터 제거: 필요없음
     # movies = {}
     # for line in data_csv:
-        # idx, movie_id, title, overview, poster_path, video_key = line
+        # idx, movie_id, title, poster_path, video_key = line
     #     movies[title] = movies.get(title, 0) + 1
     # for key, val in movies.items():
     #     if val > 1:
@@ -79,7 +79,6 @@ def recommendations(request):
         data = {
             'movieId': movie.movie_id,
             'title': movie.title,
-            'overview': movie.overview,
             'posterUrl': f'https://image.tmdb.org/t/p/w500/{movie.poster_path}',
             'videoUrl': f'https://www.youtube.com/embed/{movie.video_key}?controls=0&rel=0&autoplay=1&mute=1&loop=1&playlist={movie.video_key}',
         }

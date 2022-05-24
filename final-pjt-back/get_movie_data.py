@@ -11,7 +11,7 @@ def get_request(path, **kwargs):
     url = 'https://api.themoviedb.org/3'
     params = {
         'api_key':'7e70884f7539c7fbdc8e1f31d3f488cf',
-        'language':'ko-KR'
+        # 'language':'ko-KR'
     }
 
     params.update(kwargs)
@@ -22,10 +22,10 @@ def get_request(path, **kwargs):
     return data
 
 # 영화데이터 받아와 csv로 저장
-# fields = ['id', 'title', 'overview', 'poster_path', 'video_key']
+# fields = ['id', 'title', 'poster_path', 'video_key']
 # result_data = set()
 # for path in ['now_playing', 'popular', 'top_rated']:
-#     for i in range(1, 5):
+#     for i in range(1, 6):
 #         movies = get_request(f'/movie/{path}', page=i).get('results')
 #         for movie in movies:
 #             id = movie['id']
@@ -33,10 +33,10 @@ def get_request(path, **kwargs):
 #             if video.get('results'):
 #                 poster = 'https://image.tmdb.org/t/p/w500/' + movie['poster_path']
 #                 video = f"https://www.youtube.com/embed/{video['results'][0]['key']}?controls=1&rel=0&mute=1&autoplay=1&loop=1&playlist={video['results'][0]['key']}"
-#                 result = (id, movie['title'], movie['overview'], poster, video)
+#                 result = (id, movie['title'], poster, video)
 #                 result_data.add(result)
 #     print('■')
-#
+# #
 # df = pd.DataFrame(
 #     list(result_data),
 #     columns=fields)
@@ -56,7 +56,7 @@ for id in id_col:
     while len(recom_list) < 7:
         results = get_request(f'/movie/{id}/recommendations', page=page).get('results')
         for result in results:
-            if result['id'] in id_col and result['id'] not in recom_list:
+            if result['id'] in id_col and result['id'] not in recom_list and result['id'] != id:
                 recom_list.append(result['id'])
         page += 1
         if page > 10:
