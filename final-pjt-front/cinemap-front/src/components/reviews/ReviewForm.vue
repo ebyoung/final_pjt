@@ -9,7 +9,7 @@
         </v-col>
         <v-col v-else class="d-flex align-center justify-center">
           <div><span class="purple--text text-button">
-            영화를 검색해주세요!</span></div>
+            영화를 선택하시면 포스터가 짠!🤩</span></div>
         </v-col>
 
         <v-divider vertical inset></v-divider>
