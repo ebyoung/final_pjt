@@ -59,7 +59,6 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-
   export default {
     name: 'ReviewForm',
     props: {
@@ -123,9 +122,5 @@ import { mapActions, mapGetters } from 'vuex'
   height:  800px;
 } */
 
-/* .v-menu__content {
-  border-radius: 20px;
-
-} */
 
 </style>

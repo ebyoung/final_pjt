@@ -114,6 +114,7 @@ export default {
         )
     },
 
+    
     setWatchDay({ commit }, watchDay) {
       commit('SET_WATCH_DAY', watchDay)
       router.push({ name: 'reviewNew' })
