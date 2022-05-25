@@ -1,10 +1,6 @@
 <template>
   <div class="container">
     <v-row justify="center">
-
-
-
-
       <div class="snip1376  me-5">
         <div class="text-center">
             <v-avatar color="white" size="250" class="mb-5">

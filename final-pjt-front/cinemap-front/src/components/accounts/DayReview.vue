@@ -2,14 +2,18 @@
   <div class='day-review'>
     <figure v-if="getReview" class="snip1395">
       <img :src="getReview.movie_poster" alt="moviePoster" />
-      <figcaption>
+      <figcaption class="my-movie-title">
         <h2>{{ getReview.movie_title }}</h2>
-        <pre>{{ '★'.repeat(getReview.vote) + '☆'.repeat(5 - getReview.vote) }}</pre>
+
+        <pre class="my-pre">{{ '★'.repeat(getReview.vote) + '☆'.repeat(5 - getReview.vote) }}</pre>
       </figcaption>
       <router-link :to="{ name: 'review', params: { reviewPk: getReview.pk } }"></router-link>
     </figure>
-    <div v-else @click="setWatchDay(date)">
-      <img class='white' src="https://mblogthumb-phinf.pstatic.net/20160602_77/lllyourinlll_1464878597694YQsWS_PNG/a233fb2e4ad22000.png?type=w2" alt="">
+
+    <div v-else class="img-space" @click="setWatchDay(date)">
+      <img class='white' src="@/assets/purple.jpg" alt="">
+      <!-- #E8E6F0 -->
+      <!-- https://mblogthumb-phinf.pstatic.net/20160602_77/lllyourinlll_1464878597694YQsWS_PNG/a233fb2e4ad22000.png?type=w2 -->
       <div class="middle">
         <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" color="grey"/>
       </div>
@@ -47,20 +51,37 @@ export default {
 <style scoped>
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 @import url(https://fonts.googleapis.com/css?family=Julius+Sans+One);
+
+.img-space {
+  width: 112%;
+}
+
 img {
-  width: 112.281px;
+  /* width: 112.281px; */
+  width: 100%;
+  object-fit: fill;
   height: 167.292px;
   padding: 0;
   cursor: pointer;
+  border-radius: 10px;
+  
+
+}
+
+figcaption {
+  border-radius: 10px;
+  
 }
 
 .white {
   opacity: 1;
   display: block;
   width: 100%;
-  height: auto;
+  /* height: ; */
+  
   transition: .5s ease;
   backface-visibility: hidden;
+
 }
 
 .middle {
@@ -73,6 +94,7 @@ img {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+  
 }
 
 .day-review:hover .white {
@@ -84,7 +106,7 @@ img {
 }
 
 .snip1395 {
-  font-family: 'Raleway', Arial, sans-serif;
+  font-family:sans-serif ;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -132,20 +154,26 @@ img {
 .snip1395 h2,
 .snip1395 pre {
   font-size: 16px;
+  font-family:sans-serif;
+  text-align: center;
+  color: whitesmoke;
   margin: 0;
   width: 100%;
   opacity: 0;
   padding: 20px;
 }
-.snip1395 h2 {
-  font-family: 'Julius Sans One', Arial, sans-serif;
+
+/* .snip1395 h2 {
+  font-family:fantasy;
   word-break: keep-all;
-}
+} */
+
 .snip1395 pre {
   position: absolute;
   bottom: 0;
   padding-left: 22px;
   font-size: 0.8em;
+  color: rgb(255, 247, 0);
   letter-spacing: 1px;
   text-align: right;
 }

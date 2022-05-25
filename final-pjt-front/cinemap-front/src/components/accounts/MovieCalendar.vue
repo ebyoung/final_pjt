@@ -1,28 +1,30 @@
 <template>
   <div class="calendar">
-      <div class="header">
-          <div class="year-month" >{{ viewYear }}년 {{ viewMonth + 1 }}월</div>
-          <div class="nav">
-              <button class="nav-btn go-prev" @click="prevMonth">&lt;</button>
-              <button class="nav-btn go-today" @click="goToday">Today</button>
-              <button class="nav-btn go-next" @click="nextMonth">&gt;</button>
-          </div>
+      <div class="year-month">
+        <!-- <div>{{ viewYear}} 년</div> -->
+        <div class="ms-5">{{ viewMonth + 1 }} 월</div>
       </div>
-      <div class="main">
+      <br>
+      <!-- <div class="d-flex justify-end" >{{ viewYear}}</div> -->
+      <div class="d-flex justify-end">
+        <v-btn-toggle elevation="20" dense background-color="transparent" class="nav">
+          <v-btn text class="nav-btn go-prev pink--text text--darken-2" @click="prevMonth">&lt;</v-btn>
+          <v-btn text class="nav-btn go-today pink--text text--lighten-2" @click="goToday">이번 달</v-btn>
+          <v-btn  text class="nav-btn go-next pink--text text--darken-2" @click="nextMonth">&gt;</v-btn>
+        </v-btn-toggle>
+      </div>
+    
+      <div class="">
           <div class="days">
-              <v-card
-                elevation="3"
-                outlined
-                tile
-                class="day"
-                v-for="(day, idx) in ['일', '월', '화', '수', '목', '금', '토']" :key="idx"
-              >{{ day }}</v-card>
+              <v-sheet  class="day pt-1" 
+                v-for="(day, idx) in ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']" :key="idx"
+              >{{ day }}
+              </v-sheet>
           </div>
+          
           <div class="dates">
-            <v-card
-              elevation="3"
-              outlined
-              tile
+            <v-card outlined elevation="3"
+              rounded
               width="calc(100% / 7)"
               height="167.5px"
               class="prevDates"
@@ -30,11 +32,13 @@
             >
               <p>{{ date }}</p>
               <DayReview :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth}`: viewMonth }-${date<10 ? `0${date}`:date}`" :idx="idx" class="m-5"/>
-            </v-card>
+            </v-card>      
+
+
             <v-card
               elevation="3"
               outlined
-              tile
+              rounded
               width="calc(100% / 7)"
               height="167.5px"
               class="thisDates"
@@ -43,13 +47,14 @@
               <p>{{ date }}</p>
               <DayReview :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth+1}`: viewMonth+1 }-${date<10 ? `0${date}`:date}`" :idx="idx" class="m-5"/>
             </v-card>
+
+            
+
             <v-card
               elevation="3"
-              outlined
-              tile
+              outlined rounded
               width="calc(100% / 7)"
-              height="167.5px"
-              class="nextDates"
+              height="167.5px" class="nextDates"
               v-for="(date, idx) in nextDates" :key="idx"
             >
               <p>{{ date }}</p>
@@ -57,10 +62,14 @@
               :date="`${viewYear}-${viewMonth<9 ? `0${viewMonth+2}`: viewMonth+2 }-${date<10 ? `0${date}`:date}`"
               :idx="idx" class="m-5"/>
             </v-card>
+
+            
           </div>
       </div>
   </div>
 </template>
+
+
 
 <script>
 import DayReview from '@/components/accounts/DayReview.vue'
@@ -158,23 +167,29 @@ export default {
 
 .calendar {
   width: 800px;
-  margin: 50px;
+  margin: 80px;
+  margin-left: 100px;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 }
 
 .year-month {
-  font-size: 35px;
+  font-size: 30px;
+  text-align: center;
+  font-family:sans-serif;
+  font-weight: bold;
+  color: rgb(130, 77, 183);
 }
 
 .nav {
   display: flex;
-  border: 1px solid #333333;
-  border-radius: 5px;
+  /* border: 1px solid #333333; */
+  background-color: transparent;
+  border-radius: 10px;
 }
 
 .nav-btn {
@@ -183,7 +198,9 @@ export default {
   border: none;
   font-size: 16px;
   line-height: 34px;
+  font-weight: bolder;
   background-color: transparent;
+
   cursor: pointer;
 }
 
@@ -203,20 +220,35 @@ export default {
   aspect-ratio: 2.5/1;
   text-align: center;
   padding-top: 1.5%;
+  background-color: transparent;
+  font-weight: bolder;
+  color: rgb(192, 159, 224);
 }
 
 .dates {
   display: flex;
   flex-flow: row wrap;
+  background-color: transparent;
 }
 
 p {
   width: 20%;
   position: absolute;
-  background: white;
+  background:transparent;
+  /* color: rgb(147, 103, 47); */
+  color: rgba(203, 48, 195, 0.295);
+  font-weight: bold;
   text-align: center;
-  font-weight: bolder;
+  font-weight:light;
+  border-radius: 10px;
   z-index: 2;
+}
+
+.nextDates, .prevDates, .thisDates {
+  display: flex;
+  /* justify-content: end; */
+  padding-left: 0px;
+  border: 2px solid whitesmoke;
 }
 
 .prevDates > p,
