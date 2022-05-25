@@ -1,107 +1,219 @@
 <template>
   <div class="distribution-map">
     <img src="@/assets/worldmapcolor.png" alt="" />
-    <font-awesome-icon icon="fa-solid fa-location-dot" />
-    <button class="map-point" style="top:15%;left:35%">
-      <div class="content">
-        <div class="centered-y">
-          <h2>A Place</h2>
-          <p>You can put plenty of details in here. In the original, I listed contact information and linked phone numbers and email addresses.</p>
+
+    <MapPoint :top='37' :left='11' :targetMovie='mapMovies[0]'/>
+    <MapPoint :top='25' :left='43' :targetMovie='mapMovies[0]'/>
+
+    <div v-bind:class="{ active: isActive }" class="toast" >
+        <div class="toast-content">
+          <div class="message">
+            <div class="d-flex justify-space-between">
+              <span class="text text-1">좋아하실 만한 영화가 있어요.</span>
+              <font-awesome-icon icon="fa-solid fa-xmark close" @click="closeToast"/>
+            </div>
+            <span class="text text-2">{{ selected.title }}</span>
+          </div>
         </div>
-      </div>
-    </button>
+        <div v-bind:class="{ active: isActive }" class="progress"></div>
+    </div>
+    <button class="purple" @click="getRecommend">맞춤 추천 받기</button>
   </div>
 </template>
 
 <script>
-export default {
+  import MapPoint from '@/components/recommendations/MapPoint.vue'
+  import { mapActions, mapGetters } from 'vuex'
+  import _ from 'lodash'
 
-}
+  export default {
+    name: 'MapView',
+    data() {
+      return {
+        selected: {},
+        isActive: false,
+        timer1: '',
+        timer2: '',
+      }
+    },
+    components: {
+      MapPoint,
+    },
+    computed: {
+      ...mapGetters(['mapMovies', 'userRecommendations']),
+    },
+    methods: {
+      ...mapActions(['getMapMovies', 'getUserRecommendations']),
+      selectRecommendMovie() {
+        if (this.userRecommendations.length > 0) {
+          return _.sample(this.userRecommendations)
+        }
+         else {
+          return { title: '리뷰를 작성하시면 알려드릴게요.' }
+        }
+      },
+      getRecommend() {
+        this.selected = this.selectRecommendMovie()
+        this.isActive = true
+        this.timer1 = setTimeout(() => {
+          this.isActive = false
+        }, 5000)
+        this.timer2 = setTimeout(() => {
+          this.isActive = false
+        }, 5300);
+      },
+      closeToast() {
+        this.isActive = false
+        clearTimeout(this.timer1)
+        clearTimeout(this.timer2)
+      },
+    },
+    created() {
+      this.getMapMovies()
+      this.getUserRecommendations()
+      setTimeout(() => {
+          this.getRecommend()
+        }, 200)
+    },
+  }
 </script>
 
 <style scoped>
-div, img {
-  position: relative;
-  box-sizing: border-box;
-}
+  div, img {
+    position: relative;
+    box-sizing: border-box;
+  }
+  .distribution-map {
+    position: relative;
+    width: 70%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  .distribution-map > img {
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
 
-p {
-  font-size: 12pt;
-  margin-bottom: 12pt;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+  }
 
-.centered-y {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  body{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f2f2f2;
+      overflow: hidden;
+  }
 
-.distribution-map {
-  position: relative;
-  width: 70%;
-  padding: 20px;
-  box-sizing: border-box;
-  margin: 0 auto;
-}
-.distribution-map > img {
-  width: 100%;
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-.distribution-map .map-point {
-  cursor: pointer;
-  outline: none;
-  z-index: 0;
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  opacity: 0.8;
-  transform: translate(-50%, -50%);
-  -moz-transition: opacity 0.25s ease-in-out 0.25s, width 0.25s ease-in-out 0.25s, height 0.25s ease-in-out 0.25s, z-index 0.25s ease-in-out 0.25s;
-  -o-transition: opacity 0.25s ease-in-out 0.25s, width 0.25s ease-in-out 0.25s, height 0.25s ease-in-out 0.25s, z-index 0.25s ease-in-out 0.25s;
-  -webkit-transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out, z-index 0.25s ease-in-out;
-  -webkit-transition-delay: 0.25s, 0.25s, 0.25s, 0.25s;
-  transition: opacity 0.25s ease-in-out 0.25s, width 0.25s ease-in-out 0.25s, height 0.25s ease-in-out 0.25s, z-index 0.25s ease-in-out 0.25s;
-  background: rgba(26, 26, 26, 0.85);
-  border: 5px solid #7fcff7;
-}
-.distribution-map .map-point .content {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
-  width: 100%;
-  height: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow: overlay;
-}
-.distribution-map .map-point:active, .distribution-map .map-point:focus {
-  margin: 0;
-  padding: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
-  width: 300px;
-  height: 220px;
-  color: #e5e5e5;
-  z-index: 1;
-  transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out;
-}
-.distribution-map .map-point:active .content, .distribution-map .map-point:focus .content {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
-  -moz-transition: opacity 0.25s ease-in-out 0.25s, height 0.25s ease-in-out, overflow 0.25s ease-in-out;
-  -o-transition: opacity 0.25s ease-in-out 0.25s, height 0.25s ease-in-out, overflow 0.25s ease-in-out;
-  -webkit-transition: opacity 0.25s ease-in-out, height 0.25s ease-in-out, overflow 0.25s ease-in-out;
-  -webkit-transition-delay: 0.25s, 0s, 0s;
-  transition: opacity 0.25s ease-in-out 0.25s, height 0.25s ease-in-out, overflow 0.25s ease-in-out;
-  overflow: hidden;
-}
-.distribution-map .map-point:active .content a:hover, .distribution-map .map-point:active .content a:active, .distribution-map .map-point:focus .content a:hover, .distribution-map .map-point:focus .content a:active {
-  color: #afe1fa;
-}
+  .toast{
+      position: absolute;
+      top: 80%;
+      right: 30px;
+      border-radius: 10px;
+      background: #fff;
+      padding: 20px 35px 20px 25px;
+      border-left: 4px solid #4070f4;
+      border-top: 4px solid #4070f4;
+      border-right: 4px solid #4070f4;
+      overflow: hidden;
+      transform: translateX(calc(200%));
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  }
 
+  .toast.active{
+      transform: translateX(60%);
+  }
+
+  .toast .toast-content{
+      display: flex;
+      align-items: center;
+  }
+
+  .toast-content .message{
+      display: flex;
+      flex-direction: column;
+      margin: 0 20px;
+  }
+
+  .message .text{
+      font-size: 20px;
+      font-weight: 400;;
+      color: #666666;
+  }
+
+  .message .text.text-1{
+      font-weight: 600;
+      color: #333;
+  }
+
+  .toast .close{
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      padding: 5px;
+      cursor: pointer;
+      opacity: 0.7;
+  }
+
+  .toast .close:hover{
+      opacity: 1;
+  }
+
+  .toast .progress{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: #ddd;
+  }
+
+  .toast .progress:before{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #4070f4;
+  }
+
+  .progress.active:before{
+      animation: progress 5s linear forwards;
+  }
+
+  @keyframes progress {
+      100%{
+          right: 100%;
+      }
+  }
+
+  button{
+      padding: 12px 20px;
+      font-size: 20px;
+      outline: none;
+      border: none;
+      background-color: #4070f4;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+  }
+
+  button:hover{
+      background-color: #0e4bf1;
+  }
+
+  .toast.active ~ button{
+      pointer-events: none;
+  }
 </style>

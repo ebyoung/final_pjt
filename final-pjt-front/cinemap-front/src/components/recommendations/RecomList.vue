@@ -31,7 +31,8 @@ export default {
   }),
   computed: {
     slides() {
-        return 7
+      console.log(Math.min(this.movie.recommendations.length, 7))
+        return Math.min(this.movie.recommendations.length, 7)
       },
     },
   methods: {

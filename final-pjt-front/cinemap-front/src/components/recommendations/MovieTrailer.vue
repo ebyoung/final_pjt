@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 iframe {
   /* position: absolute; */
   /* margin-top: -150px; */
