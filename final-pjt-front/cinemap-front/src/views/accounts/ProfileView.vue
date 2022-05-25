@@ -256,8 +256,7 @@ export default {
   background-image: linear-gradient(to bottom, transparent 0%, #38ca25 100%);
 } */
 
-.snip1376 h2,
-.{
+.snip1376 h2 {
   margin: 0 0 10px;
 }
 
