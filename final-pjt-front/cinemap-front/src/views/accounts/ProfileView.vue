@@ -215,7 +215,7 @@ export default {
   position: relative;
   overflow: hidden;
   margin: 10px;
-  margin-top: 127px;
+  margin-top: 50px;
   width: 300px;
   color: #141414;
   text-align: left;

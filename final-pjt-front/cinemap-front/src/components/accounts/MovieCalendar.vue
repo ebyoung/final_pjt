@@ -167,8 +167,7 @@ export default {
 
 .calendar {
   width: 800px;
-  margin: 80px;
-  margin-left: 100px;
+  margin: 50px 0 0 50px;
 }
 
 .header {
