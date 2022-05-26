@@ -9,7 +9,6 @@ import ReviewDetailView from '@/views/review/ReviewDetailView.vue'
 import ReviewNewView from '@/views/review/ReviewNewView'
 import ReviewEditView from '@/views/review/ReviewEditView'
 
-import ListView from '@/views/recommendations/ListView'
 import MapView from '@/views/recommendations/MapView'
 import RecomView from '@/views/recommendations/RecomView'
 
@@ -81,11 +80,6 @@ const routes = [
     path: '/reviews/:reviewPk/edit',
     name: 'reviewEdit',
     component: ReviewEditView
-  },
-  {
-    path: '/ListView',
-    name: 'list',
-    component: ListView
   },
   {
     path: '/map',

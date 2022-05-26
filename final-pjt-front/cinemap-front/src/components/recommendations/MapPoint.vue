@@ -1,6 +1,6 @@
 <template>
   <div :style='`position:absolute;top:${top}%;left:${left}%;`'>
-    <font-awesome-icon @click="openCarousel" icon="fa-solid fa-location-dot"/>
+    <v-btn icon @click="openCarousel"><font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="purple"/></v-btn>
     <v-carousel
       v-if="isCarousel"
       cycle
@@ -67,9 +67,6 @@ export default {
       this.isCarousel = !this.isCarousel
     },
   },
-  created() {
-    this.fetchMovies()
-  }
 }
 </script>
 
@@ -101,6 +98,7 @@ export default {
 
 .carousel-item {
   border-radius: 20px;
+  width: 480px;
 }
 
 #app > div > div > div:nth-child(2) {

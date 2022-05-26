@@ -3,8 +3,20 @@
     <h1>CINEMAP</h1>
     <img src="@/assets/worldmapcolorborder.png" alt="" />
 
-    <MapPoint :top='37' :left='11' :targetMovie='mapMovies[0]'/>
-    <MapPoint :top='25' :left='43' :targetMovie='mapMovies[0]'/>
+    <MapPoint :top='29' :left='22' :targetMovie='mapMovies[0]'/>
+    <MapPoint :top='38' :left='74' :targetMovie='mapMovies[1]'/>
+    <MapPoint :top='34' :left='81' :targetMovie='mapMovies[2]'/>
+    <MapPoint :top='31' :left='11' :targetMovie='mapMovies[3]'/>
+    <!-- 어바웃 -->
+    <MapPoint :top='23' :left='43' :targetMovie='mapMovies[4]'/>
+    <!-- 먹고기도하고 -->
+    <MapPoint :top='56' :left='77' :targetMovie='mapMovies[5]'/>
+    <!-- 월터 -->
+    <MapPoint :top='18' :left='40' :targetMovie='mapMovies[6]'/>
+    <!-- 비포선셋 -->
+    <MapPoint :top='25' :left='45' :targetMovie='mapMovies[7]'/>
+    <!-- 호빗 -->
+    <MapPoint :top='74' :left='90' :targetMovie='mapMovies[8]'/>
 
     <div v-bind:class="{ active: isActive }" class="toast" >
         <div class="toast-content">
