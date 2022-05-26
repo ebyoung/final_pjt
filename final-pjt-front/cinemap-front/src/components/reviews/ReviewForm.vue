@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" min-height="800" elevation="14" shaped>
+    <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1100" min-height="600" elevation="14" shaped>
       <v-row>
         <v-col v-if="newReview.movie_title" class="my-poster">
-          <v-img  class=" mt-3 mx-auto"
-            height="741" width="500" :src="moviePoster">
+          <v-img  class="mt-3 mx-auto"
+            height="593" width="400" :src="moviePoster">
           </v-img>
         </v-col>
         <v-col v-else class="d-flex align-center justify-center">
@@ -37,7 +37,7 @@
               <v-container fluid class="mt-5">
                 <v-textarea
                   clearable filled shaped
-                  height="480" color="purple"
+                  height="420" color="purple"
                   clear-icon="mdi-close-circle"
                   placeholder="영화 리뷰를 작성해주세요😎"
                   v-model="newReview.content" background-color="deep-purple lighten-4"

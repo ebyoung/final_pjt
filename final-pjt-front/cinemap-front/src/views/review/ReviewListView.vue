@@ -7,7 +7,7 @@
     <!-- v-menu 쓸 수 있음! -->
     <br>
   
-    <v-card class="my-card mx-auto mb-4 pt-4" width="1600" elevation="15" shaped >
+    <v-card class="my-card mx-auto mb-4 pt-4" width="1300" elevation="15" shaped >
       <div class="d-flex justify-end me-5">
         <v-btn-toggle rounded color="deep-purple accent-3" group class="me-5">
           <v-btn text v-if='sortedByLikes' color="purple" @click="getSortedByLikes">좋아요 수</v-btn>

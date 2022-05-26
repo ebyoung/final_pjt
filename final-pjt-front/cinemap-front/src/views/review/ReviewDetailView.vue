@@ -1,6 +1,12 @@
 <template>
   <div>
-    <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1200" elevation="14" shaped>
+        <br>
+    <div class="d-flex justify-center">
+      <v-chip x-large color="purple lighten-4" class="my-edit text-h4 font-weight-bold mt-5 my-5 px-5 text-center purple--text">😃 Review </v-chip>
+    </div>
+    <!-- v-menu 쓸 수 있음! -->
+    <br>
+    <v-card class="mx-auto my-10" color="purple lighten-5" max-width="1100" elevation="14" shaped>
       <v-row class="ms-1">
         <v-chip class="ms-2 my-3" @click="moveToProfile(getUsername)" color="purple lighten-5" text-color="purple">
           <v-avatar color="purple" size="60">
@@ -13,14 +19,14 @@
       <v-row>
         <v-col>
           <v-img class="mx-auto"
-            height="741" width="500"
+            height="593" width="400"
             :src="review.movie_poster" 
           ></v-img>
         </v-col>
         <v-divider vertical inset></v-divider>
 
         <v-col class="my-auto mx-2">
-          <v-card-title class="d-flex justify-space-between">
+          <v-card-title class="d-flex justify-space-between py-2">
             <span> 
               <h2 class="d-inline">{{ review.movie_title }}</h2>
               <span class="mx-2">
@@ -66,7 +72,7 @@
                 class = "py-3 px-4"
                 shaped
                 elevation="1"
-                min-height="300"
+                min-height="250"
                 width="530">
                 <p>{{ review.content }}</p>
               </v-sheet>
