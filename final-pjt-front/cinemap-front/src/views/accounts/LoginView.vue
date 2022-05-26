@@ -146,7 +146,7 @@ $blue: #b96def9c;
 $smoke: #f9f9fa;
 $coral: #ff5751;
 $navy-blue: #993ad3;
-$purple: #d07fdfe5;
+$purple: #c740dece;
 $purple2: #9231a3de;
 
 .wrapper{
