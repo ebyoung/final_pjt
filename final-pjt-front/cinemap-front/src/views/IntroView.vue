@@ -1,11 +1,19 @@
 <template>
-  <div class="background d-flex justify-content-center align-items-center p-5">
-    <div class="content p-5">
-      <h1>Intro</h1>
-      <p>안녕하세요</p>
-      <p>ㅎㅎ</p>
-      <p>ㅎㅎㅎㅎ</p>
-      <router-link :to="nextUrl" class="text-decoration-none">START</router-link>
+  <div class="background d-flex justify-center align-center p-5">
+    <div>
+      <div class="my-name">C I N E M A P</div>
+      <div class="content">
+        <div>영화로 떠나는 세계 여행을</div>
+        <p>
+          <!-- <span class="my-movie">cinemap</span> -->
+          <span>시작해 볼까요? 🤩</span>
+        </p>
+      </div>
+
+      <br>
+      <router-link :to="nextUrl" class="text-decoration-none">
+        <v-btn block rounded color="deep-purple" class="white--text">START</v-btn>
+        </router-link>
     </div>
   </div>
 </template>
@@ -26,7 +34,8 @@ export default {
 
 <style scoped>
 .background {
-  height: 62.5vw;
+  height: 40vw;
+  
 }
 
 .background::after {
@@ -34,7 +43,7 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100%;
-  opacity: 60%;
+  /* opacity: 100%; */
   position: absolute;
   top: 0;
   left: 0;
@@ -42,9 +51,27 @@ export default {
   z-index: -1;
 }
 
+.my-name {
+  font-family: 'Monoton', cursive;
+  font-size: 60px;
+  color:#60176fa7;
+}
+
+.my-movie {
+  font-family: 'Monoton', cursive;
+  font-size: 20px;
+  color:#60176fa7;
+  
+}
 .content {
-  background: white;
-  color: black;
-  height: 40%;
+  background: transparent ;
+  color: rgba(117, 29, 139, 0.936);
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  /* border-radius: 10px; */
 }
 </style>

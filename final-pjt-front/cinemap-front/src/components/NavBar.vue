@@ -1,14 +1,16 @@
 <template>
   <nav class="my-navbar">
     <v-app-bar color="transparent" rounded>
-        <v-app-bar-nav-icon @click="moveToMap" class="ms-2"><font-awesome-icon icon="fa-solid fa-clapperboard" color="purple" size="2x" /></v-app-bar-nav-icon>
-  
-        <v-toolbar-title>
-          <span class="text-button purple--text font-weight-bold">Cinemap</span>
+        
+        <v-toolbar-title >
+          <v-btn @click="moveToMap" text rounded x-large>
+            <span class="my-logo purple--text">Cinemap</span>
+          </v-btn>
+          
         </v-toolbar-title>
 
   
-        <v-btn icon class="ms-2">
+        <v-btn icon>
           <!-- 돋보기 아이콘 <font-awesome-icon icon="fa-solid fa-magnifying-glass" size="3x"/>-->
           <router-link :to="{ name: 'reviews' }"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="2x" color="purple"/></router-link>
         </v-btn>
@@ -111,6 +113,11 @@
 <style>
 nav {
   z-index: 1;
+}
+
+.my-logo {
+  font-family: 'Monoton', cursive;
+  font-size: 30px;
 }
 
 /* .my-navbar {
