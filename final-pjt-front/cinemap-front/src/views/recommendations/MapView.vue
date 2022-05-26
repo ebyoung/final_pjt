@@ -173,7 +173,7 @@
       top: 57%;
       right: 81px;
       border-radius: 10px;
-      background: rgba(182, 148, 239, 0.283);
+      background: rgba(248, 243, 248, 0.585);
       padding: 10px 5px 20px 5px;
       border-left: 4px solid #9f51f9;
       border-top: 4px solid #ac40f4;
@@ -279,6 +279,7 @@
   .portfolio-item__image {
     width: 150px;
     height: 250px;
+    border-radius: 10px;
     object-fit: cover;
     cursor: pointer;
   }
