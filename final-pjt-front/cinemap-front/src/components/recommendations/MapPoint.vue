@@ -2,7 +2,7 @@
   <div :style='`position:absolute;top:${top}%;left:${left}%;`'>
     <v-btn icon @click="openCarousel"><font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="#5E35B1"/></v-btn>
     <v-carousel
-      v-if="isCarousel"
+      v-if="isCarousel" :interval="1500"
       cycle
       height="290px"
       hide-delimiter-background
@@ -99,7 +99,7 @@ export default {
 
 .carousel-item {
   border-radius: 20px;
-  width: 480px;
+  width: 420px;
   z-index: 1;
 }
 

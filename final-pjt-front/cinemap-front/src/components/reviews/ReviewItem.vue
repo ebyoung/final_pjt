@@ -22,11 +22,11 @@
       <!-- 댓글 개수/좋아요 개수 -->
       <v-card-actions class="mt-2 mb-5 me-5">
         <v-spacer></v-spacer>
-        <v-badge class="me-2" color="deep-purple npm" :content="likeCounts" :value="likeCounts" overlap>
-          <font-awesome-icon icon="fa-solid fa-heart" color="red" size="xl"/>
+        <v-badge class="me-2" color="#F48FB1" :content="likeCounts" :value="likeCounts" overlap>
+          <font-awesome-icon icon="fa-solid fa-heart" color="#F50057" size="xl"/>
         </v-badge>
-        <v-badge class="ms-2" color="#D500F9" :content="commentCounts" :value="commentCounts" overlap>
-          <font-awesome-icon icon="fa-solid fa-comment-dots" color="#B388FF" size="xl"/>
+        <v-badge class="ms-2" color="#B388FF" :content="commentCounts" :value="commentCounts" overlap>
+          <font-awesome-icon icon="fa-solid fa-comment-dots" color="#D500F9" size="xl"/>
         </v-badge>
         <br>
         <br>

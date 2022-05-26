@@ -7,7 +7,7 @@
     </div>
     <!-- v-menu 쓸 수 있음! -->
     <br>
-    <v-card class="mx-auto my-10" color="purple lighten-5" max-width="1100" elevation="14" shaped>
+    <v-card class="mx-auto my-10" color="#f3e5f569" max-width="1100" elevation="14" shaped>
       <v-row class="ms-1">
         <v-chip class="ms-2 my-3" @click="moveToProfile(getUsername)" color="purple lighten-5" text-color="purple">
           <v-avatar color="purple" size="60">
@@ -32,9 +32,9 @@
               <h2 class="d-inline">{{ review.movie_title }}</h2>
               <span class="mx-2">
                 
-                <v-badge color="deep-purple npm" :content="likeCounts" :value="likeCounts" overlap>
+                <v-badge color="#F48FB1" :content="likeCounts" :value="likeCounts" overlap>
                   <button @click="likeReview(reviewPk)" >
-                    <font-awesome-icon v-if="isLike" icon="fa-solid fa-heart" color="red" size="xl"/>
+                    <font-awesome-icon v-if="isLike" icon="fa-solid fa-heart" color="#F50057" size="xl"/>
                     <font-awesome-icon v-else icon="fa-solid fa-heart" color="grey" size="xl"/>
                   </button>
                 </v-badge>
@@ -158,6 +158,10 @@
 </script>
 
 <style scoped>
+.my-card {
+  color: #f3e5f569
+
+}
 .my-review {
   /* font-family: 'Inconsolata', monospace; */
     font-family: 'Source Code Pro', monospace;

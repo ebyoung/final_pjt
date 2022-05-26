@@ -4,7 +4,7 @@
       hide-delimiters
       :show-arrows="false"
       class="carousel"
-      height="110%"
+      height="100%"
       cycle
       :interval="5000">
       <v-carousel-item
@@ -51,8 +51,9 @@ export default {
 </script>
 
 <style scoped>
+
 .background {
-  height: 40vw;
+  height: 50vw;
   
 }
 
@@ -76,6 +77,8 @@ export default {
 
 .carousel {
   position: absolute;
+  top: 0;
+  left: 0;
   /* z-index: -1; */
   width: 100%;
   height: 100%;

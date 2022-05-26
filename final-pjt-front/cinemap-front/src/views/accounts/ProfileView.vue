@@ -8,9 +8,9 @@
             </v-avatar>
           <div>
             <div v-if="!isCurrentUserProfile">
-              <h2>{{ profile.username }}</h2>
+              <h2 class="grey--text text--lighten-4">{{ profile.username }}</h2>
               <br>
-              <v-btn v-if="isFollow" block rounded color="deep-purple accent-3" 
+              <v-btn v-if="isFollow" block rounded color="deep-purple accent-2" 
               @click="follow(profile.username)">
                 <font-awesome-icon  icon="fa-solid fa-user-check" 
                 size="lg" color="white"/>
@@ -23,7 +23,7 @@
               </v-btn>
             </div>
             <div v-else class="d-flex justify-center">
-              <h2>{{ profile.username }}</h2>
+              <h2 class="grey--text text--lighten-4">{{ profile.username }}</h2>
               <div class="ms-2">
                 <v-dialog v-model="dialog"
                   persistent max-width="550">
@@ -56,13 +56,13 @@
                       v-bind="attrs"
                       v-on="on"
                     >
-                    <v-card-title class="text-overline font-weight-bold px-1">팔로워</v-card-title>
-                    <span class="">{{ profile.follower_count }}</span>
+                    <v-card-title class="text-overline font-weight-bold white--text text--darken-2 px-1">팔로워</v-card-title>
+                    <span class="white--text text--darken-2">{{ profile.follower_count }}</span>
                     
                     </v-btn>
                   </template>
                   <v-card>
-                    <v-card-title class="font-weight-bold">팔로워</v-card-title>
+                    <v-card-title class="font-weight-bold ">팔로워</v-card-title>
                     <v-card-text style="height: 300px;">
                       <div class="mt-2"
                       v-for="follower in this.profile.followers" :key="follower.username">
@@ -101,8 +101,8 @@
                       text v-bind="attrs"
                       v-on="on"
                     >
-                    <v-card-title class="text-overline font-weight-bold px-1">팔로잉</v-card-title>
-                    <span>{{ profile.following_count }}</span>
+                    <v-card-title class="text-overline font-weight-bold white--text text--darken-2 px-1">팔로잉</v-card-title>
+                    <span class="white--text text--darken-2">{{ profile.following_count }}</span>
                     </v-btn>
                   </template>
                   <v-card>
@@ -139,8 +139,9 @@
           </div>
         </div>
         
-        <v-card shaped class="mt-4" elevation="10" min-height="300" color="deep-purple lighten-5" width="300">
-          <v-card-text class="black--text" >
+        <v-card shaped class="mt-5 my-intro" elevation="10" 
+          min-height="250" color="#e9d9f8d9" width="300">
+          <v-card-text class="grey--text text--darken-1 " >
           <!-- <v-sheet>{{ profile.introduction }}</v-sheet> -->
             {{ profile.introduction }}
           </v-card-text>
@@ -205,69 +206,45 @@ export default {
 
 
 <style>
-@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url('https://fonts.googleapis.com/css2?family=Expletus+Sans&display=swap');
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
-@import url(https://fonts.googleapis.com/css?family=Quattrocento);
 
+.my-intro {
+  color: #a17eb834;
+  /* color="deep-purple lighten-5" */
 
+}
 .snip1376 {
-  font-family: 'Quattrocento', Arial, sans-serif;
+  /* font-family: 'Hahmlet', serif; */
   position: relative;
   overflow: hidden;
   margin: 10px;
   margin-top: 50px;
   width: 300px;
-  color: #141414;
+  color: #e9d9f8d9;
   text-align: left;
   line-height: 1.4em;
   font-size: 20px;
 }
-.snip1376 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+
+
 .snip1376 img {
   width: 100%;
   height: 200px;
   vertical-align: top;
   object-fit: cover;
 }
-/* .snip1376 figcaption {
-  width: 100%;
-  height: 72px;
-  background-color: #fcfcfc;
-  padding: 15px 25px 65px;
-  position: relative;
-} */
 
-/* .snip1376 figcaption:before {
-  position: absolute;
-  content: '';
-  z-index: 2;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
-  background-image: linear-gradient(to bottom, transparent 0%, #38ca25 100%);
-} */
 
 .snip1376 h2 {
+
   margin: 0 0 10px;
+  font-weight: 500;
+  font-size: 1.3em;
+  line-height: 1.2em;
+
 }
 
-.snip1376 h2 {
-  font-weight: 300;
-  font-size: 1.5em;
-  line-height: 1.2em;
-  font-family: 'Oswald', Arial, sans-serif;
-  text-transform: uppercase;
-}
-.snip1376 pre {
-  font-size: 0.9em;
-  letter-spacing: 1px;
-  opacity: 0.9;
-}
 
 .snip1376 .icons {
   position: absolute;

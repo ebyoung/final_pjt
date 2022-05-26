@@ -19,6 +19,18 @@
     <MapPoint :top='32' :left='45' :targetMovie='mapMovies[7]'/>
     <!-- 호빗 -->
     <MapPoint :top='78' :left='90' :targetMovie='mapMovies[8]'/>
+    
+    
+    <MapPoint :top='60' :left='28' :targetMovie='mapMovies[9]'/>
+    <MapPoint :top='48' :left='50' :targetMovie='mapMovies[10]'/>
+    <MapPoint :top='30' :left='50' :targetMovie='mapMovies[11]'/>
+    <!-- <MapPoint :top='37' :left='78' :targetMovie='mapMovies[12]'/> -->
+    <MapPoint :top='26' :left='58' :targetMovie='mapMovies[13]'/>
+    <MapPoint :top='70' :left='80' :targetMovie='mapMovies[14]'/>
+    <MapPoint :top='51' :left='19' :targetMovie='mapMovies[15]'/>
+    <MapPoint :top='47' :left='66' :targetMovie='mapMovies[16]'/>
+
+    
 
     <div v-bind:class="{ active: isActive }" class="toast" >
         <div class="toast-content">
@@ -53,7 +65,7 @@
           </div>
         <div v-bind:class="{ active: isActive }" class="progress"></div>
     </div>
-    <div class="text-overline  text-center black--text text--lighten-4 font-weight-bold">잠깐!! 어떤 영화를 봐야 할지 고민되시나요? 
+    <div class="text-overline  text-center black--text text--lighten-4 font-weight-bold">잠깐!! 어떤 영화를 봐야 할지 그래도 고민되시나요? 
     <v-btn icon  @click="getRecommend"><font-awesome-icon icon="fa-solid fa-rocket" 
       color="purple" size="xl"/></v-btn>
       을 클릭해주세요!
@@ -170,7 +182,7 @@
 
   .toast{
       position: absolute;
-      top: 57%;
+      top: 76%;
       right: 81px;
       border-radius: 10px;
       background: rgba(248, 243, 248, 0.585);

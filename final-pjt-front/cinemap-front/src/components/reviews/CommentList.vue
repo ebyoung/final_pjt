@@ -1,5 +1,5 @@
 <template>
-  <v-list rounded color="purple lighten-5">
+  <v-list rounded class="my-list">
     
     <comment-form></comment-form>
     <v-list-item-group rounded class="d-flex">
@@ -29,7 +29,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.my-list {
+  background-color: transparent
+}
+
 /* .comment-list {
   background-color: #b093e573;
 } */

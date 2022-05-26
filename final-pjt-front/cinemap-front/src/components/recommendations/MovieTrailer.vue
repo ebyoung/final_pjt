@@ -17,7 +17,8 @@ export default {
 iframe {
   /* position: absolute; */
   /* margin-top: -150px; */
-  width: 100%;
+  width: 113%;
+  /* transform: translateX(); */
   aspect-ratio: 16/9;
 }
 </style>

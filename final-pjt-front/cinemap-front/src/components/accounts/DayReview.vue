@@ -2,8 +2,8 @@
   <div class='day-review'>
     <figure v-if="getReview" class="snip1395">
       <img :src="getReview.movie_poster" alt="moviePoster" />
-      <figcaption class="my-movie-title">
-        <h2>{{ getReview.movie_title }}</h2>
+      <figcaption>
+        <h2 class="my-movie-title">{{ getReview.movie_title }}</h2>
 
         <pre class="my-pre">{{ '★'.repeat(getReview.vote) + '☆'.repeat(5 - getReview.vote) }}</pre>
       </figcaption>
@@ -49,8 +49,12 @@ export default {
 </script>
 
 <style scoped>
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-@import url(https://fonts.googleapis.com/css?family=Julius+Sans+One);
+/* @import url(https://fonts.googleapis.com/css?family=Raleway); */
+/* @import url(https://fonts.googleapis.com/css?family=Julius+Sans+One); */
+
+.my-movie-title {
+  font-family: 'Hahmlet', serif;
+}
 
 .img-space {
   width: 112%;

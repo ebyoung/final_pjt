@@ -8,9 +8,9 @@
       <!-- <div class="d-flex justify-end" >{{ viewYear}}</div> -->
       <div class="d-flex justify-end">
         <v-btn-toggle elevation="20" dense background-color="transparent" class="nav">
-          <v-btn text class="nav-btn go-prev pink--text text--darken-2" @click="prevMonth">&lt;</v-btn>
-          <v-btn text class="nav-btn go-today pink--text text--lighten-2" @click="goToday">이번 달</v-btn>
-          <v-btn  text class="nav-btn go-next pink--text text--darken-2" @click="nextMonth">&gt;</v-btn>
+          <v-btn text class="nav-btn go-prev" @click="prevMonth">&lt;</v-btn>
+          <v-btn text class="nav-btn go-today" @click="goToday">이번 달</v-btn>
+          <v-btn  text class="nav-btn go-next " @click="nextMonth">&gt;</v-btn>
         </v-btn-toggle>
       </div>
     
@@ -167,7 +167,7 @@ export default {
 
 .calendar {
   width: 800px;
-  margin: 50px 0 0 50px;
+  margin: 50px 0 30px 50px;
 }
 
 .header {
@@ -198,6 +198,7 @@ export default {
   font-size: 16px;
   line-height: 34px;
   font-weight: bolder;
+  color: rgb(70, 23, 118);
   background-color: transparent;
 
   cursor: pointer;
@@ -221,7 +222,7 @@ export default {
   padding-top: 1.5%;
   background-color: transparent;
   font-weight: bolder;
-  color: rgb(192, 159, 224);
+  color: rgb(176, 127, 225);
 }
 
 .dates {

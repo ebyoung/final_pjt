@@ -45,7 +45,7 @@ export default {
 <style scoped>
 .trailer {
   position: absolute;
-  margin-top: -130px;
+  margin-top: -67px;
   z-index: 0;
 }
 

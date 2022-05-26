@@ -1,6 +1,5 @@
 <template>
-  <!-- https://vuetifyjs.com/en/components/lists/#three-line -->
-  <v-list-item class="px-0 d-flex" dense>
+  <div class="px-0 mb-3 d-flex" dense>
     <v-btn text rounded @click="moveToProfile(comment.user.username)" class="py-3" small color="blacknp"
       outlined>
       <v-list-item-avatar color="grey" size="27" class="ms-0 me-1">
@@ -17,7 +16,9 @@
     </span>
 
     <br>
-  </v-list-item>
+  </div>
+
+  
 </template>
 
 <script>
