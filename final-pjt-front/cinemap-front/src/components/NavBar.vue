@@ -1,16 +1,12 @@
 <template>
   <nav class="my-navbar">
     <v-app-bar color="transparent" rounded>
-        <v-app-bar-nav-icon><font-awesome-icon icon="fa-solid fa-clapperboard" color="purple" size="2x" /></v-app-bar-nav-icon>
-        <!--  -->
+        <v-app-bar-nav-icon @click="moveToMap" class="ms-2"><font-awesome-icon icon="fa-solid fa-clapperboard" color="purple" size="2x" /></v-app-bar-nav-icon>
   
         <v-toolbar-title>
-          <span class="text-lg-button purple--text font-weight-bold">Cinemap</span>
-          </v-toolbar-title>
+          <span class="text-button purple--text font-weight-bold">Cinemap</span>
+        </v-toolbar-title>
 
-        <!-- <v-btn icon>
-          <v-icon>mdi-heart</v-icon>
-        </v-btn> -->
   
         <v-btn icon class="ms-2">
           <!-- 돋보기 아이콘 <font-awesome-icon icon="fa-solid fa-magnifying-glass" size="3x"/>-->
@@ -19,24 +15,24 @@
 
         <v-spacer></v-spacer>
 
+        <v-btn v-if="isAdmin" text rounded class="me-1" > 
+          <a href="http://127.0.0.1:8000/admin/" class="text-decoration-none grey--text">ADMIN</a>
+        </v-btn>
         <v-btn text rounded @click="goBack" color="purple" class="me-3">BACK</v-btn>
         
-        <v-menu v-if="isLoggedIn" offset-y >
+        <v-menu v-if="isLoggedIn" offset-y  >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              icon
+              icon class="me-2"
               v-bind="attrs"
               v-on="on"
             >
-              <v-avatar color="grey" size="47" class="me-4">
+              <v-avatar color="grey" size="50" class="me-3">
                 <img :src="profileImage" alt=""></v-avatar>
             </v-btn>
           </template>
           <v-list width="150px" height="160px" color="purple lighten-5">
             <v-subheader class="">
-              <!-- <v-avatar color="grey" size="40">
-                <img :src="profileImage" alt="">
-              </v-avatar> -->
               <v-list-item-title class="text-center"> Hi😊
                 <span class="font-weight-bold purple--text"> {{ username }}</span>
               
@@ -90,6 +86,9 @@
       profileImage() {
         return this.getProfileImage
       },
+      isAdmin() {
+        return this.currentUser.username === "admin"
+      }
     },
     methods: {
     ...mapActions(['logout', 'fetchProfile', ]),
@@ -98,7 +97,11 @@
       this.fetchProfile({ username })
       router.push({ name:'profile', params: { username } })
     },
-    goBack(){
+    moveToMap() {
+      router.push({ name: 'map'})
+    },
+
+    goBack() {
       this.$router.go(-1)
     },
   },

@@ -37,7 +37,7 @@
 
 <style>
 #app {
-  background: linear-gradient(#F6DBD8, 70%, rgba(247, 140, 157, 0.826));
+  background: linear-gradient(#f6dbd881, 70%, rgba(215, 133, 248, 0.613));
   /* background: linear-gradient(70deg, #b093e573, rgb(252, 134, 252)); */
   /* background: linear-gradient(70deg, blue, pink); */
   /* padding: 15px 25px 65px; */
