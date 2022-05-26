@@ -2,6 +2,7 @@
   <div class="background d-flex justify-center align-center p-5">
     <div>
       <div class="my-name">C I N E M A P</div>
+      <br>
       <div class="content">
         <div>영화로 떠나는 세계 여행을</div>
         <p>
@@ -44,7 +45,7 @@ export default {
   background-size: cover;
   width: 100%;
   height: 100%;
-  opacity: 70%;
+  opacity: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -55,24 +56,26 @@ export default {
 .my-name {
   font-family: 'Monoton', cursive;
   font-size: 60px;
-  color:#60176fa7;
+  /* color:#60176fa7; */
+  color: rgba(232, 179, 246, 0.936);
 }
 
-.my-movie {
+/* .my-movie {
   font-family: 'Monoton', cursive;
   font-size: 20px;
   color:#60176fa7;
-  
-}
+} */
+
 .content {
   background: transparent ;
-  color: rgba(117, 29, 139, 0.936);
+  color: rgba(223, 152, 243, 0.936);
+  font-family: 'Hahmlet', serif;
   font-size: 20px;
   height: 100%;
   width: 100%;
   margin: auto;
   text-align: center;
-  font-weight: bold;
+  font-weight: bolder;
   /* border-radius: 10px; */
 }
 </style>

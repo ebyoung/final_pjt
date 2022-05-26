@@ -1,6 +1,6 @@
 <template>
   <div :style='`position:absolute;top:${top}%;left:${left}%;`'>
-    <v-btn icon @click="openCarousel"><font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="purple"/></v-btn>
+    <v-btn icon @click="openCarousel"><font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="#5E35B1"/></v-btn>
     <v-carousel
       v-if="isCarousel"
       cycle

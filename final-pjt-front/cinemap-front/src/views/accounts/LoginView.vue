@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-login">
     <ul class="nav">
       <li @click="showSignup()">Sign up</li>
       <li @click="showLogin()">Login</li>
@@ -117,6 +117,18 @@ export default {
 </script>
 
 <style scoped>
+.my-login {
+  background: url('https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201701/09/htm_20170109115141307904.jpg');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+}
+
 </style>
 
 <style lang="scss" scoped>
@@ -129,13 +141,13 @@ $br: 3px;
 
 // Colors
 $text-light: #fff;
-$text-dark: #666;
-$blue: #03a9f4;
+$text-dark: rgb(41, 40, 40);
+$blue: #b96def9c;
 $smoke: #f9f9fa;
 $coral: #ff5751;
-$navy-blue: #42509e;
-$purple: #CE93D8;
-$purple2: #BA68C8;
+$navy-blue: #993ad3;
+$purple: #d07fdfe5;
+$purple2: #9231a3de;
 
 .wrapper{
   width: $prism-length;
@@ -177,7 +189,7 @@ $purple2: #BA68C8;
   width: $prism-length;
   height: $prism-height;
   padding: $spacing;
-  background: rgba(250,250,250,0.96);
+  background: rgba(249, 247, 250, 0.781);
   border: 3px solid $purple;
   border-radius: 3px;
   
@@ -326,7 +338,8 @@ $purple2: #BA68C8;
     list-style-type: none;
     font-size: 1em;
     margin: 0 $spacing/2;
-    color: $purple;
+    color:$purple2;
+    font-weight: bold;
     position: relative;
     cursor: pointer;
     &:after{

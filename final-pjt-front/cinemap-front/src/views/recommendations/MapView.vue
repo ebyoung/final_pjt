@@ -1,24 +1,24 @@
 <template>
   <div class="distribution-map">
-    <div class="text-button font-weight-bold  text-center">
-      아래 지도에서 <font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="purple"/>
-      을 클릭하면 세계 여행이 시작됩니다.</div>
+    <div class="my-welcome-message text-center">
+      지도에서 <font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="#5E35B1"/>
+      을 클릭하면 세계 여행 출발합니다. </div>
     <img src="@/assets/worldmapcolorborder.png" alt="" />
 
-    <MapPoint :top='30' :left='24' :targetMovie='mapMovies[0]'/>
-    <MapPoint :top='40' :left='74' :targetMovie='mapMovies[1]'/>
-    <MapPoint :top='37' :left='81' :targetMovie='mapMovies[2]'/>
-    <MapPoint :top='33' :left='11' :targetMovie='mapMovies[3]'/>
+    <MapPoint :top='34' :left='23' :targetMovie='mapMovies[0]'/>
+    <MapPoint :top='42' :left='72' :targetMovie='mapMovies[1]'/>
+    <MapPoint :top='38' :left='82' :targetMovie='mapMovies[2]'/>
+    <MapPoint :top='40' :left='11' :targetMovie='mapMovies[3]'/>
     <!-- 어바웃 -->
-    <MapPoint :top='26' :left='43' :targetMovie='mapMovies[4]'/>
+    <MapPoint :top='29' :left='43' :targetMovie='mapMovies[4]'/>
     <!-- 먹고기도하고 -->
-    <MapPoint :top='57' :left='77' :targetMovie='mapMovies[5]'/>
+    <MapPoint :top='60' :left='77' :targetMovie='mapMovies[5]'/>
     <!-- 월터 -->
-    <MapPoint :top='22' :left='40' :targetMovie='mapMovies[6]'/>
+    <MapPoint :top='24' :left='40' :targetMovie='mapMovies[6]'/>
     <!-- 비포선셋 -->
-    <MapPoint :top='30' :left='45' :targetMovie='mapMovies[7]'/>
+    <MapPoint :top='32' :left='45' :targetMovie='mapMovies[7]'/>
     <!-- 호빗 -->
-    <MapPoint :top='75' :left='90' :targetMovie='mapMovies[8]'/>
+    <MapPoint :top='78' :left='90' :targetMovie='mapMovies[8]'/>
 
     <div v-bind:class="{ active: isActive }" class="toast" >
         <div class="toast-content">
@@ -30,10 +30,10 @@
                 <div class="text-button font-weight-bold">영화를 추천 드려요😊</div> 
               </div>
               <div v-else class="mt-0">
-                <div class="text-button font-weight-bold">{{ currentUser.username}}께만</div> 
-                <div class="text-button font-weight-bold">추천 드려요😊</div> 
+                <div class="text-button font-weight-bold" >{{ currentUser.username}}<span class="text-button me-0">님께만</span></div> 
+                <div class="text-button">추천 드려요😊</div> 
               </div>
-              <v-btn icon color="deep-purple" class="my-exit ms-5">
+              <v-btn icon color="deep-purple" class="my-exit ms-3">
                 <font-awesome-icon @click="closeToast" 
                   size="xl" icon="fa-solid fa-circle-xmark"/>
               </v-btn>
@@ -53,7 +53,7 @@
           </div>
         <div v-bind:class="{ active: isActive }" class="progress"></div>
     </div>
-    <div class="text-overline  text-center black--text text--lighten-4">어떤 영화를 봐야 할지 고민되시나요? 
+    <div class="text-overline  text-center black--text text--lighten-4 font-weight-bold">잠깐!! 어떤 영화를 봐야 할지 고민되시나요? 
     <v-btn icon  @click="getRecommend"><font-awesome-icon icon="fa-solid fa-rocket" 
       color="purple" size="xl"/></v-btn>
       을 클릭해주세요!
@@ -119,18 +119,27 @@
       this.getUserRecommendations()
       setTimeout(() => {
           this.getRecommend()
-        }, 500)
+        }, 900)
     },
   }
 </script>
 
 <style scoped>
+
+
   .my-exit {
     background-color: transparent;
   }
 
   .my-welcome-message {
-    font-size: 40px;
+    font-size: 25px;
+    /* font-family: 'Noto Sans KR', sans-serif; */
+    font-family: 'Hahmlet', serif;
+    font-weight: bolder;
+    color: rgba(158, 23, 231, 0.827);
+    /* font-family: 'Nanum Gothic Coding', monospace; */
+    margin-bottom: 40px;
+    margin-top: 20px;
   }
 
   h1 {
@@ -161,10 +170,10 @@
 
   .toast{
       position: absolute;
-      top: 60%;
-      right: 18px;
+      top: 57%;
+      right: 81px;
       border-radius: 10px;
-      background: #fff;
+      background: rgba(182, 148, 239, 0.283);
       padding: 10px 5px 20px 5px;
       border-left: 4px solid #9f51f9;
       border-top: 4px solid #ac40f4;
@@ -234,7 +243,7 @@
       right: 0;
       height: 100%;
       width: 100%;
-      background-color: #480476b6;
+      background-color: #42016db6;
   }
 
   .progress.active:before{
