@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Movie
-from .serializers import MovieTitleListSerializer
+from .models import MapMovie, Movie
+from .serializers import MovieTitleListSerializer, MapMovieListSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -17,6 +17,13 @@ def movies(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def map(request):
+    map_movies = MapMovie.objects.all()
+    serializer = MapMovieListSerializer(map_movies, many=True)
+    return Response(serializer.data)
+
+
 def get_data(request):
     # 영화 데이터 csv 파일 사용시
     import csv
@@ -27,6 +34,8 @@ def get_data(request):
     # db에 영화 데이터를 저장
     for line in data_csv:
         idx, movie_id, title, poster_path, video_key = line
+        if Movie.objects.filter(movie_id=movie_id).exists():
+            continue
         Movie.objects.create(movie_id=int(movie_id), title=title, poster_path=poster_path, video_key=video_key)
 
     # 중복 데이터 제거: 필요없음
@@ -44,6 +53,8 @@ def get_data(request):
     data = json.load(f)
     for target_id, recom_ids in data.items():
         target = Movie.objects.get(movie_id=target_id)
+        if target.recommendations.count() > 0:
+            continue
         for recom_id in recom_ids:
             recom = Movie.objects.get(movie_id=recom_id)
             target.recommendations.add(recom)
@@ -63,24 +74,23 @@ def recommendations(request):
         for recom in recoms:
             recom_list[recom.title] = recom_list.get(recom.title, 0) + score
     
-    top3 = []
+    top5 = []
     for title, score in recom_list.items():
-        if len(top3) < 3:
-            top3.append(title)
+        if len(top5) < 5:
+            top5.append(title)
         else:
-            third = top3[-1]
+            third = top5[-1]
             if recom_list[third] < recom_list[title]:
-                top3[-1] = title
-        top3.sort(key=lambda x: recom_list[x], reverse=True)
+                top5[-1] = title
+        top5.sort(key=lambda x: recom_list[x], reverse=True)
     
-    top3_data = []
-    for title in top3:
+    top5_data = []
+    for title in top5:
         movie = Movie.objects.get(title = title)
         data = {
             'movieId': movie.movie_id,
             'title': movie.title,
-            'posterUrl': f'https://image.tmdb.org/t/p/w500/{movie.poster_path}',
-            'videoUrl': f'https://www.youtube.com/embed/{movie.video_key}?controls=0&rel=0&autoplay=1&mute=1&loop=1&playlist={movie.video_key}',
+            'posterPath': movie.poster_path,
         }
-        top3_data.append(data)
-    return Response(top3_data)
+        top5_data.append(data)
+    return Response(top5_data)

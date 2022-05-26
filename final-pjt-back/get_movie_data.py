@@ -46,62 +46,62 @@ def get_request(path, **kwargs):
 # 추천 영화 정보 받아오기
 df = pd.read_csv('movie_data_small.csv', encoding='utf-8-sig', index_col=0)
 id_col = set(df['id'])
-# recoms = {}
-# i = 0
-# for id in id_col:
-#     i += 1
-#     print(round(i/len(id_col)*100, 2), '%')
-#     recom_list =  []
-#     page = 1
-#     while len(recom_list) < 7:
-#         results = get_request(f'/movie/{id}/recommendations', page=page).get('results')
-#         for result in results:
-#             if result['id'] in id_col and result['id'] not in recom_list and result['id'] != id:
-#                 recom_list.append(result['id'])
-#         page += 1
-#         if page > 10:
-#             break
-#
-#     page = 1
-#     while len(recom_list) < 7:
-#         results = get_request(f'/movie/{id}/similar', page=page).get('results')
-#         for result in results:
-#             if result['id'] in id_col and result['id'] not in recom_list:
-#                 recom_list.append(result['id'])
-#         page += 1
-#         if page > 10:
-#             break
-#
-#     recoms[id] = recom_list
-#
-#
-# with open('recoms_small.json', 'w', encoding='utf-8-sig') as file:
-#     json.dump(recoms, file, indent=2)
+recoms = {}
+i = 0
+for id in id_col:
+    i += 1
+    print(round(i/len(id_col)*100, 2), '%')
+    recom_list =  []
+    page = 1
+    while len(recom_list) < 7:
+        results = get_request(f'/movie/{id}/recommendations', page=page).get('results')
+        for result in results:
+            if result['id'] in id_col and result['id'] not in recom_list and result['id'] != id:
+                recom_list.append(result['id'])
+        page += 1
+        if page > 10:
+            break
+
+    page = 1
+    while len(recom_list) < 7:
+        results = get_request(f'/movie/{id}/similar', page=page).get('results')
+        for result in results:
+            if result['id'] in id_col and result['id'] not in recom_list:
+                recom_list.append(result['id'])
+        page += 1
+        if page > 10:
+            break
+
+    recoms[id] = recom_list
+
+
+with open('recoms_small.json', 'w', encoding='utf-8-sig') as file:
+    json.dump(recoms, file, indent=2)
 
 
 # 라라랜드를 찾아서
 # detail = get_request(f'/movie/313369')
 # pprint(detail)
 
-id = 313369
-recom_list = []
-page = 1
-while len(recom_list) < 7:
-    results = get_request(f'/movie/{id}/recommendations', page=page).get('results')
-    for result in results:
-        if result['id'] in id_col and result['id'] not in recom_list and result['id'] != id:
-            recom_list.append(result['id'])
-    page += 1
-    if page > 10:
-        break
-
-page = 1
-while len(recom_list) < 7:
-    results = get_request(f'/movie/{id}/similar', page=page).get('results')
-    for result in results:
-        if result['id'] in id_col and result['id'] not in recom_list:
-            recom_list.append(result['id'])
-    page += 1
-    if page > 10:
-        break
-pprint(recom_list)
+# id = 313369
+# recom_list = []
+# page = 1
+# while len(recom_list) < 7:
+#     results = get_request(f'/movie/{id}/recommendations', page=page).get('results')
+#     for result in results:
+#         if result['id'] in id_col and result['id'] not in recom_list and result['id'] != id:
+#             recom_list.append(result['id'])
+#     page += 1
+#     if page > 10:
+#         break
+#
+# page = 1
+# while len(recom_list) < 7:
+#     results = get_request(f'/movie/{id}/similar', page=page).get('results')
+#     for result in results:
+#         if result['id'] in id_col and result['id'] not in recom_list:
+#             recom_list.append(result['id'])
+#     page += 1
+#     if page > 10:
+#         break
+# pprint(recom_list)
