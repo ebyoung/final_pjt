@@ -11,7 +11,6 @@
 
   
         <v-btn icon>
-          <!-- 돋보기 아이콘 <font-awesome-icon icon="fa-solid fa-magnifying-glass" size="3x"/>-->
           <router-link :to="{ name: 'reviews' }"><font-awesome-icon icon="fa-solid fa-magnifying-glass" size="2x" color="purple"/></router-link>
         </v-btn>
 

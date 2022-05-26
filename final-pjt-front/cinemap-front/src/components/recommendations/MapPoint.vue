@@ -76,8 +76,9 @@ export default {
   left: 3%;
   top: 3%;
   font-weight: bolder;
-  font-size: 20px;
-  color: grey;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 18px;
+  color: rgba(240, 235, 244, 0.809);
   z-index: 1;
 }
 

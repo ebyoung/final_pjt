@@ -12,7 +12,7 @@
 
       <br>
       <router-link :to="nextUrl" class="text-decoration-none">
-        <v-btn block rounded color="deep-purple" class="white--text">START</v-btn>
+        <v-btn block rounded color="deep-purple accent-4" class="white--text">START</v-btn>
         </router-link>
     </div>
   </div>

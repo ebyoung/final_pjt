@@ -1,34 +1,42 @@
 <template>
   <div class="distribution-map">
-    <h1>지도에 핀을 클릭하면 세계여행이 시작됩니다.</h1>
+    <div class="text-overline font-weight-bold mt-3 text-center">
+      아래 지도에서 <font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="purple"/>
+      을 클릭하면 세계 여행이 시작됩니다.</div>
     <img src="@/assets/worldmapcolorborder.png" alt="" />
 
-    <MapPoint :top='29' :left='22' :targetMovie='mapMovies[0]'/>
-    <MapPoint :top='38' :left='74' :targetMovie='mapMovies[1]'/>
-    <MapPoint :top='34' :left='81' :targetMovie='mapMovies[2]'/>
-    <MapPoint :top='31' :left='11' :targetMovie='mapMovies[3]'/>
+    <MapPoint :top='30' :left='24' :targetMovie='mapMovies[0]'/>
+    <MapPoint :top='40' :left='74' :targetMovie='mapMovies[1]'/>
+    <MapPoint :top='37' :left='81' :targetMovie='mapMovies[2]'/>
+    <MapPoint :top='33' :left='11' :targetMovie='mapMovies[3]'/>
     <!-- 어바웃 -->
-    <MapPoint :top='23' :left='43' :targetMovie='mapMovies[4]'/>
+    <MapPoint :top='26' :left='43' :targetMovie='mapMovies[4]'/>
     <!-- 먹고기도하고 -->
-    <MapPoint :top='56' :left='77' :targetMovie='mapMovies[5]'/>
+    <MapPoint :top='57' :left='77' :targetMovie='mapMovies[5]'/>
     <!-- 월터 -->
-    <MapPoint :top='18' :left='40' :targetMovie='mapMovies[6]'/>
+    <MapPoint :top='22' :left='40' :targetMovie='mapMovies[6]'/>
     <!-- 비포선셋 -->
-    <MapPoint :top='25' :left='45' :targetMovie='mapMovies[7]'/>
+    <MapPoint :top='30' :left='45' :targetMovie='mapMovies[7]'/>
     <!-- 호빗 -->
-    <MapPoint :top='74' :left='90' :targetMovie='mapMovies[8]'/>
+    <MapPoint :top='75' :left='90' :targetMovie='mapMovies[8]'/>
 
     <div v-bind:class="{ active: isActive }" class="toast" >
         <div class="toast-content">
           <div class="message">
             <div class="d-flex justify-space-between">
-              <span v-if="isFirst" class="text text-first">
-                <pre>리뷰를 작성하시면 {{ currentUser.username }}님의
-맞춤 영화를 추천해드릴게요
-                </pre>
-                </span>
-              <span v-else class="text text-1">맞춤 추천 영화</span>
-              <font-awesome-icon icon="fa-solid fa-xmark close" @click="closeToast"/>
+              
+              <div v-if="isFirst"  class="mt-0">
+                <div class="text-button font-weight-bold">리뷰를 작성하시면</div> 
+                <div class="text-button font-weight-bold">영화를 추천 드려요😊</div> 
+              </div>
+              <div v-else class="mt-0">
+                <div class="text-button font-weight-bold">{{ currentUser.username}}께만</div> 
+                <div class="text-button font-weight-bold">추천 드려요😊</div> 
+              </div>
+              <v-btn icon color="deep-purple" class="my-exit ms-5">
+                <font-awesome-icon @click="closeToast" 
+                  size="xl" icon="fa-solid fa-circle-xmark"/>
+              </v-btn>
             </div>
               <div class="portfolio-item portfolio-effect__item portfolio-item--eff1">
                 <img class="portfolio-item__image" :src="isFirst? selected.poster_path : selected.posterPath" alt="Portfolio Item" width="826" height="551">
@@ -45,7 +53,12 @@
           </div>
         <div v-bind:class="{ active: isActive }" class="progress"></div>
     </div>
-    <button class="purple" @click="getRecommend">맞춤 추천 받기</button>
+    <div class="text-overline mb-5 text-center black--text text--lighten-4">어떤 영화를 봐야 할지 고민되시나요? 
+    <v-btn icon  @click="getRecommend"><font-awesome-icon icon="fa-solid fa-rocket" 
+      color="purple" size="xl"/></v-btn>
+      을 클릭해주세요!
+    </div>
+    
 
 
   </div>
@@ -79,7 +92,7 @@
         if (this.userRecommendations.length > 0) {
           return _.sample(this.userRecommendations)
         }
-         else {
+        else {
           this.isFirst = true
           return _.sample(this.movies)
         }
@@ -112,9 +125,18 @@
 </script>
 
 <style scoped>
+  .my-exit {
+    background-color: transparent;
+  }
+
+  .my-welcome-message {
+    font-size: 40px;
+  }
+
   h1 {
     left: 45%;
     position: absolute;
+    /* font-family: 'Noto Sans KR', sans-serif; */
   }
 
   div, img {
@@ -140,13 +162,13 @@
   .toast{
       position: absolute;
       top: 60%;
-      right: 30px;
+      right: 18px;
       border-radius: 10px;
       background: #fff;
-      padding: 20px 5px 20px 5px;
-      border-left: 4px solid #4070f4;
-      border-top: 4px solid #4070f4;
-      border-right: 4px solid #4070f4;
+      padding: 10px 5px 20px 5px;
+      border-left: 4px solid #9f51f9;
+      border-top: 4px solid #ac40f4;
+      border-right: 4px solid #590690be;
       overflow: hidden;
       transform: translateX(calc(300%));
       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
@@ -164,7 +186,7 @@
   .toast-content .message{
       display: flex;
       flex-direction: column;
-      margin: 0 20px;
+      margin: 0 21px;
   }
 
   .message .text{
@@ -212,7 +234,7 @@
       right: 0;
       height: 100%;
       width: 100%;
-      background-color: #4070f4;
+      background-color: #480476b6;
   }
 
   .progress.active:before{
@@ -230,7 +252,7 @@
       font-size: 20px;
       outline: none;
       border: none;
-      background-color: #4070f4;
+      /* background-color: #4070f4; */
       color: #fff;
       border-radius: 6px;
       cursor: pointer;
@@ -238,7 +260,7 @@
   }
 
   button:hover{
-      background-color: #0e4bf1;
+      background-color: #c9a9f4a7;
   }
 
   .toast.active ~ button{
