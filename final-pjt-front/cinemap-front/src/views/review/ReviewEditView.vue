@@ -2,7 +2,8 @@
   <div>
     <br>
     <div class="d-flex justify-center">
-      <v-chip x-large color="purple lighten-4" class="my-edit text-h4 font-weight-bold mt-5 my-5 px-5 text-center purple--text">😃 Edit Review </v-chip>
+      <v-chip x-large color="purple lighten-4" class="my-edit 
+      mt-5 my-5 px-5 text-center purple--text">😃 Edit Review </v-chip>
     </div>
     <review-form v-if="isReview" :review="review" action="update">
     </review-form>
@@ -28,9 +29,11 @@ import { mapGetters, mapActions } from 'vuex'
   }
 </script>
 
-<style>
-/* .my-edit {
-  margin-left: 100px;
-} */
-
+<style scoped>
+.my-edit {
+  /* font-family: 'Inconsolata', monospace; */
+    font-family: 'Source Code Pro', monospace;
+    font-weight: bolder;
+    font-size: 40px;
+}
 </style>

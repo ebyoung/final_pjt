@@ -14,7 +14,7 @@
       <!-- 글 이동 링크 (영화 포스터)) -->
       <router-link 
         :to="{ name: 'review', params: {reviewPk: review.pk} }">
-        <v-img class="mx-auto" width="90%" height="400px" :src="review.movie_poster" alt="포스터"
+        <v-img class="mx-auto rounded" width="90%" height="400px" :src="review.movie_poster" alt="포스터"
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"></v-img>
       </router-link>
 

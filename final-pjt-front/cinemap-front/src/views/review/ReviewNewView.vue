@@ -2,7 +2,8 @@
   <div>
     <br>
     <div class="d-flex justify-center">
-      <v-chip x-large color="purple lighten-4" class="my-new text-h4 font-weight-bold mt-5 my-5 px-5 text-center purple--text">😃 New Review </v-chip>
+      <v-chip x-large color="purple lighten-4" class="my-edit
+        mt-5 my-5 px-5 text-center purple--text">😃 New Review </v-chip>
     </div>
     <review-form :review="review" action="create"></review-form>
   </div>
@@ -32,9 +33,12 @@
   }
 </script>
 
-<style>
-/* .my-new {
-  margin-left: 23rem;
-} */
+<style scoped>
+.my-edit {
+  /* font-family: 'Inconsolata', monospace; */
+    font-family: 'Source Code Pro', monospace;
+    font-weight: bolder;
+    font-size: 40px;
+}
 
 </style>

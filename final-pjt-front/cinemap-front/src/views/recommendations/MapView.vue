@@ -319,27 +319,6 @@ $portfolio-link-offset: 10px;
   bottom: $bottom;
 }
 
-//mixin for image positioning
-// @mixin img-position($max-width: 200%, $max-height: 200%) {
-//   position: relative;
-//   overflow: hidden;
-
-//   img {
-//     @include position-absolute($top: 50%, $left: 50%);
-
-//     width: auto;
-//     height: auto;
-//     min-width: 100%;
-//     min-height: 100%;
-//     max-width: $max-width;
-//     max-height: $max-height;
-//     transform: translate(-50%, -50%);
-//   }
-// }
-
-/* effects styles !!!YOU NEED THEM */
-
-/* don't forget to add your own colors and parameters */
 
 .portfolio-effect {
   display: flex;

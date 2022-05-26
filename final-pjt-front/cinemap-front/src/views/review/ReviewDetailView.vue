@@ -2,7 +2,8 @@
   <div>
         <br>
     <div class="d-flex justify-center">
-      <v-chip x-large color="purple lighten-4" class="my-edit text-h4 font-weight-bold mt-5 my-5 px-5 text-center purple--text">😃 Review </v-chip>
+      <v-chip x-large color="purple lighten-4" class="my-review 
+        mt-5 my-5 px-5 text-center purple--text">😃 Review </v-chip>
     </div>
     <!-- v-menu 쓸 수 있음! -->
     <br>
@@ -18,7 +19,7 @@
       <v-divider class="mt-2 mb-3"></v-divider>
       <v-row>
         <v-col>
-          <v-img class="mx-auto"
+          <v-img class="mx-auto rounded"
             height="593" width="400"
             :src="review.movie_poster" 
           ></v-img>
@@ -156,7 +157,12 @@
   }
 </script>
 
-<style>
-
+<style scoped>
+.my-review {
+  /* font-family: 'Inconsolata', monospace; */
+    font-family: 'Source Code Pro', monospace;
+    font-weight: bolder;
+    font-size: 40px;
+}
 
 </style>

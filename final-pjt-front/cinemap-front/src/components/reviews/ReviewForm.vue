@@ -3,7 +3,7 @@
     <v-card class="mx-auto my-12" color="purple lighten-5" max-width="1100" min-height="600" elevation="14" shaped>
       <v-row>
         <v-col v-if="newReview.movie_title" class="my-poster">
-          <v-img  class="mt-3 mx-auto"
+          <v-img  class="my-img mx-auto rounded"
             height="593" width="400" :src="moviePoster">
           </v-img>
         </v-col>
@@ -118,9 +118,9 @@ import { mapActions, mapGetters } from 'vuex'
   background-color: rgba(241, 211, 241, 0.935) !important;
 }
 
-/* .my-poster {
-  height:  800px;
-} */
+.my-img {
+  margin-top: 30px;
+}
 
 
 </style>

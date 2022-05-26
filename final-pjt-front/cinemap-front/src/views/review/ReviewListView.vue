@@ -2,7 +2,8 @@
   <div>
     <br>
     <div class="d-flex justify-center">
-      <v-chip x-large color="purple lighten-4" class="my-edit text-h4 font-weight-bold mt-5 my-5 px-5 text-center purple--text">😃 Reviews </v-chip>
+      <v-chip x-large color="purple lighten-4" class="my-edit
+        mt-5 my-5 px-5 text-center purple--text">😃 Reviews </v-chip>
     </div>
     <!-- v-menu 쓸 수 있음! -->
     <br>
@@ -85,5 +86,12 @@
 
 .my-card {
   background-color: #f3e5f5af
+}
+
+.my-edit {
+  /* font-family: 'Inconsolata', monospace; */
+    font-family: 'Source Code Pro', monospace;
+    font-weight: bolder;
+    font-size: 40px;
 }
 </style>
