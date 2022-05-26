@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'allauth', 
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     # CORS 세팅
     'corsheaders',
@@ -78,6 +79,18 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
+# 구글 로그인 바로 넘어가기
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

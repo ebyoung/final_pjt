@@ -56,3 +56,7 @@ def profile_path(request, username):
     if request.user.is_authenticated:
         serializer = ProfileImageSerializer(user)
         return Response(serializer.data)
+
+
+def social(request):
+    print(dir(request))
