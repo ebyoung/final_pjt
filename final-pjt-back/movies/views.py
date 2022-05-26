@@ -76,7 +76,7 @@ def recommendations(request):
     
     top5 = []
     for title, score in recom_list.items():
-        if len(top5) < 5:
+        if len(top5) < 20:
             top5.append(title)
         else:
             third = top5[-1]
