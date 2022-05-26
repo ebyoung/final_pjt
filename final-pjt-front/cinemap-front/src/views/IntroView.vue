@@ -1,6 +1,23 @@
 <template>
   <div class="background d-flex justify-center align-center p-5">
-    <div>
+    <v-carousel
+      hide-delimiters
+      :show-arrows="false"
+      class="carousel"
+      height="110%"
+      cycle
+      :interval="5000">
+      <v-carousel-item
+        src="https://www.themoviedb.org/t/p/original/nyuzfjAbuSel6dVKY4zFo95ugUf.jpg"
+      ></v-carousel-item>
+      <v-carousel-item
+        src="https://www.themoviedb.org/t/p/original/fspJGJP3NWBOz2Pm3EXvCvY44n3.jpg"
+      ></v-carousel-item>
+      <v-carousel-item
+        src="https://www.themoviedb.org/t/p/original/vqGEgGKD2zlISNlO8hTRz3ioIv8.jpg"
+      ></v-carousel-item>
+    </v-carousel>
+    <div class="zindex">
       <div class="my-name">C I N E M A P</div>
       <br>
       <div class="content">
@@ -41,7 +58,7 @@ export default {
 
 .background::after {
   /* background: url('https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201701/09/htm_20170109115141307904.jpg'); */
-  background: url('https://www.themoviedb.org/t/p/original/nyuzfjAbuSel6dVKY4zFo95ugUf.jpg');
+  /* background: url('https://www.themoviedb.org/t/p/original/nyuzfjAbuSel6dVKY4zFo95ugUf.jpg'); */
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -51,6 +68,17 @@ export default {
   left: 0;
   content: "";
   z-index: -1;
+}
+
+.zindex {
+  z-index: 1;
+}
+
+.carousel {
+  position: absolute;
+  /* z-index: -1; */
+  width: 100%;
+  height: 100%;
 }
 
 .my-name {

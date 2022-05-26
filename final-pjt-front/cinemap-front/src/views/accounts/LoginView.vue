@@ -1,5 +1,22 @@
 <template>
   <div class="my-login">
+    <v-carousel
+      hide-delimiters
+      :show-arrows="false"
+      class="carousel"
+      height="110%"
+      cycle
+      :interval="7000">
+      <v-carousel-item
+        src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201701/09/htm_20170109115141307904.jpg"
+      ></v-carousel-item>
+      <v-carousel-item
+        src="https://www.themoviedb.org/t/p/original/tlCBtqrhbPcuXVXoxmQ0AYfUstt.jpg"
+      ></v-carousel-item>
+      <v-carousel-item
+        src="https://www.themoviedb.org/t/p/original/9qic7AS9L0OdRGltWYd3PFx7gd1.jpg"
+      ></v-carousel-item>
+    </v-carousel>
     <ul class="nav">
       <li @click="showSignup()">Sign up</li>
       <li @click="showLogin()">Login</li>
@@ -118,15 +135,23 @@ export default {
 
 <style scoped>
 .my-login {
-  background: url('https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201701/09/htm_20170109115141307904.jpg');
-  background-size: cover;
-  width: 100%;
+  /* background: url('https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201701/09/htm_20170109115141307904.jpg'); */
+  /* background-size: cover; */
+  /* width: 100%;
   height: 100%;
-  opacity: 90%;
+  opacity: 90%; */
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  content: ""; */
+}
+
+.carousel {
   position: absolute;
   top: 0;
   left: 0;
-  content: "";
+  width: 100%;
+  height: 100%;
 }
 
 </style>
