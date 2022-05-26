@@ -1,6 +1,6 @@
 <template>
   <div class="distribution-map">
-    <h1>CINEMAP</h1>
+    <h1>지도에 핀을 클릭하면 세계여행이 시작됩니다.</h1>
     <img src="@/assets/worldmapcolorborder.png" alt="" />
 
     <MapPoint :top='29' :left='22' :targetMovie='mapMovies[0]'/>

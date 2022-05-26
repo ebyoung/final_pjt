@@ -86,7 +86,7 @@ export default {
   right: 3%;
   top: 4%;
   color: grey;
-  z-index: 1;
+  z-index: 2;
   cursor: pointer;
 }
 
@@ -99,6 +99,7 @@ export default {
 .carousel-item {
   border-radius: 20px;
   width: 480px;
+  z-index: 1;
 }
 
 #app > div > div > div:nth-child(2) {
