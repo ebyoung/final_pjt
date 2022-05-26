@@ -7,7 +7,7 @@
     <div class="wrapper">
       <div :class="{'rec-prism-login': isLogin, 'rec-prism-signup' : isSignup, 'rec-prism-thankyou' : isThank}">
         <div class="face face-right">
-          <div class="content">
+          <div @keyup.enter="showThankYou()" class="content">
             <h2>Log in</h2>
             <div class="field-wrapper">
               <input v-model="credentials_login.username" type="text" id="login_username" placeholder="Username" required />
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="face face-front">
-          <div class="content">
+          <div @keyup.enter="showThankYou()" class="content">
             <h2>Sign up</h2>
             <div class="field-wrapper">
               <input v-model="credentials_signup.username" type="text" id="signup_username" placeholder="Username" required/>
