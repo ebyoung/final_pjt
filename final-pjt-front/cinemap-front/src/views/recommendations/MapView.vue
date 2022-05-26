@@ -1,6 +1,6 @@
 <template>
   <div class="distribution-map">
-    <div class="text-overline font-weight-bold mt-3 text-center">
+    <div class="text-button font-weight-bold  text-center">
       아래 지도에서 <font-awesome-icon  icon="fa-solid fa-location-dot" size="xl" color="purple"/>
       을 클릭하면 세계 여행이 시작됩니다.</div>
     <img src="@/assets/worldmapcolorborder.png" alt="" />
@@ -53,7 +53,7 @@
           </div>
         <div v-bind:class="{ active: isActive }" class="progress"></div>
     </div>
-    <div class="text-overline mb-5 text-center black--text text--lighten-4">어떤 영화를 봐야 할지 고민되시나요? 
+    <div class="text-overline  text-center black--text text--lighten-4">어떤 영화를 봐야 할지 고민되시나요? 
     <v-btn icon  @click="getRecommend"><font-awesome-icon icon="fa-solid fa-rocket" 
       color="purple" size="xl"/></v-btn>
       을 클릭해주세요!
