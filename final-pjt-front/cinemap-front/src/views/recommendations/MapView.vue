@@ -22,11 +22,16 @@
         <div class="toast-content">
           <div class="message">
             <div class="d-flex justify-space-between">
-              <span class="text text-1">맞춤 추천 영화</span>
+              <span v-if="isFirst" class="text text-first">
+                <pre>리뷰를 작성하시면 {{ currentUser.username }}님의
+맞춤 영화를 추천해드릴게요
+                </pre>
+                </span>
+              <span v-else class="text text-1">맞춤 추천 영화</span>
               <font-awesome-icon icon="fa-solid fa-xmark close" @click="closeToast"/>
             </div>
               <div class="portfolio-item portfolio-effect__item portfolio-item--eff1">
-                <img class="portfolio-item__image" :src="selected.posterPath" alt="Portfolio Item" width="826" height="551">
+                <img class="portfolio-item__image" :src="isFirst? selected.poster_path : selected.posterPath" alt="Portfolio Item" width="826" height="551">
                 <div class="portfolio-item__info">
                   <h3 class="portfolio-item__header">{{ selected.title }}</h3>
                   <div class="portfolio-item__links">
@@ -57,6 +62,7 @@
       return {
         selected: {},
         isActive: false,
+        isFirst: false,
         timer1: '',
         timer2: '',
       }
@@ -65,16 +71,17 @@
       MapPoint,
     },
     computed: {
-      ...mapGetters(['mapMovies', 'userRecommendations']),
+      ...mapGetters(['mapMovies', 'userRecommendations', 'movies', 'currentUser']),
     },
     methods: {
-      ...mapActions(['getMapMovies', 'getUserRecommendations', 'moveToRecom']),
+      ...mapActions(['getMapMovies', 'getUserRecommendations', 'moveToRecom', 'fetchMovies']),
       selectRecommendMovie() {
         if (this.userRecommendations.length > 0) {
           return _.sample(this.userRecommendations)
         }
          else {
-          return { title: '리뷰를 작성하시면 알려드릴게요.' }
+          this.isFirst = true
+          return _.sample(this.movies)
         }
       },
       getRecommend() {
@@ -95,6 +102,7 @@
     },
     created() {
       this.getMapMovies()
+      this.fetchMovies()
       this.getUserRecommendations()
       setTimeout(() => {
           this.getRecommend()
@@ -167,6 +175,11 @@
 
   .message .text.text-1{
       font-weight: 600;
+      color: #333;
+  }
+
+  .message .text.text-first{
+      font-size: 12px;
       color: #333;
   }
 
