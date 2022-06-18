@@ -95,6 +95,76 @@ npm run serve
 
 
 
+## 결과물
+
+### Intro
+
+![intro](README.assets/intro.png)
+
+- 서비스에 처음 접속하면 볼 수 있는 페이지로 start 버튼을 누르면 로그인한 유저의 경우 서비스 페이지로 이동하며 로그인하지 않은 유저의 경우 로그인 페이지로 이동
+
+
+
+### Login
+
+![login](README.assets/login.png)
+
+- 로그인과 회원가입을 한 페이지 안에서 할 수 있도록 구현하였으며 3d 큐브 애니메이션 추가
+
+
+
+### Map
+
+![map](README.assets/map.png)
+
+- 지도에서 핀을 클릭하면 해당 지역에서 촬영한 영화의 이미지를 Carousel로 출력
+- 하단의 버튼을 누르거나 처음 페이지 진입시 팝업을 통해 맞춤 영화 추천
+
+
+
+### Recommendations
+
+![trailer](README.assets/trailer.png)
+
+![trailer2](README.assets/trailer2.png)
+
+- 추천받을 영화를 선택하면 해당 영화의 트레일러를 감상하거나 비슷한 다른 영화들의 트레일러를 감상할 수 있음
+- 다른 영화를 선택하고 중앙의 Recommendations 버튼을 클릭하면 그 영화와 비슷한 영화들의 트레일러를 또다시 감상 가능
+
+
+
+### Profile
+
+![profile](README.assets/profile.png)
+
+- 자신의 프로필 페이지에서 프로필 사진과 소개글 등을 수정 가능
+- 팔로우 목록에서 다른 유저의 프로필 이미지를 클릭하면 해당 유저의 프로필로 이동
+- 영화 캘린더에서 원하는 날짜를 클릭시 새로운 리뷰를 작성하거나 그 날짜에 작성된 리뷰 확인 가능
+
+
+
+### Create
+
+![new_review](README.assets/new_review.png)
+
+- 새로운 리뷰 작성시 제목을 입력하면 자동 완성을 통해 영화를 선택 가능하며 영화를 선택하면 자동으로 포스터 이미지 출력
+
+
+
+### Detail
+
+![review_detail](README.assets/review_detail.png)
+
+- 리뷰 상세 정보 페이지에서 좋아요를 누르거나 댓글 작성 가능
+
+
+
+### Review List
+
+![review_list](README.assets/review_list.png)
+
+- 전체 리뷰 목록에서 좋아요, 댓글, 작성 시간 중 원하는 기준으로 정렬 가능
+
 
 
 
@@ -566,6 +636,6 @@ npm run serve
 
 ## Admin
 
-![image-20220527053947530](C:\Users\ebyoung\AppData\Roaming\Typora\typora-user-images\image-20220527053947530.png)
+![image-20220527053947530](C:\ssafy7\webex_student\06_final_pjt\기록\admin.png)
 
 - admin 페이지에서 관리자 계정으로 데이터를 수정 삭제 가능
